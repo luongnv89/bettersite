@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BetterSite — Brand Identity</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<style>
+  :root {
+    --base:#020617; --surface:#0f172a; --surface-2:#1e293b;
+    --accent:#34d399; --accent-2:#10b981;
+    --muted:#475569; --text:#f1f5f9; --text-dim:#94a3b8;
+    --light:#fafafa; --light-2:#f1f5f9;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--base);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1100px;margin:0 auto;padding:64px 32px}
+  h1{font-size:clamp(40px,6vw,72px);line-height:1.05;letter-spacing:-1.5px;margin:0 0 16px;font-weight:800}
+  h1 .accent{color:var(--accent)}
+  h2{font-size:28px;letter-spacing:-0.4px;margin:0 0 24px;font-weight:700}
+  h3{font-size:14px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin:0 0 16px;font-weight:600}
+  p{color:var(--text-dim);max-width:62ch}
+  section{margin-bottom:88px}
+  .hero{display:flex;flex-direction:column;align-items:flex-start;gap:32px;padding:48px 0 24px}
+  .hero img{height:88px}
+  .tagline{font-size:20px;color:var(--text-dim);max-width:60ch}
+  .grid{display:grid;gap:20px}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  @media (max-width:760px){.grid-3,.grid-2{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--surface-2);border-radius:16px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px}
+  .card.light{background:var(--light)}
+  .card .label{margin-top:24px;font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
+  .card.light .label{color:#64748b}
+  .card img{max-width:100%;height:auto;max-height:120px}
+  .card .favicon-row{display:flex;align-items:center;gap:24px}
+  .card .favicon-row img{height:48px;width:48px}
+  .card .favicon-row .small{height:16px;width:16px}
+  .palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
+  .swatch{border-radius:12px;padding:24px;border:1px solid var(--surface-2);min-height:140px;display:flex;flex-direction:column;justify-content:flex-end}
+  .swatch .name{font-weight:600;font-size:14px}
+  .swatch .hex{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;opacity:.85}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media (max-width:760px){.concept{grid-template-columns:1fr}}
+  .concept .visual{background:var(--surface);border:1px solid var(--surface-2);border-radius:16px;padding:48px;display:flex;align-items:center;justify-content:center}
+  .concept .visual img{height:160px}
+  ul.notes{padding-left:18px}
+  ul.notes li{margin-bottom:8px;color:var(--text-dim)}
+  pre{background:var(--surface);border:1px solid var(--surface-2);border-radius:12px;padding:20px;overflow-x:auto;font-size:13px;color:var(--text)}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .typo-sample{background:var(--surface);border:1px solid var(--surface-2);border-radius:16px;padding:32px}
+  .typo-sample .display{font-size:48px;font-weight:800;letter-spacing:-1px;margin:0 0 8px}
+  .typo-sample .body{color:var(--text-dim);margin:0}
+  footer{border-top:1px solid var(--surface-2);padding-top:32px;color:var(--text-dim);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <img src="logo-full.svg" alt="BetterSite logo" />
+    <div>
+      <h1>Better<span class="accent">Site</span> brand identity</h1>
+      <p class="tagline">A small studio that rebuilds outdated websites with modern UI, performance, SEO, and security — free homepage sample within 48 hours.</p>
+    </div>
+  </section>
+
+  <section>
+    <h3>Design concept</h3>
+    <div class="concept">
+      <div class="visual"><img src="logo-mark.svg" alt="BetterSite mark" /></div>
+      <div>
+        <h2>Before → After, in one mark</h2>
+        <p>The mark is a stylized <strong>B</strong> split vertically. On the left, three muted, fragmented bars represent the existing site — broken, inconsistent, dated. On the right, a single solid emerald bar represents the rebuild — clean, continuous, fast.</p>
+        <p>Read at a glance, the eye resolves the fragments into a unified form. That moment of resolution is the product.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Variants</h3>
+    <div class="grid grid-3">
+      <div class="card"><img src="logo-mark.svg" alt="Mark" /><div class="label">Mark · 64×64</div></div>
+      <div class="card"><img src="logo-wordmark.svg" alt="Wordmark" /><div class="label">Wordmark</div></div>
+      <div class="card"><img src="logo-icon.svg" alt="App icon" style="height:120px;width:120px;border-radius:24px" /><div class="label">App icon · 512×512</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Light / Dark</h3>
+    <div class="grid grid-2">
+      <div class="card"><img src="logo-white.svg" alt="White on dark" /><div class="label">On dark · logo-white.svg</div></div>
+      <div class="card light"><img src="logo-black.svg" alt="Black on light" /><div class="label">On light · logo-black.svg</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Favicon</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="favicon-row">
+          <img src="favicon.svg" alt="Favicon 48px" />
+          <img src="favicon.svg" alt="Favicon 16px" class="small" />
+        </div>
+        <div class="label">Simplified 2-layer mark · 48px and 16px</div>
+      </div>
+      <div class="card light">
+        <div class="favicon-row">
+          <img src="favicon.svg" alt="Favicon 48px" />
+          <img src="favicon.svg" alt="Favicon 16px" class="small" />
+        </div>
+        <div class="label" style="color:#64748b">Renders identically on light surfaces</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Color palette</h3>
+    <div class="palette">
+      <div class="swatch" style="background:#020617"><div class="name" style="color:#f1f5f9">Base</div><div class="hex" style="color:#94a3b8">#020617</div></div>
+      <div class="swatch" style="background:#0f172a"><div class="name" style="color:#f1f5f9">Surface</div><div class="hex" style="color:#94a3b8">#0F172A</div></div>
+      <div class="swatch" style="background:#34d399"><div class="name" style="color:#022c22">Accent</div><div class="hex" style="color:#022c22">#34D399</div></div>
+      <div class="swatch" style="background:#475569"><div class="name" style="color:#f1f5f9">Muted (before)</div><div class="hex" style="color:#cbd5e1">#475569</div></div>
+      <div class="swatch" style="background:#f1f5f9"><div class="name" style="color:#020617">Text</div><div class="hex" style="color:#475569">#F1F5F9</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Typography</h3>
+    <div class="typo-sample">
+      <p class="display">Better<span style="color:var(--accent)">Site</span></p>
+      <p class="body">Inter, weights 400 / 600 / 700 / 800. Tight tracking (-0.5 to -1.5px) on display. System fallback: <code>system-ui, -apple-system, "Segoe UI", Helvetica, Arial</code>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h3>Developer reference</h3>
+    <pre><code>/* CSS variables */
+:root {
+  --bs-base:    #020617;
+  --bs-surface: #0F172A;
+  --bs-accent:  #34D399;
+  --bs-muted:   #475569;
+  --bs-text:    #F1F5F9;
+}
+
+/* Tailwind v4 (in your @theme block) */
+@theme {
+  --color-bs-base:    #020617;
+  --color-bs-surface: #0F172A;
+  --color-bs-accent:  #34D399;
+  --color-bs-muted:   #475569;
+  --color-bs-text:    #F1F5F9;
+}</code></pre>
+    <ul class="notes">
+      <li>Use the accent <code>#34D399</code> sparingly — for the right-hand bar of the mark, the "Site" half of the wordmark, primary CTAs, and links only.</li>
+      <li>Never invert the mark's split: the muted "before" is always on the left, the accent "after" is always on the right.</li>
+      <li>Maintain a clear-space margin equal to the height of one fragment bar around the mark.</li>
+      <li>Minimum mark size: 16px (use <code>favicon.svg</code> below 24px — the full mark loses legibility).</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>BetterSite · brand identity v1</div>
+    <div>Generated with /logo-designer</div>
+  </footer>
+</div>
+</body>
+</html>

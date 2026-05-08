@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import RequestSampleForm from '../components/RequestSampleForm.astro';
+import { withBase } from '../lib/url';
 
 const features = [
   { icon: '🎨', title: 'Modern UI/UX', body: 'A clean, conversion-focused redesign that respects your brand. Mobile-first, accessible, built to convert.' },
@@ -51,9 +52,9 @@ const faqs = [
 <Layout>
   <header class="sticky top-0 z-40 backdrop-blur bg-slate-950/70 border-b border-white/5">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-2 font-bold tracking-tight">
-        <span class="inline-block w-7 h-7 rounded-md bg-gradient-to-br from-emerald-400 to-cyan-400"></span>
-        <span>BetterSite</span>
+      <a href="#top" class="flex items-center gap-2 font-bold tracking-tight" aria-label="BetterSite home">
+        <img src={withBase('logo-mark.svg')} alt="" width="28" height="28" class="w-7 h-7" />
+        <span>Better<span class="text-emerald-400">Site</span></span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
         <a href="#how" class="hover:text-white">How it works</a>
@@ -211,7 +212,10 @@ const faqs = [
 
   <footer class="border-t border-white/5 bg-slate-950">
     <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-      <div>© {new Date().getFullYear()} BetterSite. Built better.</div>
+      <div class="flex items-center gap-2">
+        <img src={withBase('logo-mark.svg')} alt="" width="20" height="20" class="w-5 h-5 opacity-80" />
+        <span>© {new Date().getFullYear()} BetterSite. Built better.</span>
+      </div>
       <div class="flex gap-6">
         <a href="mailto:hello@bettersite.dev" class="hover:text-white">hello@bettersite.dev</a>
         <a href="https://github.com/luongnv89/bettersite" class="hover:text-white">GitHub</a>
