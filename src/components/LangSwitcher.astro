@@ -1,0 +1,42 @@
+---
+import { withBase } from '../lib/url';
+import type { Locale } from '../i18n';
+
+interface Props {
+  current: Locale;
+}
+const { current } = Astro.props;
+
+const items: { code: Locale; label: string; href: string }[] = [
+  { code: 'en', label: 'EN', href: withBase('') },
+  { code: 'fr', label: 'FR', href: withBase('fr/') },
+];
+---
+<div class="flex items-center gap-1 text-xs font-semibold text-slate-400" role="group" aria-label="Language">
+  {items.map((item, i) => (
+    <>
+      {i > 0 && <span class="text-slate-600" aria-hidden="true">|</span>}
+      <a
+        href={item.href}
+        hreflang={item.code}
+        data-bs-lang={item.code}
+        aria-current={current === item.code ? 'true' : undefined}
+        class:list={[
+          'px-1.5 py-1 rounded transition',
+          current === item.code
+            ? 'text-emerald-400'
+            : 'hover:text-white',
+        ]}
+      >{item.label}</a>
+    </>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('a[data-bs-lang]').forEach((a) => {
+    a.addEventListener('click', () => {
+      const code = a.dataset.bsLang;
+      if (code) document.cookie = `bs_lang=${code};path=/;max-age=31536000;samesite=lax`;
+    });
+  });
+</script>

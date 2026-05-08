@@ -8,6 +8,13 @@ export default defineConfig({
   site: 'https://luongnv.com',
   base: '/bettersite',
   trailingSlash: 'ignore',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },
