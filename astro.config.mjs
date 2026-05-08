@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://luongnv89.github.io',
+  site: 'https://luongnv.com',
   base: '/bettersite',
   trailingSlash: 'ignore',
   vite: {
