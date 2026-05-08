@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RequestSampleForm from '../components/RequestSampleForm.astro';
+
+const features = [
+  { icon: '🎨', title: 'Modern UI/UX', body: 'A clean, conversion-focused redesign that respects your brand. Mobile-first, accessible, built to convert.' },
+  { icon: '⚡', title: 'Lightning Performance', body: 'Sub-1-second loads. 95+ Lighthouse scores. Static-first architecture that scales for free.' },
+  { icon: '🔍', title: 'SEO That Ranks', body: 'Schema markup, perfect Core Web Vitals, semantic HTML, and metadata done right — engineered to climb Google.' },
+  { icon: '🛡️', title: 'Security by Default', body: 'No outdated plugins. No vulnerable PHP. No admin panels exposed. Almost nothing left to hack.' },
+  { icon: '💰', title: 'Cheaper to Maintain', body: 'Forget €200/month hosting and plugin licenses. Most rebuilds run on €5–20/month. You keep the savings.' },
+  { icon: '⏱️', title: '48-Hour Turnaround', body: 'Less theater, more output. Your live preview lands in your inbox in two days — not two months.' },
+];
+
+const steps = [
+  { n: '01', title: 'Request your free sample', body: 'Drop your website URL and email. Confirm your email with one click so we know you are real.' },
+  { n: '02', title: 'We rebuild it (on us)', body: 'Our team rebuilds your homepage with a fresh design, modern stack, and full performance pass. No payment required.' },
+  { n: '03', title: 'Review the live preview', body: 'Within 48 hours you get a private link. Love it? Continue. Don\'t? Walk away — no charge, no hard feelings.' },
+  { n: '04', title: 'Lock in the full build', body: 'We send a detailed quote covering the full rebuild plus a flat monthly maintenance plan. Sign, and we ship.' },
+];
+
+const metrics = [
+  { value: '+47%', label: 'avg. organic traffic in 90 days' },
+  { value: '6.2s → 0.9s', label: 'avg. load time' },
+  { value: '−78%', label: 'avg. monthly hosting cost' },
+  { value: '48h', label: 'from request to live preview' },
+];
+
+const testimonials = [
+  {
+    quote: 'I expected a knockoff. I got a homepage that loads instantly, looks like a real agency built it, and dropped my hosting bill from €180/month to €12. The free sample sold me in five minutes.',
+    name: 'Marie L.',
+    role: 'Owner, Boulangerie Saint-Pierre',
+  },
+  {
+    quote: 'Three agency quotes between €12K and €19K. BetterSite delivered something better for a fraction of that, in two days. Our bounce rate dropped by half.',
+    name: 'James K.',
+    role: 'Director, Northgate Dental',
+  },
+];
+
+const faqs = [
+  { q: 'Is the sample really free? What\'s the catch?', a: 'Genuinely free. No card, no contract. We rebuild your homepage and show you. If you don\'t continue, you owe nothing — we just keep the work as a portfolio piece.' },
+  { q: 'How can you do this in 48 hours when agencies take months?', a: 'Most agencies bill discovery meetings, slide decks, and revisions. We use modern tooling to clone your structure, redesign the surface, and ship. Less theater, more output.' },
+  { q: 'Will I lose my SEO rankings?', a: 'No. We preserve your URL structure, content, and metadata — and improve technical SEO on top. Most clients gain rankings within 30 days.' },
+  { q: 'What does maintenance actually cover?', a: 'Hosting, security patches, uptime monitoring, content updates (within reason), and minor design tweaks. Flat monthly fee, cancel anytime. Detailed in the contract.' },
+  { q: 'What if I want changes after seeing the sample?', a: 'That is the point of the sample. We discuss revisions in the contract phase, lock scope, and build the rest. No surprise invoices.' },
+  { q: 'Do you only do homepages?', a: 'The free sample is your homepage — fastest way to show what we can do. The full rebuild covers your entire site.' },
+  { q: 'What technologies do you use?', a: 'Modern static-site stacks (Astro, Next.js) deployed on edge infrastructure. Translation: very fast, very cheap, very secure.' },
+];
+---
+<Layout>
+  <header class="sticky top-0 z-40 backdrop-blur bg-slate-950/70 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 font-bold tracking-tight">
+        <span class="inline-block w-7 h-7 rounded-md bg-gradient-to-br from-emerald-400 to-cyan-400"></span>
+        <span>BetterSite</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+        <a href="#how" class="hover:text-white">How it works</a>
+        <a href="#proof" class="hover:text-white">Results</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
+      </nav>
+      <a href="#request" class="rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-sm font-semibold px-4 py-2 transition">
+        Free sample
+      </a>
+    </div>
+  </header>
+
+  <section id="top" class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full bg-emerald-500/20 blur-3xl"></div>
+      <div class="absolute top-40 -right-40 w-[40rem] h-[40rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 ring-1 ring-emerald-400/30 text-emerald-300 text-xs font-medium px-3 py-1 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Free sample. No card. 48-hour turnaround.
+        </span>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]">
+          Your website,
+          <span class="bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">rebuilt better.</span>
+          In 48 hours.
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-slate-300 max-w-xl">
+          Faster, prettier, safer, and cheaper to maintain. We rebuild your existing site with modern UI/UX, top SEO scores, and bulletproof security — and we'll prove it with a free sample before you pay a cent.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4 text-sm text-slate-400">
+          <span class="flex items-center gap-2">✓ Free sample, no credit card</span>
+          <span class="flex items-center gap-2">✓ Delivered in 2 days</span>
+          <span class="flex items-center gap-2">✓ Pay only if you love it</span>
+        </div>
+      </div>
+      <div id="request" class="lg:justify-self-end w-full">
+        <RequestSampleForm variant="hero" id="form-hero" />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-4xl mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Your website is quietly costing you customers.</h2>
+      <p class="mt-6 text-lg text-slate-300">You built your site years ago. It worked. Then the web moved on — and yours didn't.</p>
+      <ul class="mt-8 space-y-3 text-slate-300">
+        <li class="flex gap-3"><span class="text-rose-400">✗</span> Takes 6+ seconds to load on mobile (53% of visitors leave before it finishes)</li>
+        <li class="flex gap-3"><span class="text-rose-400">✗</span> Looks like it was designed in 2015 — because it was</li>
+        <li class="flex gap-3"><span class="text-rose-400">✗</span> Ranks on page 4 of Google because Core Web Vitals are tanking</li>
+        <li class="flex gap-3"><span class="text-rose-400">✗</span> Runs on a CMS that costs €80–200/month to host, plugin, and patch</li>
+        <li class="flex gap-3"><span class="text-rose-400">✗</span> Has security holes you don't know about — until you're hacked</li>
+      </ul>
+      <p class="mt-8 text-slate-400">Every day this continues, you're losing leads to competitors with faster, cleaner sites. And the agency quotes? €8,000–€25,000 and three months of meetings.</p>
+      <p class="mt-4 text-xl font-semibold text-white">There's a better way.</p>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">We rebuild your site. Better in every way that matters.</h2>
+        <p class="mt-6 text-lg text-slate-300">BetterSite takes your existing website and rebuilds it from scratch on modern foundations — keeping what works, fixing what doesn't, adding what's missing. You see the result before you commit.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((f) => (
+          <div class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6 hover:ring-emerald-400/30 transition">
+            <div class="text-3xl mb-3">{f.icon}</div>
+            <h3 class="text-lg font-semibold">{f.title}</h3>
+            <p class="mt-2 text-slate-400 text-sm leading-relaxed">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Four steps. Two days. Zero risk.</h2>
+        <p class="mt-6 text-lg text-slate-300">No discovery calls, no proposals, no slide decks. Just a free, working preview of your new site.</p>
+      </div>
+      <ol class="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((s) => (
+          <li class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6">
+            <div class="text-emerald-400 font-mono text-sm mb-3">{s.n}</div>
+            <h3 class="text-lg font-semibold">{s.title}</h3>
+            <p class="mt-2 text-slate-400 text-sm leading-relaxed">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-12 text-center">
+        <a href="#request" class="inline-flex items-center gap-2 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold px-6 py-3 transition">
+          Start with my free sample <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" class="border-t border-white/5 bg-gradient-to-b from-slate-900 to-slate-950">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Numbers don't lie.</h2>
+      <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {metrics.map((m) => (
+          <div class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6 text-center">
+            <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">{m.value}</div>
+            <div class="mt-2 text-sm text-slate-400">{m.label}</div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        {testimonials.map((t) => (
+          <figure class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6 md:p-8">
+            <blockquote class="text-lg text-slate-200 leading-relaxed">"{t.quote}"</blockquote>
+            <figcaption class="mt-4 text-sm">
+              <div class="font-semibold text-white">{t.name}</div>
+              <div class="text-slate-400">{t.role}</div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-3xl mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Questions, answered.</h2>
+      <div class="mt-12 divide-y divide-white/5 rounded-2xl bg-slate-900/40 ring-1 ring-white/10">
+        {faqs.map((item) => (
+          <details class="group p-6">
+            <summary class="cursor-pointer list-none flex justify-between items-start gap-4">
+              <span class="font-semibold">{item.q}</span>
+              <span class="text-emerald-400 transition group-open:rotate-45 text-2xl leading-none">+</span>
+            </summary>
+            <p class="mt-3 text-slate-400 leading-relaxed">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-4xl mx-auto px-6 py-20 md:py-28 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">See your website, rebuilt — before you pay a cent.</h2>
+      <p class="mt-6 text-lg text-slate-300 max-w-2xl mx-auto">
+        Two days from now, you could be looking at a faster, prettier, cheaper version of your site. Or you could still be losing visitors to competitors. Your call.
+      </p>
+      <p class="mt-4 text-sm text-slate-400">Free sample. No card required. Walk away anytime. The only way to lose is to do nothing.</p>
+      <div class="mt-10">
+        <RequestSampleForm variant="final" id="form-final" />
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+      <div>© {new Date().getFullYear()} BetterSite. Built better.</div>
+      <div class="flex gap-6">
+        <a href="mailto:hello@bettersite.dev" class="hover:text-white">hello@bettersite.dev</a>
+        <a href="https://github.com/luongnv89/bettersite" class="hover:text-white">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</Layout>

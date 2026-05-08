@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'BetterSite — Your Website, Rebuilt Better. In 48 Hours.',
+  description = 'We rebuild your existing website with modern UI/UX, top SEO, bulletproof security, and lower hosting costs. See a free sample before you pay a cent.',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://luongnv89.github.io/bettersite/');
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical.toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "BetterSite",
+      "description": description,
+      "provider": { "@type": "Organization", "name": "BetterSite" },
+      "areaServed": "Worldwide",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Free homepage sample, no card required" }
+    })} />
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased font-sans selection:bg-emerald-400 selection:text-slate-950">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root { --bs-accent: #34d399; }
+  html { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+</style>

@@ -1,0 +1,95 @@
+---
+interface Props {
+  variant?: 'hero' | 'final';
+  id?: string;
+}
+const { variant = 'hero', id = 'request-sample' } = Astro.props;
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? 'YOUR_WEB3FORMS_ACCESS_KEY';
+---
+<form
+  id={id}
+  class="w-full max-w-xl mx-auto bg-slate-900/60 backdrop-blur ring-1 ring-white/10 rounded-2xl p-6 md:p-8 shadow-2xl"
+  data-variant={variant}
+>
+  <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="subject" value="New BetterSite free-sample request" />
+  <input type="hidden" name="from_name" value="BetterSite Landing" />
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div class="space-y-4">
+    <label class="block">
+      <span class="block text-sm font-medium text-slate-300 mb-1.5">Your current website</span>
+      <input
+        type="url"
+        name="website"
+        required
+        placeholder="https://yoursite.com"
+        autocomplete="url"
+        class="w-full rounded-lg bg-slate-950/60 ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-400 focus:outline-none px-4 py-3 placeholder:text-slate-500"
+      />
+    </label>
+    <label class="block">
+      <span class="block text-sm font-medium text-slate-300 mb-1.5">Your email</span>
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="you@company.com"
+        autocomplete="email"
+        class="w-full rounded-lg bg-slate-950/60 ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-400 focus:outline-none px-4 py-3 placeholder:text-slate-500"
+      />
+    </label>
+    <button
+      type="submit"
+      class="group w-full inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold px-6 py-3.5 transition shadow-lg shadow-emerald-500/20"
+    >
+      <span>Request My Free Sample</span>
+      <span class="transition-transform group-hover:translate-x-0.5">→</span>
+    </button>
+    <p class="text-xs text-slate-400 text-center">
+      We'll email you a confirmation link. No card. No commitment. Reply &amp; we delete your data.
+    </p>
+  </div>
+
+  <div class="hidden mt-6 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 p-4 text-sm text-emerald-200" data-success>
+    <strong class="block text-emerald-100 mb-1">Check your inbox 📬</strong>
+    We just emailed you a confirmation link. Click it and we'll start rebuilding your site within 48 hours.
+  </div>
+  <div class="hidden mt-6 rounded-lg bg-rose-400/10 ring-1 ring-rose-400/30 p-4 text-sm text-rose-200" data-error>
+    Something went wrong. Email us at <a class="underline" href="mailto:hello@bettersite.dev">hello@bettersite.dev</a> and we'll handle it manually.
+  </div>
+</form>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('form[id]');
+  forms.forEach((form) => {
+    if (!form.querySelector('input[name="access_key"]')) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const success = form.querySelector<HTMLElement>('[data-success]');
+      const error = form.querySelector<HTMLElement>('[data-error]');
+      success?.classList.add('hidden');
+      error?.classList.add('hidden');
+      if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.reset();
+          success?.classList.remove('hidden');
+        } else {
+          error?.classList.remove('hidden');
+        }
+      } catch {
+        error?.classList.remove('hidden');
+      } finally {
+        if (submit) { submit.disabled = false; submit.innerHTML = '<span>Request My Free Sample</span><span>→</span>'; }
+      }
+    });
+  });
+</script>
