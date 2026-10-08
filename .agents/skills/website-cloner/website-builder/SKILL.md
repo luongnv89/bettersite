@@ -122,21 +122,63 @@ If either is missing, ask for paths.
 
 ## Step 2: Initialize Project
 
-Create the Vite + React JavaScript project and install Tailwind first:
+Resolve `PROJECT_DIR` from the requested `--output` directory; otherwise reuse the umbrella workflow's `PROJECT_DIR`, or the directory containing `tasks.md`. Bind that directory before running the block below. It can already contain `analysis.json`, `report.md`, `prd.md`, `tasks.md`, and user files.
+
+Reuse an existing Vite project. For a new project, generate the React JavaScript scaffold in an empty temporary directory owned by this run, check **every** generated top-level name for collisions, then copy. A collision aborts before any generated file is copied; report the names and stop. Never pass `--overwrite` or remove existing project files.
 
 ```bash
-npm create vite@latest . -- --template react
-npm install
-npm install tailwindcss @tailwindcss/vite
+: "${PROJECT_DIR:?Set PROJECT_DIR to the resolved output directory}"
+mkdir -p -- "$PROJECT_DIR" || exit
+PROJECT_DIR="$(cd -- "$PROJECT_DIR" && pwd -P)" || exit
+export PROJECT_DIR
+cd -- "$PROJECT_DIR" || exit
+if node --input-type=module <<'JS'
+import fs from "node:fs"
+const pkg = fs.existsSync("package.json")
+  ? JSON.parse(fs.readFileSync("package.json", "utf8")) : {}
+process.exit(pkg.dependencies?.vite || pkg.devDependencies?.vite ? 0 : 1)
+JS
+then
+  echo "Existing Vite project: skip scaffolding"
+else
+  (
+    VITE_SCAFFOLD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/website-builder.XXXXXX")" || exit
+    export VITE_SCAFFOLD_DIR
+    trap 'rm -rf -- "$VITE_SCAFFOLD_DIR"' EXIT
+    (cd -- "$VITE_SCAFFOLD_DIR" &&
+      npm create vite@latest . -- --template react --no-interactive --no-immediate) || exit
+    node --input-type=module <<'JS'
+import fs from "node:fs"
+import path from "node:path"
+const source = process.env.VITE_SCAFFOLD_DIR
+const target = process.env.PROJECT_DIR
+if (!fs.existsSync(path.join(source, "package.json"))) process.exit(1)
+const names = fs.readdirSync(source)
+const collisions = names.filter(name =>
+  fs.lstatSync(path.join(target, name), { throwIfNoEntry: false }))
+if (collisions.length) {
+  console.error("Scaffold collisions: " + collisions.join(", "))
+  process.exit(1)
+}
+for (const name of names) {
+  fs.cpSync(path.join(source, name), path.join(target, name), {
+    recursive: true, force: false, errorOnExist: true,
+  })
+}
+JS
+  ) || exit
+fi
+npm install || exit
+npm install tailwindcss @tailwindcss/vite || exit
 ```
 
-Before running shadcn/ui initialization, configure Tailwind and the import aliases as required by the [Vite installation guide](https://ui.shadcn.com/docs/installation/vite). Replace the scaffold's `src/index.css` with:
+Before running shadcn/ui initialization, configure Tailwind and the import aliases as required by the [Vite installation guide](https://ui.shadcn.com/docs/installation/vite). For a fresh scaffold, replace `src/index.css` with the following; in an existing project, retain its styles and add this import if absent:
 
 ```css
 @import "tailwindcss";
 ```
 
-Ensure `src/main.jsx` imports `./index.css`. For this JavaScript template, create `jsconfig.json` in the project root:
+Ensure `src/main.jsx` imports `./index.css`. For this JavaScript template, create `jsconfig.json` if absent; otherwise merge this alias into its existing `compilerOptions.paths`, preserving other settings. For an existing TypeScript project, merge the alias into its existing `tsconfig.json` and app config instead:
 
 ```json
 {
@@ -149,7 +191,7 @@ Ensure `src/main.jsx` imports `./index.css`. For this JavaScript template, creat
 }
 ```
 
-Configure `vite.config.js` with both the Tailwind plugin and Vite's matching alias. Keep these settings when configuring the GitHub Pages build base; the workflow selects `/` for a user/organization Pages repository and `/<repo>/` for a project Pages repository:
+Configure `vite.config.js` (or the existing Vite config) with both the Tailwind plugin and Vite's matching alias. This example is for a fresh scaffold; merge its imports, plugin, alias, and base into an existing config, preserving other plugins, aliases, and settings. Keep these settings when configuring the GitHub Pages build base; the workflow selects `/` for a user/organization Pages repository and `/<repo>/` for a project Pages repository:
 
 ```js
 import { fileURLToPath, URL } from "node:url"
@@ -168,11 +210,13 @@ export default defineConfig({
 })
 ```
 
-Only after this configuration is in place, initialize shadcn/ui and install the shared utilities:
+Only after this configuration is in place, initialize shadcn/ui and install the shared utilities. If `components.json` already exists, retain its configuration and verify its CSS path and aliases instead of reinitializing:
 
 ```bash
-npx shadcn@latest init
-npm install class-variance-authority clsx tailwind-merge lucide-react
+if [ ! -f components.json ]; then
+  npx shadcn@latest init || exit
+fi
+npm install class-variance-authority clsx tailwind-merge lucide-react || exit
 ```
 
 Use `import.meta.env.BASE_URL` for public asset URLs. For a client-routed SPA, prefer `HashRouter`; if the approved plan requires `BrowserRouter`, set its `basename` from `import.meta.env.BASE_URL` and provide a tested Pages 404 fallback. Do not leave root-relative asset or route URLs that bypass the configured base.
