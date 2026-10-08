@@ -6,6 +6,7 @@ Use this as the only output template. Keep the Phase 1 setup task's Pages-artifa
 # Implementation Plan: <site name>
 **Source PRD:** prd.md
 **Date:** <date>
+**Acceptance:** auto | user
 
 ---
 
@@ -33,7 +34,7 @@ The landing/home page is built first so it can be shown to potential users early
 
 **Assets Needed:**
 - [Collect] Logo, brand colors, brand name from original site
-- [Create] Project repository on GitHub
+- [Create] Dedicated GitHub repository when deployment access is available
 
 ### Task 1.2: Landing Page Layout
 
@@ -43,7 +44,8 @@ The landing/home page is built first so it can be shown to potential users early
 
 **Acceptance Criteria:**
 - Hero section with clear headline, subtext, primary CTA above the fold
-- Responsive layout (mobile + desktop)
+- Responsive layout (mobile + desktop), readable text, and no horizontal overflow
+- Navigation, mobile menu, CTAs, and in-scope forms work; keyboard focus and controls are usable
 - Navigation matches the improved structure
 
 **Assets Needed:**
@@ -111,9 +113,10 @@ Performance, SEO, and security improvements from the PRD.
 ## Deployment
 
 1. Include `package-lock.json`, base-aware `vite.config.*`, and `.github/workflows/deploy-pages.yml` in the implementation tasks.
-2. Push the approved project to the default branch and configure Repository Settings → Pages → Source as **GitHub Actions**.
+2. When authorized deployment access is available, push the accepted project to the default branch and configure Repository Settings → Pages → Source as **GitHub Actions**.
 3. Require the workflow to build and verify `dist/index.html`, upload exactly `dist/` as the Pages artifact, and deploy that artifact.
-4. Verify project Pages at `https://<user>.github.io/<repo>/`; for a `<user>.github.io` repository, verify the root URL instead.
+4. If deployment access is unavailable, retain the verified local build and preview, record its restart command and deployment gap, and continue to final comparison with a PARTIAL result.
+5. Verify project Pages at `https://<user>.github.io/<repo>/`; for a `<user>.github.io` repository, verify the root URL instead.
 
 ---
 

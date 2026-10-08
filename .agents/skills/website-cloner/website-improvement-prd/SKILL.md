@@ -1,16 +1,22 @@
 ---
 name: website-improvement-prd
-description: "Generate an approval-gated improvement PRD from a report and baseline, with evidence-backed what/why/value changes and measurable targets. Use for rebuild proposals. Don't use for task breakdown, implementation, or site audits."
+description: "Generate a reviewable or automatically accepted improvement PRD from a report and baseline, with evidence-backed what/why/value changes and measurable targets. Use for rebuild proposals. Don't use for task breakdown, implementation, or site audits."
 license: MIT
 effort: high
 metadata:
-  version: 1.5.0
+  version: 1.6.0
   author: "Luong NGUYEN <luongnv89@gmail.com>"
 ---
 
 # Website Improvement PRD
 
-Turns an approved end-user report into a full improvement proposal with measurable value metrics. Writes `prd.md` after user approval.
+Turns an approved end-user report into a full improvement proposal with measurable value metrics. Writes `prd.md` after user approval or validated --auto acceptance.
+
+## Execution Mode
+
+Accept `--auto` and `--no-auto`. A standalone invocation defaults to review mode; when called by website-cloner, honor its explicitly passed mode flag.
+
+In auto mode, validate the complete draft against the acceptance criteria, automatically accept it, and save immediately without presenting an approval question or waiting for a reply. Record `Acceptance: auto` in the artifact and summary. In review mode, follow the review/edit loop and save only after user approval, recording `Acceptance: user`. In both modes, a later user request to pause or stop takes precedence. Automatic acceptance never substitutes for evidence or successful persistence.
 
 ## When to Use
 
@@ -24,21 +30,15 @@ Do **not** use for implementation planning or coding — those are separate phas
 ## Prerequisites
 
 1. Require the Phase 1 analysis (`analysis.json`) and the approved Phase 2 report — ask for their paths if not supplied.
-2. Confirm the `Write` tool is available; if it is not, stop with a descriptive error.
+2. Confirm a safe file-writing tool is available; if it is not, stop with a descriptive error.
 3. Resolve the output path as in Step 7 and confirm it is writable before drafting.
 4. If any prerequisite fails, stop with a descriptive error naming the failing input and corrective action.
 
-## Repo Sync Before Edits (mandatory)
+## Repository Handling
 
-The approved `prd.md` is persisted with `Write`. When that output path lives inside a git worktree, sync before the write to avoid clobbering remote work:
+Work only in the resolved project directory. When called by website-cloner, inherit its new-project boundary and repository handling; never sync or publish a containing repository. A new project or a local repository without a remote needs no fetch/pull.
 
-```bash
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin
-git pull --rebase origin "$branch"
-```
-
-If the working tree is dirty: stash → sync → pop. If `origin` is missing or a conflict occurs: **stop and ask the user.** Skip this section only when the output path is outside any git repository.
+For a standalone invocation targeting an existing dedicated repository with `origin`, sync the current branch once before edits when the worktree is clean. Preserve dirty user changes; do not automatically stash unrelated files or reset/rebase over them. Resolve recoverable issues locally and ask only if a conflict or ambiguous target prevents safe progress. Do not repeat repository sync for every phase artifact.
 
 ## Workflow
 
@@ -47,8 +47,8 @@ If the working tree is dirty: stash → sync → pop. If `origin` is missing or 
 2. Identify improvement opportunities per dimension
 3. For each change: define what, why, and expected value
 4. Assemble into prd.md
-5. Present to user for review
-6. Incorporate edits (loop until approved)
+5. Validate and automatically accept, or present for user review
+6. Incorporate requested edits in review mode
 7. Persist prd.md
 ```
 
@@ -59,6 +59,7 @@ If the working tree is dirty: stash → sync → pop. If `origin` is missing or 
 **Source URL:** <url>
 **Date:** <date>
 **Version:** 1.0
+**Acceptance:** auto | user
 
 ---
 
@@ -158,6 +159,8 @@ Assemble the proposal using the structure above.
 
 ## Step 5: Present for Review
 
+In auto mode, validate and accept the draft, then proceed directly to persistence. The following review prompt applies only in review mode.
+
 Present the draft to the user:
 
 "Here is the improvement proposal. Please:
@@ -172,11 +175,11 @@ If edits requested:
 - Re-present
 - Repeat until approved
 
-Do **not** persist until explicit approval.
+In review mode, do **not** persist until explicit user approval. In auto mode, skip this loop after validating the draft.
 
 ## Step 7: Persist prd.md
 
-Persist the assembled content using the `Write` tool with literal content only. If the `Write` tool is unavailable, stop with a descriptive error and do not use shell persistence or another output path.
+Persist the assembled Markdown as literal content using an available file-writing tool such as `Write` or `apply_patch`. If no safe file-writing capability is available, stop with a descriptive error. Verify the saved content at the resolved path.
 
 Resolve the output path in this order:
 
@@ -188,15 +191,16 @@ End every outcome with this summary (the **output contract**), result first and 
 
 ```text
 Result:       PASS | BLOCKED | FAIL — prd.md saved to <absolute-path> | not saved
-Evidence:     <report.md and analysis.json paths; change count; Write result>
+Evidence:     <report.md and analysis.json paths; change count; file-write result>
 Uncertainty:  <estimated targets, missing baseline metrics, impacts measurable only after launch — or "none">
-Decision:     Approve, edit, or regenerate the proposal | No approval needed (proposal saved)
+Acceptance:   auto | user | pending
+Decision:     Approve, edit, or regenerate in review mode | No approval needed (proposal saved)
 STATUS: approved | pending | aborted
 ```
 
 ## Return Contract
 
-When invoked by the `website-cloner` umbrella (Phase 3 gate), the orchestrator
+When invoked by the `website-cloner` umbrella (Phase 3), the orchestrator
 gates Phase 4 on this skill's outcome. The contract:
 
 | Outcome  | Signal                                                              |
@@ -206,12 +210,11 @@ gates Phase 4 on this skill's outcome. The contract:
 | aborted  | no `prd.md` written; final line reads `STATUS: aborted` (user declined) |
 
 The orchestrator MUST NOT advance to Phase 4 unless the outcome is `approved`.
-A standalone invocation may ignore the status line, but the file-existence rule
-still holds: no approval, no `prd.md`.
+Here `approved` means validated automatic acceptance in auto mode or explicit user approval in review mode. A standalone invocation may ignore the status line, but both modes still require a successfully saved artifact; review mode must not write without user approval.
 
 ## Acceptance Criteria and Expected Output
 
-Verify the complete proposal before requesting approval:
+Verify the complete proposal before acceptance under either mode:
 
 - Every proposed change contains a specific What, evidence-backed Why, and measurable Expected Value.
 - Every baseline issue from the approved report or analysis maps to a proposal change or an explicit out-of-scope rationale.
@@ -229,7 +232,7 @@ Verify the complete proposal before requesting approval:
   Inputs validated:     √ pass | × fail ([reason])
   Changes evidenced:   √ pass ([count])
   Targets measurable:  √ pass
-  User approved:       √ pass | × pending
+  Acceptance:          √ auto | √ user | × pending
   prd.md saved:        √ pass ([absolute path]) | — not approved
   Result:              PASS | BLOCKED | FAIL
 ```
@@ -242,7 +245,6 @@ Report `PASS` only when the return contract's file and final status-line conditi
 |---|---|
 | No input files provided | Ask for report.md and analysis.json paths |
 | Invalid input format | Report error and ask for valid files |
-| Report and analysis conflict | Cite both values and ask which approved baseline governs |
+| Report and analysis conflict | In auto mode, use analysis.json for observed metrics and the user's latest instructions for intent; cite the discrepancy. In review mode, ask which baseline governs. |
 | Missing baseline metric | Propose a qualitative change or mark the target unavailable; never invent a number |
-| User never approves | Keep looping; do not auto-save |
-
+| User never approves in review mode | Wait at the review gate; do not save |

@@ -1,6 +1,6 @@
 ---
 name: website-cloner
-description: "Build an improved website clone from a URL via a 6-phase gated workflow (Vite/React/shadcn/Tailwind + GitHub Pages). Use for end-to-end site rebuilds. Don't use for one-phase work, exact site mirroring, or backend apps."
+description: "Rebuild a website from its URL and optional instructions into an improved, verified frontend clone. Run end to end with --auto by default; --no-auto enables review gates. Use for full rebuilds, not exact mirroring or backend apps."
 license: MIT
 effort: high
 dependencies:
@@ -11,326 +11,157 @@ dependencies:
   - website-builder
   - website-clone-final-report
 metadata:
-  version: 1.4.0
+  version: 1.5.0
   author: "Luong NGUYEN <luongnv89@gmail.com>"
 ---
 
 # Website Cloner
 
-6-phase orchestrator that clones any website and produces an improved version — better performance, UI/UX, SEO, and security — built with Vite + React + shadcn/ui + Tailwind CSS, deployable to GitHub Pages.
+Turn an original URL and optional instructions into a completed, improved website using Vite + React + shadcn/ui + Tailwind CSS. The cloned website is the primary deliverable; analysis and plans support its implementation.
 
-## When to Use
+## Invocation and Execution Mode
 
-Trigger when the user asks to:
-- Clone, rebuild, or recreate a website ("clone this site", "make a better version of <url>")
-- Improve a website's performance, UI/UX, or SEO by analyzing and rebuilding it
-- Start a full website improvement workflow from a URL
-
-Do **not** use for one-phase work (load that phase skill directly), exact site mirroring, or backend apps.
-
-## Prerequisites
-
-- A target URL (publicly reachable preferred).
-- Write access to create a local project dir (defaults under `~/workspace/clones` or `$CLONE_DIR`).
-- The six phase skills bundled in this folder (website-analyzer, website-clone-report, etc.).
-- `asm` (agent-skill-manager) on PATH — it runs the phase-skill lifecycle in Dependency Preflight.
-- Optional: GitHub token if you want Pages deploy automation in Phase 5.
-- User approval at gates (explicit confirmation before Phases 3, 4, 5 advance).
-
-If a prerequisite other than a phase skill is missing, stop and report it — do not guess paths or credentials. A missing phase skill is not a stop: see Edge Cases (skip the phase, cap the result at `PARTIAL`).
-
-## Workflow
-
-```
-Phase 1 — Analyze        → website-analyzer
-Phase 2 — Report (gate)  → website-clone-report
-Phase 3 — Propose (gate) → website-improvement-prd  (outputs prd.md)
-Phase 4 — Plan  (gate)   → website-implementation-plan  (outputs tasks.md)
-Phase 5 — Build          → website-builder
-Phase 6 — Final Report   → website-clone-final-report
+```text
+$website-cloner <url> [optional instructions] [--auto | --no-auto] [--output <root>]
 ```
 
-Approval gates after Phase 2, 3, and 4: the orchestrator **must not advance** without explicit user approval.
+- **Auto (default):** Omitting the mode flag is equivalent to `--auto`. Validate and automatically accept the report, PRD, and implementation plan, save each artifact, then continue through build, verification, deployment when available, and final comparison. Do not ask for plan approval or end a turn at an intermediate phase.
+- **Review:** `--no-auto`, or an explicit request to review/approve before proceeding, enables user approval gates after Phases 2, 3, and 4. Pause at each gate until the user approves or requests changes. A later instruction to pause, change scope, or stop takes precedence in either mode.
+- Extract the URL and optional free-text instructions from the request. Carry those instructions into the report, PRD, tasks, and build. If none are supplied, preserve the original brand, purpose, essential content, and core journeys while improving observed weaknesses.
+- Set one `MODE_FLAG` (`--auto` or `--no-auto`) and pass it explicitly to Phases 2–6. This overrides their standalone defaults. Record acceptance as `auto` or `user`; automatic acceptance must never be described as a human review.
 
-**Artifacts** (each written once, then referenced by name in the phases below): `analysis.json` — Phase 1's structured findings; `report.md` — Phase 2's plain-language summary; `prd.md` — Phase 3's improvement proposal; `tasks.md` — Phase 4's phased implementation plan, including the approved GitHub Actions artifact-deployment task; `builder-metadata.json` — Phase 5's build metadata, workflow-produced Pages URL, and structured post-deployment performance/SEO/security snapshot consumed by Phase 6; `after-analysis.json` — the comparable Phase 5 re-audit source. Phase 5 also produces base-aware Vite configuration and `.github/workflows/deploy-pages.yml`, which builds and deploys `dist/` rather than publishing the repository root.
+The full workflow includes its planned GitHub Pages publication when existing account access and permissions allow it; do not ask again for routine deployment confirmation within that scope. Auto accepts workflow artifacts within the requested rebuild. It does not expand permissions, bypass tool approval, or authorize unrelated external changes. Ask only for genuinely missing required input or authorization; continue independent local work while deployment access is unavailable.
 
-## Layout
+Examples:
 
-This umbrella and its phase skills live together in a single suite folder:
-
-```
-website-cloner/                           ← this umbrella
-├── SKILL.md                              ← orchestrator (you are here)
-├── website-analyzer/                     ← Phase 1
-├── website-clone-report/                 ← Phase 2
-├── website-improvement-prd/              ← Phase 3
-├── website-implementation-plan/          ← Phase 4
-├── website-builder/                      ← Phase 5
-└── website-clone-final-report/           ← Phase 6
+```text
+$website-cloner https://example.com
+$website-cloner https://example.com Make it easier to read on mobile and keep the blue palette --auto
+$website-cloner https://example.com --no-auto
 ```
 
-Why nested: the phases are tightly coupled to this umbrella's data flow (analysis JSON → report → PRD → tasks → built site → final report). Keeping them in one folder makes the suite easy to browse, audit, and ship together. A phase skill also works on its own when its SKILL.md is loaded directly.
+## Setup
 
-Nested phase skills are not registered as top-level skills, so a bare `/website-analyzer` call may not resolve. Every phase below uses the **run a phase skill** steps in Dependency Preflight instead.
+1. Require an `http://` or `https://` URL; ask for it only if missing or invalid.
+2. Resolve the project root from `--output`, then `$CLONE_DIR`, then `./clones` in the current writable workspace. Use the default without a directory question or global config write.
+3. Create a new `YYYY_MM_DD_<host-slug>/` directory under that root, adding a numeric suffix on collision. Bind its absolute path as `PROJECT_DIR`. Treat this as a new project even if a parent directory belongs to another repository; never sync or publish the parent repository.
+4. Check Node/npm, local write access, and page-fetch/browser access. Use available equivalent tools rather than requiring a particular tool name. If a required capability is missing, report the concrete blocker. GitHub credentials are optional for the local build.
 
-See the individual phase skill docs for their full references/ and scripts/. This orchestrator stays short to fit the agent's context budget.
+## Dependency Preflight and Phase Loading
 
-## Dependency Preflight (mandatory)
+The six phase skills are bundled as child folders beside this SKILL.md. Set `SKILL_DIR` to this folder. Load a phase only when reaching it; a bare slash command for a nested skill may not resolve.
 
-This skill runs six phase skills bundled in its own folder and declared in frontmatter
-`dependencies`: `website-analyzer` (Phase 1), `website-clone-report` (Phase 2),
-`website-improvement-prd` (Phase 3), `website-implementation-plan` (Phase 4), `website-builder`
-(Phase 5), and `website-clone-final-report` (Phase 6). Run these checks **before** the repo sync
-below, the first step that changes anything. Set `SKILL_DIR` to the directory holding this SKILL.md.
+When `asm` is available, discover dependencies before phase execution and choose one session id for the run:
 
 ```bash
-command -v asm >/dev/null || { echo "Missing installer: npm install -g agent-skill-manager" >&2; exit 1; }
-asm deps discover "$SKILL_DIR" --json   # pass the path: a bare name can resolve to another installed copy
-for s in website-analyzer website-clone-report website-improvement-prd website-implementation-plan website-builder website-clone-final-report; do
-  [ -f "$SKILL_DIR/$s/SKILL.md" ] || echo "Missing bundled phase skill: $s" >&2
-done
+asm deps discover "$SKILL_DIR" --json
 ```
 
-A missing `asm` stops the run, like any prerequisite that is not a phase skill. A missing phase
-skill is **not a stop** — this suite is fail-soft (#251): name the phases that may be skipped and
-continue. Choose one session id for the run (for example `website-cloner-<UTC timestamp>`) and reuse
-that literal value below.
+Acquire the bundled phase first, falling back to an installed copy:
 
-**Run a phase skill** — only when execution first reaches that phase:
+```bash
+asm deps acquire "$SKILL_DIR/<phase-skill>" --session "<session-id>" --json \
+  || asm deps acquire <phase-skill> --session "<session-id>" --json
+```
 
-1. Acquire the phase skill, bundled path first, then any installed copy:
-   ```bash
-   asm deps acquire "$SKILL_DIR/<phase-skill>" --session "<session-id>" --json \
-     || asm deps acquire <phase-skill> --session "<session-id>" --json
-   ```
-2. Read the returned `skillMdPath` immediately and follow that SKILL.md with the phase's arguments.
-3. If both acquires exit non-zero, skip the phase, name it in the final summary, and cap the result
-   at `PARTIAL`. Never acquire a phase that execution does not reach.
+Read the returned `skillMdPath` and follow that skill with the arguments below. If `asm` is unavailable or acquisition fails but the bundled SKILL.md is readable, load that file directly; no installation question is needed. If no copy can be loaded, name the skipped phase and continue where its missing output can be recovered from existing evidence; cap the overall result at `PARTIAL`. Never fabricate analysis, approval, or verification to fill a gap.
 
-**Release** — on every exit (PASS, PARTIAL, FAIL, a denied gate, an unreachable URL, or any other
-stop), run this from your own cleanup path. Repeating it is harmless, and it never deletes bundled
-phase skills:
+On every exit after using an `asm` session, including a review pause or error, release it from your cleanup path:
 
 ```bash
 asm deps release --session "<session-id>" --json
 ```
 
-## Repo Sync Before Edits (mandatory)
+## Workflow
 
-Before modifying files in a repository:
-
-```bash
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin
-git pull --rebase origin "$branch"
+```text
+Analyze → Report → Propose → Plan → Build and verify → Final comparison and website delivery
 ```
 
-If dirty, stash first:
+Run phases in order. In auto mode, report concise progress and proceed immediately after artifact validation. In review mode, present the complete draft at each approval gate before saving it. Phase return summaries are progress information within this workflow; they do not end the umbrella run.
 
-```bash
-git stash push -u -m "website-cloner: pre-sync"
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin && git pull --rebase origin "$branch"
-git stash pop
-```
-
-If `origin` is missing or rebase conflicts occur, stop and ask.
-
-## Setup
-
-0. **Resolve working directory** — the directory where the cloned website will be built. If `$CLONE_DIR` is set, use it. Otherwise ask the user once and save to `~/.config/website-cloner-dir.txt`. Default: `~/workspace/clones`.
-1. **Create project folder** under resolved root: `YYYY_MM_DD_<slug_from_url>/`
-2. **Set `$PROJECT_DIR`** to the created folder path.
-3. If no URL provided in `$ARGUMENTS`, ask the user for one.
-
-## Phase 1: Understand the Website
-
-Run phase skill `website-analyzer` with:
+### Phase 1: Understand the Original — website-analyzer
 
 ```text
 <url> --output "$PROJECT_DIR/analysis.json"
 ```
 
-The analyzer produces a structured analysis covering: UI/UX, category, style, performance (`lcp_estimate_seconds`, unitless `cls_estimate`, `ttfb_estimate_seconds`, page weight in KB, and request count), surface-level security, and SEO (overall score + per-dimension breakdown).
+Verify parseable JSON covering UI/UX, category, style, performance, surface security, and SEO. When browser access is available, also inspect the rendered source at desktop and mobile widths to ground layout and interaction decisions. Record inaccessible sections and null measurements. An unreachable or access-protected source is a blocker; partial measurements are acceptable with caveats.
 
-**Check:** Analysis file exists and covers all 6 dimensions. If any dimension is missing, note it but continue — partial results are acceptable for Phase 2.
-
-**Step Completion Report:**
-
-```
-◆ Analyze (step 1 of 6 — <site name>)
-······································································
-  UI/UX profile:        √ pass | × partial — <gap>
-  Category detected:    √ pass (<category>)
-  Style analysis:       √ pass | × partial — <gap>
-  Performance metrics:  √ pass (LCP=<val> CLS=<val>)
-  Security surface:     √ pass | × partial — <gap>
-  SEO score:            √ pass (<score>/100)
-  ____________________________
-  Result:               PASS | PARTIAL
-```
-
-## Phase 2: End-User Report (GATE)
-
-Run phase skill `website-clone-report` with:
+### Phase 2: End-User Report — website-clone-report
 
 ```text
-"$PROJECT_DIR/analysis.json" --output "$PROJECT_DIR/report.md"
+"$PROJECT_DIR/analysis.json" --output "$PROJECT_DIR/report.md" <MODE_FLAG>
 ```
 
-This skill produces a plain-language report for non-technical readers and **prompts for approval** before persisting. The orchestrator waits for user approval here.
+Translate evidence into a plain-language report and incorporate the user's focus. In auto mode, check the report, automatically accept it, and save immediately. In review mode, obtain user approval before saving. Require a non-empty `report.md` before proceeding.
 
-**Check:** `report.md` exists. The report skill writes it only after explicit approval, so a missing file means not approved.
-
-**Step Completion Report:**
-
-```
-◆ Report (step 2 of 6 — <site name>)
-······································································
-  Report written:       √ pass (report.md)
-  User approved:        √ pass | × pending
-  ____________________________
-  Result:               PASS | BLOCKED
-```
-
-If not approved, do not advance. Ask the user to review the report and approve or request changes.
-
-## Phase 3: Improvement Proposal (GATE)
-
-Run phase skill `website-improvement-prd` with:
+### Phase 3: Improvement Proposal — website-improvement-prd
 
 ```text
-"$PROJECT_DIR/report.md" "$PROJECT_DIR/analysis.json" --output "$PROJECT_DIR/prd.md"
+"$PROJECT_DIR/report.md" "$PROJECT_DIR/analysis.json" --output "$PROJECT_DIR/prd.md" <MODE_FLAG>
 ```
 
-This skill produces a full improvement proposal with what/why/value for each change and writes `prd.md` after user approval.
+Create evidence-backed what/why/value improvements and realistic targets. Preserve source identity and requested features; do not invent product claims, testimonials, prices, or backend functionality. Automatically accept after validation in auto mode; obtain approval in review mode. Require non-empty `prd.md` and final phase line `STATUS: approved` in either mode.
 
-**Check:** `prd.md` exists and the phase skill's final line reads `STATUS: approved`.
-
-**Step Completion Report:**
-
-```
-◆ Proposal (step 3 of 6 — <site name>)
-······································································
-  prd.md written:       √ pass
-  User approved:        √ pass | × pending
-  Changes catalogued:   √ pass (<N> proposed changes)
-  ____________________________
-  Result:               PASS | BLOCKED
-```
-
-## Phase 4: Implementation Plan (GATE)
-
-Run phase skill `website-implementation-plan` with:
+### Phase 4: Implementation Plan — website-implementation-plan
 
 ```text
-"$PROJECT_DIR/prd.md" --output "$PROJECT_DIR/tasks.md"
+"$PROJECT_DIR/prd.md" --output "$PROJECT_DIR/tasks.md" <MODE_FLAG>
 ```
 
-This skill produces a phased implementation plan with landing page first, asset collection vs. creation, individual tasks, and a deterministic GitHub Actions Pages artifact deployment from base-aware Vite `dist/` output — written to `tasks.md` after user approval.
+Plan the landing page first, then essential pages/journeys and quality improvements. Track collected versus created assets and include measurable responsive, accessibility, interaction, routing, and static-build checks. Include base-aware Vite configuration and `.github/workflows/deploy-pages.yml` deploying `dist/` through GitHub Actions. Record whether live deployment access is available; its absence must not block implementation. Require non-empty `tasks.md` and `STATUS: approved` under the selected mode.
 
-**Check:** `tasks.md` exists and the phase skill's final line reads `STATUS: approved`.
-
-**Step Completion Report:**
-
-```
-◆ Plan (step 4 of 6 — <site name>)
-······································································
-  tasks.md written:     √ pass
-  User approved:        √ pass | × pending
-  Phases defined:       √ pass (≥ 2 phases)
-  Landing page first:   √ pass
-  Pages artifact task:  √ pass (base-aware dist/)
-  ____________________________
-  Result:               PASS | BLOCKED
-```
-
-## Phase 5: Build
-
-Run phase skill `website-builder` with:
+### Phase 5: Build, Verify, and Deploy — website-builder
 
 ```text
-"$PROJECT_DIR/tasks.md" "$PROJECT_DIR/prd.md" --output "$PROJECT_DIR/"
+"$PROJECT_DIR/tasks.md" "$PROJECT_DIR/prd.md" --output "$PROJECT_DIR/" <MODE_FLAG>
 ```
 
-This skill executes the plan, builds the site (Vite + React + shadcn/ui + Tailwind), and deploys the verified `dist/` artifact through `.github/workflows/deploy-pages.yml`. The workflow sets the Vite base to `/` for a user/organization Pages repository or `/<repo>/` for project Pages; repository-root and branch-folder publishing are forbidden. It then re-runs `website-analyzer` against the responsive workflow-produced Pages URL and emits the structured after snapshot in metadata for Phase 6. If deployment or the re-audit is incomplete, Phase 5 must return `PARTIAL` and preserve nulls/errors rather than inventing metrics.
+Execute all in-scope tasks and verify the actual rendered website. Fix build, layout, interaction, accessibility, route, and asset defects before delivery. Compare the implementation to the source and PRD rather than assuming a successful build proves better quality. Allow up to two corrective passes for quality checks; if failures remain, deliver the usable result with a concrete `PARTIAL` explanation, or `FAIL` if no usable site exists.
 
-**Step Completion Report:**
+Deploy the verified `dist/` artifact to a dedicated GitHub Pages repository when the requested workflow, available credentials, and environment permissions allow it. Do not overwrite an unrelated repository or change its visibility. Use the workflow-produced responsive URL, then re-run the analyzer into `after-analysis.json`. If deployment is unavailable, keep the completed source, verified `dist/`, and a local preview with a reproducible start command; record the deployment and after-snapshot gap in `builder-metadata.json` and continue to Phase 6.
 
-```
-◆ Build (step 5 of 6 — <site name>)
-······································································
-  Landing page built:   √ pass
-  Assets collected:     √ pass (<N> assets)
-  Assets created:       √ pass (<N> assets)
-  Pages dist artifact:  √ pass | × unavailable
-  GitHub Pages URL:     √ pass (<url>) | × unavailable
-  After metrics:        √ complete | × partial ([performance/SEO/security gaps])
-  ____________________________
-  Result:               PASS | PARTIAL | FAIL
-```
-
-## Phase 6: Final Comparison Report
-
-Run phase skill `website-clone-final-report` with:
+### Phase 6: Comparison and Delivery — website-clone-final-report
 
 ```text
-"$PROJECT_DIR/analysis.json" "$PROJECT_DIR/builder-metadata.json" --output "$PROJECT_DIR/final-report.md"
+"$PROJECT_DIR/analysis.json" "$PROJECT_DIR/builder-metadata.json" --output "$PROJECT_DIR/final-report.md" <MODE_FLAG>
 ```
 
-This skill validates the baseline and structured post-deployment snapshot, then produces a before/after comparison covering performance, SEO, security, UI/UX changes, deviations, and the GitHub Pages URL. It must propagate `PARTIAL` when any required performance, SEO, or security comparison is unavailable.
+Save an evidence-backed before/after comparison using `prd.md` and `tasks.md`. Missing baseline, deployment, or after metrics keep this report `PARTIAL`; never invent improvements or relabel static estimates as measurements. Deliver the website even if the supporting comparison is partial.
 
-**Step Completion Report:**
+## Delivery Contract
 
-```
-◆ Final Report (step 6 of 6 — <site name>)
-······································································
-  final-report.md:      √ pass
-  Performance delta:    √ pass (before→after) | × partial ([missing])
-  SEO delta:            √ pass (before→after) | × partial ([missing])
-  Security comparison:  √ pass (before→after) | × partial ([missing])
-  Deviations listed:    √ pass | × none
-  ____________________________
-  Result:               PASS | PARTIAL | FAIL
-```
+Lead the final response with a clickable link to the completed cloned website: the verified live URL when available, otherwise the working local preview URL plus its restart command. Also link the source project and built `dist/` directory. Summarize the concrete improvements and verification in a few sentences; link `final-report.md` for detail. Do not present the proposal or plan as the final result of an auto run.
 
-## Expected Output
+Include:
 
-End every run, including a stop at a gate, with this summary (the **output contract**). The result comes first:
-
-```
-◆ Website Cloner — <site name>
-┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
-  Overall Result:       PASS | PARTIAL | FAIL — <what was built, or where the run stopped>
-  Phase 1  Analyze      √ pass
-  Phase 2  Report       √ approved
-  Phase 3  Proposal     √ approved (prd.md)
-  Phase 4  Plan         √ approved (tasks.md)
-  Phase 5  Build        √ pass | × partial
-  Phase 6  Final Report √ pass | × partial | × fail
-  Evidence:     <artifact paths in $PROJECT_DIR and the checks each phase ran>
-  Uncertainty:  <static-analysis estimates, skipped phases, null metrics, untested checks — or "none">
-  Decision:     <the gate awaiting approval> | No approval needed
-
-  GitHub Pages: https://<user>.github.io/<repo>/
-  Project:      <project_dir>
+```text
+Website:      <verified live or local preview link; unavailable only if blocked>
+Result:       PASS | PARTIAL | FAIL | BLOCKED — <delivered behavior, concrete blocker, or pending review gate>
+Mode:         auto | review
+Project:      <absolute source path>; <dist path>; <local preview restart command>
+Evidence:     <phase outcomes; artifact links; build, render, interaction, and deployment checks>
+Uncertainty:  <estimates, skipped phases, untested checks, unavailable comparisons, deviations — or none>
+Decision:     <required user action only if blocked or in review mode> | No approval needed
 ```
 
-The overall result is the worst Phase 1–6 result. Never report overall `PASS` when the Phase 5 after snapshot or any Phase 6 required comparison is partial, unavailable, or failed. Label performance values as static-analysis estimates, and name every skipped phase under Uncertainty.
+For a completed run, the overall result is the worst phase result. Use `PARTIAL` when a usable site exists but a phase, required check, deployment, or comparison is incomplete. Use `FAIL` when no usable clone can be delivered. A review pause returns `BLOCKED` and names the awaiting gate instead of claiming a completed website or a failed build. Never report `PASS` from auto acceptance alone.
 
 ## Acceptance Criteria
 
-- `report.md`, `prd.md`, and `tasks.md` each exist in `$PROJECT_DIR` before the next phase starts; a gate without its file stops the run.
-- The final summary follows the output contract, and its overall result equals the worst phase result.
-- `asm deps release` ran for the run's session on every exit path, including a stop at a gate.
-- Reviewer understanding (evaluation guidance, not a runtime gate): the opening line states the result and status; estimates and assumptions are labeled; each material claim traces to an artifact or URL; the next decision is named. Without reviewer feedback, human understanding stays unconfirmed.
+- A URL-only invocation selects auto mode, uses the default local root, and passes `--auto` to each mode-aware phase without a setup or approval question.
+- Auto mode saves a non-empty report, PRD, and plan after validation; the PRD and plan return `STATUS: approved` and record automatic acceptance before the next phase starts.
+- Review mode pauses before saving each gated artifact until the user approves; a later stop instruction prevents further execution in either mode.
+- Every in-scope task is completed or explained as a deviation. The source project, verified static build, preview/deployment evidence, and final comparison are delivered together.
+- The website link is checked before it is presented as working; missing deployment or quality evidence is disclosed and prevents `PASS`.
+- Dependency sessions are released on every exit and only the dedicated clone project is mutated or published.
 
-## Edge Cases
+## Completion and Recovery
 
-- **Unreachable URL**: Stop Phase 1, report error, do not continue. Ask user for a different URL.
-- **JS-heavy SPA with no crawlable content**: Note the limitation in Phase 1, proceed with best-effort analysis. The build phase may need user-supplied assets to compensate.
-- **User denies approval at any gate**: Stop the pipeline. Do not auto-proceed. The user can re-run the skill to resume.
-- **Phase skill unavailable**: If both acquires for a phase skill fail (Dependency Preflight), skip that phase and name it under Uncertainty. Continue where possible, but the overall result cannot exceed `PARTIAL`.
-- **Partial Phase 1 results**: If the analyzer returns partial data (e.g., no SEO score), proceed to Phase 2 with a note; Phase 6 and the overall workflow remain `PARTIAL` when a required baseline comparison is unavailable.
-- **Partial Phase 5 re-audit**: Continue to Phase 6 so it can document the gaps, but both Phase 6 and the overall workflow must return `PARTIAL` unless report creation itself fails.
-
+- Require the report, PRD, and plan artifacts before consuming them; repair recoverable generation/write failures rather than prompting for routine approval in auto mode.
+- Make reasonable implementation decisions within the source, PRD, and user's instructions, and record deviations. A material ambiguity that cannot be resolved from evidence may require clarification; no answer is required for optional stylistic choices.
+- Missing source imagery: use an appropriate accessible substitute or create an asset and record it; never stall solely for optional assets.
+- User declines a review gate or requests a stop: stop phase execution and preserve artifacts. Auto mode never overrides that instruction.
+- Build/deploy failures: correct an actionable failure within the bounded repair loop. Do not retry denied actions unchanged or wait indefinitely for external services; preserve the verified local site and explain the remaining gap.
+- Release dependency leases on every exit. A run is complete only after the website is delivered or a concrete blocker is reported with the work already completed.

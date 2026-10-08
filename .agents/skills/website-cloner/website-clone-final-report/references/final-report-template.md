@@ -1,19 +1,19 @@
 # final-report.md Template
 
-Use this as the only output template. Read only the source sections needed for each comparison to preserve the context budget.
+Use this as the only output template. Replace examples with supported implementation evidence and computed comparisons; do not copy example claims as results. Read only the source sections needed for each comparison to preserve the context budget.
 
 ```markdown
 # Final Report: <site name> Clone
 
 **Original URL:** <url>
-**New Site:** https://<user>.github.io/<repo>/
+**New Site:** <verified live URL, or verified local preview URL with deployment marked unavailable>
 **Date:** <date>
 
 ---
 
 ## What Was Implemented
 
-A plain-language summary of what was built, drawn from tasks.md:
+A plain-language summary of what was built, supported by builder metadata, verification results, and source artifacts, mapped to the planned tasks in tasks.md:
 
 "The improved website includes:
 - A redesigned landing page with a prominent CTA above the fold

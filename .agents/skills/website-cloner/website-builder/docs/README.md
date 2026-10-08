@@ -14,7 +14,10 @@
 - Full implementation: Vite + React + shadcn/ui + Tailwind CSS
 - Executes tasks phase by phase (landing page first)
 - Collects assets from original site, creates new assets per plan
-- Deploys to GitHub Pages, emits builder metadata for Phase 6
+- Inherits the umbrella's execution mode and accepted plan without routine implementation questions
+- Verifies mobile/desktop rendering, interactions, accessibility, routes, and the static build
+- Deploys to GitHub Pages when access is available; otherwise delivers a verified local build and preview
+- Emits verification and delivery metadata for Phase 6
 
 ## When to Use
 
@@ -29,13 +32,13 @@
 ```mermaid
 graph TD
     A["Read tasks.md and prd.md"] --> B["Dependency preflight: check website-analyzer"]
-    B --> C["Sync to default branch"]
+    B --> C["Resolve the dedicated project directory and repository"]
     C --> D["Initialize Vite + React + shadcn/ui + Tailwind project"]
     D --> E["Execute tasks phase by phase, landing page first"]
     E --> F["Collect assets from original site"]
     F --> G["Create new assets"]
     G --> H["Build and verify static output"]
-    H --> I["Deploy dist to GitHub Pages via Actions workflow"]
+    H --> I["Deploy dist when available, otherwise retain local preview"]
     I --> J["Re-audit deployed URL with website-analyzer"]
     J --> K["Emit builder-metadata.json"]
     style A fill:#4CAF50,color:#fff
@@ -45,12 +48,13 @@ graph TD
 ## Usage
 
 ```
-/website-builder <tasks.md> <prd.md>
+/website-builder <tasks.md> <prd.md> [--auto | --no-auto]
 ```
 
 The slash command applies when this skill is installed as a top-level skill. Inside the website-cloner suite, the orchestrator loads this SKILL.md directly.
 
 ## Output
 
-- Built website deployed to GitHub Pages
+- Completed website at a verified GitHub Pages URL or local preview
+- Source project, `dist/` artifact, and exact preview restart command
 - `builder-metadata.json` — metadata for final comparison report

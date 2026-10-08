@@ -4,13 +4,15 @@ description: "Generate a website-clone closure report comparing baseline analysi
 license: MIT
 effort: high
 metadata:
-  version: 1.6.0
+  version: 1.7.0
   author: "Luong NGUYEN <luongnv89@gmail.com>"
 ---
 
 # Website Clone Final Report
 
 Produces a before/after comparison report closing the loop on a website clone project. Uses Phase 1 analysis as the baseline and the builder's post-deployment re-audit as the comparable "after" snapshot.
+
+Accept the umbrella's `--auto` or `--no-auto` flag. This phase has no approval gate in either mode; save the report and return to website-cloner for website delivery. Its summary is supporting evidence, not the umbrella's primary deliverable.
 
 ## When to Use
 
@@ -21,23 +23,17 @@ Trigger when the user asks to:
 
 Do **not** use for ongoing monitoring or live site audits — those are separate activities.
 
-## Repo Sync Before Edits (mandatory)
+## Repository Handling
 
-The approved `final-report.md` is persisted with `Write`. When that output path lives inside a git worktree, sync before the write to avoid clobbering remote work:
+Work only in the resolved project directory. When called by website-cloner, inherit its new-project boundary and repository handling; never sync or publish a containing repository. A new project or a local repository without a remote needs no fetch/pull.
 
-```bash
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin
-git pull --rebase origin "$branch"
-```
-
-If the working tree is dirty: stash → sync → pop. If `origin` is missing or a conflict occurs: **stop and ask the user.** Skip this section only when the output path is outside any git repository.
+For a standalone invocation targeting an existing dedicated repository with `origin`, sync the current branch once before edits when the worktree is clean. Preserve dirty user changes; do not automatically stash unrelated files or reset/rebase over them. Resolve recoverable issues locally and ask only if a conflict or ambiguous target prevents safe progress. Do not repeat repository sync for every phase artifact.
 
 ## Workflow
 
 ```
 1. Read Phase 1 analysis (baseline) and validate builder metadata's post-deployment after snapshot
-2. Read tasks.md for what was implemented
+2. Read tasks.md for planned tasks; use builder metadata and verification evidence for actual delivery
 3. Read prd.md for what was planned
 4. Compute before/after deltas per dimension
 5. List deviations from the plan
@@ -58,7 +54,7 @@ Read file <path-to-analysis.json>
 Read file <path-to-builder-metadata.json>
 ```
 
-Also read `tasks.md` for what was implemented and `prd.md` for what was planned:
+Also read `tasks.md` for planned tasks and `prd.md` for intended improvements. Establish what was implemented from builder metadata, deviations, verification results, and source artifacts where necessary; a planned task is not evidence of completion:
 
 ```
 Read file <path-to-tasks.md>
@@ -119,7 +115,7 @@ No approval gate is required for this phase — it's the last step and informati
 
 ## Step 6: Save Report
 
-Persist the assembled content using the `Write` tool with literal content only. If the `Write` tool is unavailable, stop with a descriptive error and do not use shell persistence or another output path.
+Persist the assembled Markdown as literal content using an available file-writing tool such as `Write` or `apply_patch`. If no safe file-writing capability is available, stop with a descriptive error. Verify the saved content at the resolved path.
 
 Resolve the output path in this order:
 
