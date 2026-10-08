@@ -7,70 +7,81 @@
 
 # Website Cloner
 
-> Autonomous website cloning and improvement from a URL and optional instructions. Delivers a verified Vite + React + shadcn/ui + Tailwind CSS site, deployed to GitHub Pages when access is available.
+> Rebuild a website from its URL into an improved Vite + React + shadcn/ui + Tailwind CSS clone. One run analyzes the original, audits its design and search visibility, plans the fixes, builds and verifies them, and deploys to GitHub Pages when access is available.
 
 ## Highlights
 
-- Orchestrates 6 sibling skills end-to-end: analyze, report, propose, plan, build, final report
-- `--auto` is enabled by default: validates and accepts reports and plans, then completes the build and delivery without intermediate approval prompts
-- `--no-auto` restores user review gates after the report, proposal, and plan phases
-- Produces `prd.md` (improvement proposal) and `tasks.md` (phased implementation plan)
-- Verifies responsive layouts, accessibility, interactions, routes, assets, and the static build
-- Delivers the live site when deployment is available, otherwise a verified local build and preview with the deployment gap recorded
+- One self-contained skill with seven phases: analyze, audit, report, propose, plan, build, compare
+- Runs `design-optimizer` and `search-optimizer` on the original site; every finding becomes a PRD change, a task, and a checked result in the clone
+- `--auto` is the default: no approval prompts between phases
+- `--no-auto` adds review gates after the report, proposal, and plan
+- `--no-optimize` skips the audits; `--agent-scan` allows one isitagentready.com scanner invocation of the original URL (its structured/remediation requests share that attempt). Failure consumes the attempt.
+- Local DNS classifies the original URL and redirects before remote fetching or publication; non-public or unresolved sources stay local, even when audits are skipped.
+- Delivers the live site, or a verified local build and preview with the deployment gap recorded
 
 ## When to Use
 
 | Say this... | Skill will... |
 |---|---|
-| "clone this site https://example.com" | Run the full 6-phase pipeline |
-| "rebuild this website" | Start analysis and produce an improved version |
-| "make a better version of <url>" | Analyze, propose improvements, and build |
+| "clone this site https://example.com" | Run all seven phases |
+| "rebuild this website and fix its design and SEO" | Audit the original, then build the fixes into the clone |
+| "make a better version of <url>" | Analyze, audit, propose, build, and deliver |
+
+Not for exact mirrors, backend apps, or audit-only work (use `design-optimizer` or `search-optimizer` directly).
 
 ## How It Works
 
 ```mermaid
 graph TD
-    A["URL + optional instructions"] --> B["Analyze original site"]
-    B --> C["Draft report, PRD, and implementation plan"]
-    C --> D{"Execution mode"}
-    D -->|"--auto (default)"| E["Validate, accept, and save artifacts"]
-    D -->|"--no-auto"| F["Review each artifact with user"]
-    F -->|Approve| E
-    F -->|Edit| C
-    E --> G["Build the improved clone"]
-    G --> H["Verify rendering, interactions, accessibility, and static output"]
-    H --> I["Deploy when access is available; retain local preview"]
-    I --> J["Save comparison and deliver the completed website"]
+    A["URL + optional instructions"] --> B["1. Analyze original"]
+    B --> C["2. design-optimizer + search-optimizer audits"]
+    C --> D["3. Report  4. Proposal  5. Plan"]
+    D --> E{"Mode"}
+    E -->|"--auto (default)"| F["Validate and save"]
+    E -->|"--no-auto"| G["User reviews each artifact"]
+    G --> F
+    F --> H["6. Build, verify findings, deploy"]
+    H --> I["7. Before/after comparison and delivery"]
 ```
 
 ## Usage
 
 ```
 $website-cloner https://example.com
-$website-cloner https://example.com Improve mobile readability and preserve the brand --auto
-$website-cloner https://example.com --no-auto
+$website-cloner https://example.com Keep the brand, improve mobile readability
+$website-cloner https://example.com --no-auto --agent-scan
+$website-cloner https://example.com --no-optimize
 ```
 
-A URL alone runs the entire workflow. Output defaults to a new dated folder under `./clones`; use `--output <root>` or `CLONE_DIR` to choose a different root. Optional instructions guide every phase. Auto acceptance does not bypass environment permissions or a later user instruction to stop.
+Output goes to a new dated folder under `./clones`; use `--output <root>` or `CLONE_DIR` to change it. The audits write to a temp folder outside any git checkout, then their reports are copied into `optimization/` in the project.
+
+## Requirements
+
+- Python 3, Node.js and npm; a page-fetch or browser tool
+- Optional: `design-optimizer` and `search-optimizer` installed (missing ones are skipped and the result is PARTIAL); `asm` for dependency leases; GitHub access for deployment
 
 ## Resources
 
 | Path | Description |
 |---|---|
-| `website-analyzer/` | Phase 1: analyze the URL into `analysis.json` |
-| `website-clone-report/` | Phase 2: plain-language `report.md`, mode-aware acceptance |
-| `website-improvement-prd/` | Phase 3: improvement proposal `prd.md`, mode-aware acceptance |
-| `website-implementation-plan/` | Phase 4: phased `tasks.md`, mode-aware acceptance |
-| `website-builder/` | Phase 5: build, deploy to GitHub Pages, and emit `builder-metadata.json` |
-| `website-clone-final-report/` | Phase 6: before/after comparison `final-report.md` |
-| `LICENSE` | MIT license |
+| `SKILL.md` | Invocation, phases, delivery contract |
+| `references/analyze.md` | Phase 1 analysis steps, SEO rubric, JSON schema |
+| `references/optimize.md` | Phase 2 audit orchestration and `findings.md` format |
+| `references/source-policy.md` | Local URL/DNS classification, redirect and publication gates |
+| `references/report.md`, `report-template.md`, `analysis-fields.md` | Phase 3 plain-language report |
+| `references/prd.md` | Phase 4 proposal structure |
+| `references/plan.md`, `tasks-template.md` | Phase 5 plan |
+| `references/build.md`, `deploy.md` | Phase 6 build, verification, Pages deploy, metadata |
+| `references/final-report.md`, `final-report-template.md`, `delta-computation.md` | Phase 7 comparison |
+| `references/seo-scoring.md` | `score_seo.py` contract |
+| `scripts/` | SEO/delta helpers, `classify_url.py`, `scan_attempt.py` (stdlib only) |
+| `tests/` | Score/delta fixtures, source-policy and durable scan-budget regressions |
 
 ## Output
 
-- `analysis.json` — Phase 1 structured analysis
-- `report.md` — Phase 2 plain-language report (approved)
-- `prd.md` — Phase 3 improvement proposal with metrics
-- `tasks.md` — Phase 4 phased implementation plan
-- Completed cloned website — verified live URL or local preview, source project, and `dist/` static artifact
-- `builder-metadata.json` — task outcomes, verification evidence, preview restart command, deployment status, and comparable after snapshot
-- `final-report.md` — Phase 6 before/after comparison
+- `analysis.json`, `after-analysis.json` — baseline and post-deploy snapshots
+- `optimization/` — `design-optimization.md`, `search-optimization.md`, `findings.md`
+- `report.md`, `prd.md`, `tasks.md` — report, proposal, plan
+- The website source, `dist/`, and a live or local preview URL
+- `builder-metadata.json` — verification, findings status, deployment, after snapshot
+- `final-report.md` — before/after comparison and findings status
