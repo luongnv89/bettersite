@@ -28,7 +28,7 @@ $website-cloner <url> [instructions] [--auto | --no-auto] [--no-optimize] [--age
 | `--auto` (default) | Validate and accept the report, proposal and plan; run to delivery with no approval question |
 | `--no-auto` | Approval gates after Phases 3, 4 and 5; relay the scan gate (G1) in Phase 2 |
 | `--no-optimize` | Skip Phase 2 (design and search audits); `--agent-scan` is then ignored with a warning |
-| `--agent-scan` | Allow one send of the original URL to `isitagentready.com` (public hosts, auto mode; review mode asks) |
+| `--agent-scan` | Allow one scan attempt of the original URL at `isitagentready.com` (public hosts, auto mode; review mode asks); failure consumes it |
 | `--output <root>` | Project root; else `$CLONE_DIR`, else `./clones` |
 
 Instructions carry into every phase. With none, keep the source's brand, purpose, content and
@@ -39,11 +39,18 @@ scope when existing access allows it; do not ask again for it.
 
 ## Setup
 
-1. Require an `http://` or `https://` URL; ask only if it is missing or invalid.
+Set `SKILL_DIR` to the folder holding this SKILL.md before running any helper.
+
+1. Require an `http://` or `https://` URL; ask only if it is missing or invalid. Bind it as
+   `SOURCE_URL`. Read `references/source-policy.md` and run its local URL classifier before
+   Phase 1, including with `--no-optimize`; unknown/unresolved hosts are non-public.
 2. Create a new `YYYY_MM_DD_<host-slug>/` (host lowercased, dots as hyphens) under the root (numeric suffix on collision) and bind
-   its absolute path as `PROJECT_DIR`. Set `SKILL_DIR` to the folder holding this SKILL.md.
-3. Check Node/npm, write access, and a page-fetch or browser tool. A missing one is a blocker.
+   its absolute path as `PROJECT_DIR`.
+3. Check Python 3, Node/npm, write access, and a page-fetch or browser tool. A missing one is a blocker.
    GitHub credentials are optional.
+4. Save the mode, flags and source-policy evidence in `$PROJECT_DIR/run-state.json`. Preserve
+   this state on resume, including any `scan_attempt` and `scan-attempt.json` companion record.
+   A malformed existing state blocks external actions; never replace it with an empty state.
 
 ## Repository boundary
 
@@ -124,7 +131,7 @@ Summarize improvements, findings resolved and verification in a few sentences; l
 ```text
 Website:      <verified live or local preview link; unavailable only if blocked>
 Result:       PASS | PARTIAL | FAIL | BLOCKED — <delivered behavior, blocker, or pending gate>
-Mode:         auto | review · audits: run | partial (<skipped>) | skipped · scan: sent once | not sent
+Mode:         auto | review · audits: run | partial (<skipped>) | skipped · scan: one attempt (<actual outcome>) | not attempted | reserved (send unknown)
 Project:      <absolute source path>; <dist path>; <preview restart command>
 Evidence:     <phase results; artifact links; findings verified N/M; build, render, deploy checks>
 Uncertainty:  <estimates, gate answers given from flags, ignored flags, skipped or untested checks — or none>
@@ -141,7 +148,7 @@ the declared gate declines in `references/optimize.md` are scope choices, not sh
 ```text
 Website:      https://acme.github.io/acme-bakery-clone/
 Result:       PASS — 4 pages live; 9/9 build findings verified; SEO 58 → 94
-Mode:         auto · audits: run · scan: not sent
+Mode:         auto · audits: run · scan: not attempted
 Project:      /work/clones/2026_10_08_acme-bakery/; …/dist; npm run preview -- --port 4173
 Evidence:     phases 1–7 PASS; optimization/findings.md (9 build, 2 out of scope); final-report.md
 Uncertainty:  performance values are static estimates; G1 declined (no --agent-scan)
@@ -153,7 +160,7 @@ Decision:     No approval needed
 | Situation | Behavior |
 |---|---|
 | Source unreachable, paywalled or empty | Stop at Phase 1 with `BLOCKED`; partial measurements continue with caveats |
-| Private host (`localhost`, LAN IP) | No third-party scan even with `--agent-scan`; fetch locally; do not publish, offer it under Decision |
+| Non-public source (local name/IP, non-global DNS address, unresolved/unknown host or redirect) | Local tools/evidence only; no third-party send or publication, including with `--no-optimize` |
 | An orchestrator is not installed | Skip it with the install line; its checks go to "Not covered"; `PARTIAL` |
 | Root inside another repo | Build in `PROJECT_DIR`, never touch that repo; note it under Uncertainty |
 | No deployment access | Keep the verified `dist/` and preview, record the gap, continue; `PARTIAL` |
@@ -176,6 +183,9 @@ Decision:     No approval needed
 - The website link is checked before it is called working; missing evidence prevents `PASS`.
 - Leases are released when Phase 2 ends or at any earlier exit; only the dedicated clone project
   is mutated or published.
+- All source URL/redirect addresses pass the local policy before remote fetching, scanning or
+  publication; a non-public source stays local. One durable scan claim precedes G1 approval;
+  no failure, later approval or expired cache permits another attempt in the same run.
 - Reviewer understanding (evaluation guidance, not a runtime gate): the `Website:` and `Result:`
   lines state the outcome and status; estimates, flag-given gate answers and untested checks are
   labeled; each claim traces to a file, command result or URL; the next decision is named.

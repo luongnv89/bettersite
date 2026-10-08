@@ -15,7 +15,8 @@
 - Runs `design-optimizer` and `search-optimizer` on the original site; every finding becomes a PRD change, a task, and a checked result in the clone
 - `--auto` is the default: no approval prompts between phases
 - `--no-auto` adds review gates after the report, proposal, and plan
-- `--no-optimize` skips the audits; `--agent-scan` allows one isitagentready.com scan of the original URL
+- `--no-optimize` skips the audits; `--agent-scan` allows one isitagentready.com scanner invocation of the original URL (its structured/remediation requests share that attempt). Failure consumes the attempt.
+- Local DNS classifies the original URL and redirects before remote fetching or publication; non-public or unresolved sources stay local, even when audits are skipped.
 - Delivers the live site, or a verified local build and preview with the deployment gap recorded
 
 ## When to Use
@@ -56,7 +57,7 @@ Output goes to a new dated folder under `./clones`; use `--output <root>` or `CL
 
 ## Requirements
 
-- Node.js and npm; a page-fetch or browser tool
+- Python 3, Node.js and npm; a page-fetch or browser tool
 - Optional: `design-optimizer` and `search-optimizer` installed (missing ones are skipped and the result is PARTIAL); `asm` for dependency leases; GitHub access for deployment
 
 ## Resources
@@ -66,14 +67,15 @@ Output goes to a new dated folder under `./clones`; use `--output <root>` or `CL
 | `SKILL.md` | Invocation, phases, delivery contract |
 | `references/analyze.md` | Phase 1 analysis steps, SEO rubric, JSON schema |
 | `references/optimize.md` | Phase 2 audit orchestration and `findings.md` format |
+| `references/source-policy.md` | Local URL/DNS classification, redirect and publication gates |
 | `references/report.md`, `report-template.md`, `analysis-fields.md` | Phase 3 plain-language report |
 | `references/prd.md` | Phase 4 proposal structure |
 | `references/plan.md`, `tasks-template.md` | Phase 5 plan |
 | `references/build.md`, `deploy.md` | Phase 6 build, verification, Pages deploy, metadata |
 | `references/final-report.md`, `final-report-template.md`, `delta-computation.md` | Phase 7 comparison |
 | `references/seo-scoring.md` | `score_seo.py` contract |
-| `scripts/` | `score_seo.py`, `compute_deltas.py` (stdlib only) |
-| `tests/` | Fixtures for both scripts |
+| `scripts/` | SEO/delta helpers, `classify_url.py`, `scan_attempt.py` (stdlib only) |
+| `tests/` | Score/delta fixtures, source-policy and durable scan-budget regressions |
 
 ## Output
 

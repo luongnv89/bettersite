@@ -72,15 +72,17 @@ jobs:
 2. **Dedicated repo.** If `git rev-parse --show-toplevel` inside `PROJECT_DIR` is not
    `PROJECT_DIR`, ignore that containing repository and run `git init` in `PROJECT_DIR`. Never
    stage or publish files from a containing worktree.
-3. **Private source.** If the original URL is a private host (`references/optimize.md` →
-   *Private host*), do not publish: its content may not be public. Deliver the local preview and
-   offer publication under `Decision:`.
+3. **Source policy.** Before any publication, rerun `references/source-policy.md` on the
+   original URL and every observed redirect. Publish only if all are public and the saved run
+   has no earlier non-public verdict. Unknown/unresolved sources also stay local. Deliver the
+   preview with `deployment_status: unavailable` and the reason; this applies with `--no-optimize`.
 4. **No access.** Keep the workflow, the verified `dist/` and the preview; set
    `deployment_status: unavailable` with the reason; skip the re-audit; go to metadata. Never
    block the local build on a repository question.
 5. **Publish.** Run any required secret scan. Commit and push only source, lockfile, Vite config
    and workflow. Keep `analysis.json`, `after-analysis.json`, `report.md`, `prd.md`, `tasks.md`,
-   `final-report.md`, `builder-metadata.json`, `optimization/` and screenshots out of commits and
+   `final-report.md`, `builder-metadata.json`, `run-state.json`, `scan-attempt.json`,
+   `optimization/` and screenshots out of commits and
    out of `dist/` (add them to `.gitignore`). Set Pages source to **GitHub Actions**. At most two
    correction attempts for actionable failures; never retry an unchanged failure or wait without a
    limit.

@@ -20,12 +20,12 @@
     {
       "id": 2,
       "prompt": "Rebuild https://www.example.org and fix its design and SEO problems. Keep the warm brown palette. --agent-scan",
-      "expected_output": "Instructions carried into every phase; G1 approved by the flag; the scan is sent once and reused by search-optimizer.",
+      "expected_output": "Instructions carried into every phase; a durable claim precedes G1 approval; one scanner invocation runs and its valid evidence is reused by search-optimizer.",
       "files": [],
       "expectations": [
-        "G1 is approved quoting --agent-scan",
+        "A public URL/redirect verdict and successful durable scan claim precede G1 approval quoting --agent-scan",
         "After design-optimizer, agent-readiness/scan.json is copied into the search evidence dir so the second orchestrator reuses it without a new send",
-        "The final response reports 'scan: sent once'",
+        "The final response reports 'scan: one attempt (success)' rather than promising a single HTTP request",
         "The brown palette instruction appears in prd.md",
         "Every G2, G3 or G4 gate that website-agent-readiness raises is answered 'no' in auto mode, so the run never stalls"
       ]
@@ -56,7 +56,7 @@
     {
       "id": 5,
       "prompt": "Clone http://localhost:5173 into a better site",
-      "expected_output": "Local URL: analysis runs, no third-party scan (case B), audits continue on local evidence or record their limits, deployment is local preview only unless access exists.",
+      "expected_output": "Local URL: analysis runs, no third-party scan (case B), audits continue on local evidence or record their limits, deployment is local preview only.",
       "files": [],
       "expectations": [
         "No URL is sent to isitagentready.com",
@@ -100,11 +100,11 @@
     {
       "id": 9,
       "prompt": "$website-cloner https://example.com --no-optimize --agent-scan",
-      "expected_output": "Phase 2 skipped; --agent-scan ignored with a warning; scan: not sent.",
+      "expected_output": "Phase 2 skipped; --agent-scan ignored with a warning; scan: not attempted.",
       "files": [],
       "expectations": [
         "A warning says --agent-scan is ignored with --no-optimize",
-        "The Mode line reports audits: skipped and scan: not sent"
+        "The Mode line reports audits: skipped and scan: not attempted"
       ]
     },
     {
@@ -116,6 +116,44 @@
         "The containing repository is never fetched, staged, committed or pushed (read-only detection is allowed)",
         "Uncertainty notes that the root sits inside another repository",
         "deploy.md's git init happens inside PROJECT_DIR only"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "$website-cloner http://[fd00::1]/ --no-optimize (publication credentials are available)",
+      "expected_output": "Source policy runs before Phase 1 despite skipped audits; IPv6 ULA stays local with no remote fetch or publication.",
+      "files": [],
+      "expectations": [
+        "classify_url.py runs before Phase 1 and returns non_public for the ULA address",
+        "Only local tools fetch the source and no source-derived content is published",
+        "The same policy treats IPv4/IPv6 link-local, mixed public/private DNS answers, unknown DNS and a non-public redirect as non-public",
+        "run-state.json retains every observed redirect and an earlier non-public verdict cannot be reset by a later public hop"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "$website-cloner https://example.com --agent-scan (design's approved scan times out; search has no reusable scan.json)",
+      "expected_output": "The attempt was durably consumed before design's scan; search's fresh G1 is declined; failure stays case C/PARTIAL and is reported honestly.",
+      "files": [],
+      "expectations": [
+        "scan_attempt.py claim succeeds before the first G1 yes is handed to the member",
+        "The timeout outcome and consumed attempt persist in run-state.json and scan-attempt.json survives",
+        "Search never receives approval for a new scanner invocation, even with --agent-scan",
+        "The fresh G1 decline after failure never counts as PASS (declared scope)",
+        "The final result remains PARTIAL with scan: one attempt (timeout); no valid coverage is invented",
+        "Non-200, invalid response, interrupted or unknown outcome follows the same consumed-budget behavior"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "$website-cloner https://example.com --no-auto --agent-scan (design is skipped; approve search's scan, then resume after its cache expires)",
+      "expected_output": "Search may claim the first approved attempt when design never attempted one; resume preserves consumption and expired evidence causes case C/PARTIAL without rescanning.",
+      "files": [],
+      "expectations": [
+        "A skipped design audit creates no scan claim, so search may claim the first approved attempt",
+        "The successful claim is persisted before review approval is handed to the scanner",
+        "The resumed turn preserves consumed state and declines every fresh G1 even if the user offers another approval",
+        "Expired scan evidence is labeled stale rather than claimed as current coverage; no second scanner invocation runs"
       ]
     }
   ]

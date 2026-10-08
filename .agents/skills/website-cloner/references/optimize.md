@@ -43,8 +43,9 @@ delivery block's `Uncertainty:` line.
 
 | Gate | Auto mode | Review mode (`--no-auto`) |
 |---|---|---|
-| G1, public URL | yes with `--agent-scan`; no without it | relay verbatim; the user answers |
-| G1, private host | no — the scanner cannot reach it | no — say why |
+| G1, public URL, no consumed attempt | yes with `--agent-scan`, after durable claim below; no without it | relay verbatim; explicit approval still requires the durable claim |
+| G1, consumed attempt | no fresh scan — reuse valid evidence only | no fresh scan — a later approval cannot reset the budget |
+| G1, non-public source | no — source policy forbids sending it | no — say why |
 | G2, G3, G4 | no — scan-only output is enough | no — the cloner never plans, writes or files issues for the original |
 | apply / implementation / plan / handoff offers | no — the clone implements these findings | no — the original has no source repo here |
 
@@ -52,18 +53,53 @@ A "no" takes no action and sends nothing. Never answer "yes" to anything except 
 declined this way never stops the clone run; only the cloner's own Phase 3–5 gates can. After a
 reused scan, G2 may appear again; decline it the same way.
 
-**Private host:** `localhost`, `*.local`, `*.internal`, `127.0.0.0/8`, `::1`, `10.0.0.0/8`,
-`172.16.0.0/12`, `192.168.0.0/16`. The orchestrators usually skip website-agent-readiness for a
-non-public URL, so G1 may never appear; record case B either way and warn that `--agent-scan`
-was ignored.
+**Source policy:** use the pre-Phase-1 classification in `references/source-policy.md`, never a
+separate hostname list. Reclassify the original URL and observed redirect chain before G1.
+A non-public result forbids all remote fetching/scanning; require local evidence in both
+orchestrators. G1 may never appear; record case B if no attempt ran and warn that `--agent-scan`
+was ignored. If an earlier attempt failed, keep case C instead.
 
 **Declared declines.** website-agent-readiness ends `BLOCKED` after a G1 "no" and `PARTIAL` after
 a G2 "no", and each orchestrator then ends `PARTIAL`. When an orchestrator's only shortfalls are
 the declines in this table, record it as `PASS (declared scope)`. Any other member `PARTIAL`,
-`BLOCKED` or error still counts.
+`BLOCKED` or error still counts. In particular, a fresh G1 declined because the budget was
+consumed by a failed/unknown attempt or expired evidence is **not** a declared-scope pass:
+case C and the aggregate `PARTIAL` remain sticky.
 
-**Run state.** Write `$PROJECT_DIR/run-state.json` with `wc_session`, `OPT_DIR`, the mode and the
-flags before step 1. A review-mode pause resumes from it in the next turn.
+**Run state.** Extend the existing `$PROJECT_DIR/run-state.json` with `wc_session` and `OPT_DIR`
+before step 1; preserve mode, flags, source policy and any scan attempt. A review pause resumes
+from this file and the companion `scan-attempt.json`; neither record may be reset or deleted.
+
+**One scan attempt.** The budget is one fresh website-agent-readiness scanner invocation for
+the whole clone run, including both orchestrators and every resumed turn. That invocation may
+make the member's supported structured and remediation requests; it is not a one-HTTP-request
+promise. Before answering G1 "yes" (or handing a review-mode approval to the member), first
+require the public-source gate, then run:
+
+```bash
+python3 -B "$SKILL_DIR/scripts/scan_attempt.py" claim --state "$PROJECT_DIR/run-state.json" --url "$SOURCE_URL"
+```
+
+Only exit 0 permits that approval and one invocation. The helper creates an exclusive,
+durable `scan-attempt.json` marker and records `scan_attempt.consumed: true` in run-state before
+any external request. Exit 1 means consumed: decline every fresh G1. Any other exit forbids the
+send, records the error and caps the audit at `PARTIAL`. Once reserved, the attempt is consumed
+even if the scan fails, times out, gets non-200/invalid data, is interrupted before a known send,
+or the state update fails. Do not retry the scanner invocation. If design never attempts a
+scan (for example, it is missing/skipped or G1 was declined), search may claim the first attempt.
+
+After the invocation, record the observed outcome with the helper's `finish` action using
+`--outcome success|failed|timeout|non-200|invalid-response|unknown` (one actual value):
+
+```bash
+python3 -B "$SKILL_DIR/scripts/scan_attempt.py" finish --state "$PROJECT_DIR/run-state.json" --url "$SOURCE_URL" --outcome "$SCAN_OUTCOME"
+```
+
+`success` requires the member's valid scan acceptance evidence. A failure/unknown outcome is
+case C and `PARTIAL`, independently of later gate declines. On interruption, a reserved claim
+with no confirmed outcome stays consumed; record `unknown` when the valid state permits it.
+If finish cannot write, preserve the marker and report the unknown outcome, never retry. Carry
+the attempt and actual outcome into findings.md and the delivery block.
 
 ## Steps
 
@@ -77,9 +113,14 @@ Audience and goal: <the user's instructions, or "rebuild of the original site">
 ```
 
 1. **design-optimizer.** Invoke it as above. Audit is its default mode; never pass `mode:apply`.
-2. **Share the scan.** If `$OPT_DIR/design/evidence/agent-readiness/scan.json` exists and names
-   the same URL, copy that `agent-readiness/` folder to `$OPT_DIR/search/evidence/`. The second
-   website-agent-readiness run then reuses the scan without a second send (same URL, under 24 h).
+2. **Share the scan.** Copy valid, reusable scan evidence from
+   `$OPT_DIR/design/evidence/agent-readiness/` to `$OPT_DIR/search/evidence/`: it must parse,
+   contain `level` and `checks`, name the same URL and have its own `scannedAt` less than 24 h
+   old, as the member's reuse contract requires. Copying is evidence sharing, never permission.
+   If reuse fails or expires after a pause, search may fall back to fresh G1; decline it whenever
+   the attempt is consumed, even with `--agent-scan` or another review-mode approval. Keep
+   invalid/stale scan data out of current coverage and record case C/PARTIAL. A never-attempted
+   run may still claim its first approved attempt.
 3. **search-optimizer.** Invoke it the same way with output dir `$OPT_DIR/search`, the user's
    instructions, and the words "Website search", which answer its "website search, app-store
    search, or both?" question. With no repo path, seo-ai-optimizer audits live evidence only and
@@ -133,9 +174,10 @@ Design: <Result line> · Search: <Result line> · Scan: case A | B | C (<reason>
 |---|---|
 | An orchestrator is not installed or its required member is missing | Skip it, list its checks under "Not covered" with its install line, cap the run at `PARTIAL` |
 | An orchestrator ends PARTIAL or BLOCKED for a reason other than a declared decline | Keep what it wrote, record its `Result:` line, cap the run at `PARTIAL` |
-| `--agent-scan` with `--no-optimize` | Ignore `--agent-scan`, warn the user, report `scan: not sent` |
+| `--agent-scan` with `--no-optimize` | Ignore `--agent-scan`, warn the user, report `scan: not attempted` |
 | Both missing (not `--no-optimize`) | Write findings.md with only the "Not covered" table; continue to Phase 3 |
-| Source is a private host | No scan (case B); say so in findings.md |
+| Source is non-public | No scan (case B unless an earlier attempt failed); local evidence only; say so in findings.md |
+| Scan failed/timed out/invalid/non-200, or its evidence expires | Preserve consumed state, no new invocation from either orchestrator; case C/PARTIAL with actual outcome |
 
 viral-product-evaluator runs inside both orchestrators. Keep design-optimizer's virality rows and
 drop search-optimizer's duplicates; if design-optimizer was skipped, search-optimizer's virality
@@ -147,7 +189,7 @@ rows own the check.
 ◆ Phase 2 — Optimize audits (2 of 7)
   design-optimizer:  √ PASS | ~ PARTIAL | × BLOCKED | — skipped (reason)
   search-optimizer:  √ PASS | ~ PARTIAL | × BLOCKED | — skipped (reason)
-  Scan:              — case A | B | C (sent once | not sent)
+  Scan:              — case A | B | C (one attempt: <outcome> | not attempted | reserved: send unknown)
   Gates:             — G1 yes|no (flag), N declined (auto) | relayed (review)
   findings.md:       √ (N build · M out of scope · K not covered)
   Result:            PASS | PARTIAL

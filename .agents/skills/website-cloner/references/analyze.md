@@ -6,9 +6,10 @@ Never bypass authentication, paywalls, or bot protections.
 
 ## Steps
 
-1. **Fetch.** Use an available page-fetch tool (WebFetch, TinyFish fetch, curl, or a browser);
-   for a private host use a local tool (curl or a local browser), since remote fetchers cannot
-   reach it.
+1. **Fetch.** Apply `references/source-policy.md` before fetching (also during the re-audit).
+   Use a local tool for non-public sources. Remote page-fetch tools require a public verdict
+   and control over redirects; classify every redirect before following it, with no automatic
+   redirect following. Keep the full chain in `run-state.json`.
    For a rendered SPA, use browser inspection when available and keep rendered observations
    separate from crawlable-HTML evidence. Also fetch `/robots.txt` and `/sitemap.xml` at the
    origin.
