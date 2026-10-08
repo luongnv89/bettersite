@@ -122,26 +122,57 @@ If either is missing, ask for paths.
 
 ## Step 2: Initialize Project
 
-Create the Vite + React project:
+Create the Vite + React JavaScript project and install Tailwind first:
 
 ```bash
 npm create vite@latest . -- --template react
 npm install
-npx shadcn@latest init
 npm install tailwindcss @tailwindcss/vite
-npm install class-variance-authority clsx tailwind-merge lucide-react
 ```
 
-Configure Tailwind and shadcn/ui. Set up the GitHub Pages deployment target. In `vite.config.js` (or `.ts`), make the build base explicit so the workflow can select `/` for a user/organization Pages repository and `/<repo>/` for a project Pages repository:
+Before running shadcn/ui initialization, configure Tailwind and the import aliases as required by the [Vite installation guide](https://ui.shadcn.com/docs/installation/vite). Replace the scaffold's `src/index.css` with:
+
+```css
+@import "tailwindcss";
+```
+
+Ensure `src/main.jsx` imports `./index.css`. For this JavaScript template, create `jsconfig.json` in the project root:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+Configure `vite.config.js` with both the Tailwind plugin and Vite's matching alias. Keep these settings when configuring the GitHub Pages build base; the workflow selects `/` for a user/organization Pages repository and `/<repo>/` for a project Pages repository:
 
 ```js
+import { fileURLToPath, URL } from "node:url"
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
+import tailwindcss from "@tailwindcss/vite"
 
 export default defineConfig({
   base: process.env.VITE_BASE_PATH || "/",
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
 })
+```
+
+Only after this configuration is in place, initialize shadcn/ui and install the shared utilities:
+
+```bash
+npx shadcn@latest init
+npm install class-variance-authority clsx tailwind-merge lucide-react
 ```
 
 Use `import.meta.env.BASE_URL` for public asset URLs. For a client-routed SPA, prefer `HashRouter`; if the approved plan requires `BrowserRouter`, set its `basename` from `import.meta.env.BASE_URL` and provide a tested Pages 404 fallback. Do not leave root-relative asset or route URLs that bypass the configured base.
