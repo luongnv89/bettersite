@@ -7,14 +7,14 @@
 
 # Website Clone Report
 
-> Converts website analysis JSON into a comprehensive plain-language report for non-technical users. Approval gate: saves only after explicit user validation.
+> Converts website analysis JSON into a comprehensive plain-language report for non-technical users. Standalone use requires user review; `--auto` validates and saves without a review prompt.
 
 ## Highlights
 
 - Translates technical metrics (LCP, CLS, SEO scores) into plain language
 - Non-technical audience: jargon-free with relatable comparisons
-- Approval gate: never persists report without explicit user approval
-- Edit loop: incorporates user changes and re-prompts until approved
+- Mode-aware acceptance: standalone review by default, or automatic validation and persistence with `--auto`
+- Review mode incorporates user edits; website-cloner passes its execution mode explicitly
 
 ## When to Use
 
@@ -30,12 +30,14 @@
 graph TD
     A["Read website-analyzer JSON"] --> B["Translate each dimension into plain language"]
     B --> C["Draft the report for non-technical readers"]
-    C --> D["Present draft for review"]
+    C --> M{"--auto?"}
+    M -->|Yes| G["Validate and persist report.md"]
+    M -->|No| D["Present draft for review"]
     D --> E{"Approved?"}
     E -->|Edit| F["Incorporate edits"]
     F --> D
     E -->|Regenerate| B
-    E -->|Approve| G["Persist report.md with Write"]
+    E -->|Approve| G
     style A fill:#4CAF50,color:#fff
     style G fill:#2196F3,color:#fff
 ```
@@ -43,7 +45,7 @@ graph TD
 ## Usage
 
 ```
-/website-clone-report <path-to-analysis.json>
+/website-clone-report <path-to-analysis.json> [--auto | --no-auto]
 ```
 
 The slash command applies when this skill is installed as a top-level skill. Inside the website-cloner suite, the orchestrator loads this SKILL.md directly.
@@ -58,4 +60,4 @@ The slash command applies when this skill is installed as a top-level skill. Ins
 
 ## Output
 
-Plain-language `report.md` — written only after explicit user approval.
+Plain-language `report.md` — written after automatic acceptance in auto mode or user approval in review mode. The artifact records the acceptance source.

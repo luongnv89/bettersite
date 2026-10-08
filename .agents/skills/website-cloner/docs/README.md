@@ -7,14 +7,16 @@
 
 # Website Cloner
 
-> 6-phase website cloning and improvement orchestrator. Takes a URL and produces an improved version built with Vite + React + shadcn/ui + Tailwind CSS, deployable to GitHub Pages.
+> Autonomous website cloning and improvement from a URL and optional instructions. Delivers a verified Vite + React + shadcn/ui + Tailwind CSS site, deployed to GitHub Pages when access is available.
 
 ## Highlights
 
 - Orchestrates 6 sibling skills end-to-end: analyze, report, propose, plan, build, final report
-- Approval gates after the report, proposal, and plan phases — never advances without user approval
+- `--auto` is enabled by default: validates and accepts reports and plans, then completes the build and delivery without intermediate approval prompts
+- `--no-auto` restores user review gates after the report, proposal, and plan phases
 - Produces `prd.md` (improvement proposal) and `tasks.md` (phased implementation plan)
-- Targets serverless front-end deployment to GitHub Pages
+- Verifies responsive layouts, accessibility, interactions, routes, assets, and the static build
+- Delivers the live site when deployment is available, otherwise a verified local build and preview with the deployment gap recorded
 
 ## When to Use
 
@@ -28,36 +30,37 @@
 
 ```mermaid
 graph TD
-    A["Dependency preflight: discover + check bundled phase skills"] --> B["Phase 1: Analyze the URL with website-analyzer"]
-    B --> C["Phase 2: Report with website-clone-report"]
-    C --> D{"Report approved?"}
-    D -->|Request changes| C
-    D -->|Approve| E["Phase 3: Propose prd.md with website-improvement-prd"]
-    E --> F{"prd.md approved?"}
-    F -->|Request changes| E
-    F -->|Approve| G["Phase 4: Plan tasks.md with website-implementation-plan"]
-    G --> H{"tasks.md approved?"}
-    H -->|Request changes| G
-    H -->|Approve| I["Phase 5: Build and deploy with website-builder"]
-    I --> J["Phase 6: Final report with website-clone-final-report"]
-    style A fill:#4CAF50,color:#fff
-    style J fill:#2196F3,color:#fff
+    A["URL + optional instructions"] --> B["Analyze original site"]
+    B --> C["Draft report, PRD, and implementation plan"]
+    C --> D{"Execution mode"}
+    D -->|"--auto (default)"| E["Validate, accept, and save artifacts"]
+    D -->|"--no-auto"| F["Review each artifact with user"]
+    F -->|Approve| E
+    F -->|Edit| C
+    E --> G["Build the improved clone"]
+    G --> H["Verify rendering, interactions, accessibility, and static output"]
+    H --> I["Deploy when access is available; retain local preview"]
+    I --> J["Save comparison and deliver the completed website"]
 ```
 
 ## Usage
 
 ```
-/website-cloner https://example.com
+$website-cloner https://example.com
+$website-cloner https://example.com Improve mobile readability and preserve the brand --auto
+$website-cloner https://example.com --no-auto
 ```
+
+A URL alone runs the entire workflow. Output defaults to a new dated folder under `./clones`; use `--output <root>` or `CLONE_DIR` to choose a different root. Optional instructions guide every phase. Auto acceptance does not bypass environment permissions or a later user instruction to stop.
 
 ## Resources
 
 | Path | Description |
 |---|---|
 | `website-analyzer/` | Phase 1: analyze the URL into `analysis.json` |
-| `website-clone-report/` | Phase 2: plain-language `report.md`, approval gate |
-| `website-improvement-prd/` | Phase 3: improvement proposal `prd.md`, approval gate |
-| `website-implementation-plan/` | Phase 4: phased `tasks.md`, approval gate |
+| `website-clone-report/` | Phase 2: plain-language `report.md`, mode-aware acceptance |
+| `website-improvement-prd/` | Phase 3: improvement proposal `prd.md`, mode-aware acceptance |
+| `website-implementation-plan/` | Phase 4: phased `tasks.md`, mode-aware acceptance |
 | `website-builder/` | Phase 5: build, deploy to GitHub Pages, and emit `builder-metadata.json` |
 | `website-clone-final-report/` | Phase 6: before/after comparison `final-report.md` |
 | `LICENSE` | MIT license |
@@ -68,5 +71,6 @@ graph TD
 - `report.md` — Phase 2 plain-language report (approved)
 - `prd.md` — Phase 3 improvement proposal with metrics
 - `tasks.md` — Phase 4 phased implementation plan
-- Built site — Vite + React + shadcn/ui + Tailwind CSS on GitHub Pages
+- Completed cloned website — verified live URL or local preview, source project, and `dist/` static artifact
+- `builder-metadata.json` — task outcomes, verification evidence, preview restart command, deployment status, and comparable after snapshot
 - `final-report.md` — Phase 6 before/after comparison

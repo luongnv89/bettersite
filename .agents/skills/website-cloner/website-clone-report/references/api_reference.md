@@ -85,7 +85,7 @@ Error variant (skill should report and stop, not produce a report):
 | `performance.ttfb_estimate_seconds` | Performance | "How quickly the server responds". This is an estimate in seconds; label it as estimated. |
 | `performance.total_page_weight_kb` | Performance | "How much data the page uses". Compare to images: "≈ N average photos worth". |
 | `performance.request_count` | Performance | "Number of pieces the page needs to load". |
-| `security.https` / `mixed_content` | Security Overview | HTTPS + no mixed content → "encrypted from end to end". |
+| `security.https` / `mixed_content` | Security Overview | HTTPS + no mixed content → "traffic between your browser and the website is encrypted". This is a transport observation, not a claim about encryption beyond that connection. |
 | `security.security_headers` | Security Overview | Translate to "the site sends a few security signals to browsers" — never list header names. |
 | `security.note` | Security Overview | Always include the "not a full security audit" caveat. |
 | `seo.score` | Search Engine Visibility | Bucket: ≥ 90 excellent, 70–89 good, 50–69 fair, < 50 poor. |
@@ -99,10 +99,10 @@ Any analyzer field may be `null` when the metric couldn't be computed. Translati
 
 ## Output Path
 
-The orchestrator (`website-cloner`) invokes this skill with `--output "$PROJECT_DIR/report.md"`. Honor that path. If invoked standalone without `--output`, default to `report.md` in the current working directory and print the absolute path on save.
+The orchestrator (`website-cloner`) invokes this skill with `--output "$PROJECT_DIR/report.md"` and the resolved `--auto` or `--no-auto` flag. Honor that path. If invoked standalone without `--output`, default to `report.md` in the current working directory and print the absolute path on save.
 
 ## Cross-References
 
 - `website-analyzer` skill — upstream producer; canonical schema definition.
-- `website-cloner` skill — orchestrator; defines `$PROJECT_DIR` and the approval-gate contract.
+- `website-cloner` skill — orchestrator; defines `$PROJECT_DIR` and the execution-mode and artifact-acceptance contract.
 - `website-improvement-prd` skill — downstream consumer of the approved report.

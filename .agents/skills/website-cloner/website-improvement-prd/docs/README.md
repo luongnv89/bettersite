@@ -7,13 +7,13 @@
 
 # Website Improvement PRD
 
-> Turns approved end-user report into a full improvement proposal with what/why/value for each change. Writes prd.md after user approval.
+> Turns approved end-user report into a full improvement proposal with what/why/value for each change. Writes prd.md after user approval or validated `--auto` acceptance.
 
 ## Highlights
 
 - Every proposed change includes what, why, and measurable expected-value statement
 - Metrics summary table: before/after targets per dimension
-- Approval gate: persists prd.md only after explicit user approval
+- Review mode by default for standalone use; `--auto` validates, accepts, and saves without a review prompt
 - Structured for downstream consumption by website-implementation-plan
 
 ## When to Use
@@ -32,12 +32,14 @@ graph TD
     B --> C["Define what, why, and expected value per change"]
     C --> D["Compute metrics summary: current vs target"]
     D --> E["Assemble draft prd.md"]
-    E --> F["Present draft for review"]
+    E --> M{"--auto?"}
+    M -->|Yes| I["Validate, persist prd.md, and print STATUS: approved"]
+    M -->|No| F["Present draft for review"]
     F --> G{"Approved?"}
     G -->|Edit| H["Incorporate edits"]
     H --> F
     G -->|Regenerate| B
-    G -->|Approve| I["Persist prd.md and print STATUS: approved"]
+    G -->|Approve| I
     style A fill:#4CAF50,color:#fff
     style I fill:#2196F3,color:#fff
 ```
@@ -45,11 +47,11 @@ graph TD
 ## Usage
 
 ```
-/website-improvement-prd <report.md> <analysis.json>
+/website-improvement-prd <report.md> <analysis.json> [--auto | --no-auto]
 ```
 
 The slash command applies when this skill is installed as a top-level skill. Inside the website-cloner suite, the orchestrator loads this SKILL.md directly.
 
 ## Output
 
-`prd.md` — structured improvement proposal with what/why/value per change.
+`prd.md` — structured improvement proposal with what/why/value per change and acceptance source. Successful persistence returns `STATUS: approved` in either mode.

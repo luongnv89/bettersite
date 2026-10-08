@@ -4,13 +4,19 @@ description: "Generate phased tasks.md from an approved website PRD, with landin
 license: MIT
 effort: high
 metadata:
-  version: 1.5.0
+  version: 1.6.0
   author: "Luong NGUYEN <luongnv89@gmail.com>"
 ---
 
 # Website Implementation Plan
 
-Turns an approved improvement proposal (prd.md) into a phased implementation plan. Landing page first, then deeper pages. Asset collection vs. creation tracked. Writes `tasks.md` after approval.
+Turns an approved improvement proposal (prd.md) into a phased implementation plan. Landing page first, then deeper pages. Asset collection vs. creation tracked. Writes `tasks.md` after user approval or validated --auto acceptance.
+
+## Execution Mode
+
+Accept `--auto` and `--no-auto`. A standalone invocation defaults to review mode; when called by website-cloner, honor its explicitly passed mode flag.
+
+In auto mode, validate the complete draft against the acceptance criteria, automatically accept it, and save immediately without presenting an approval question or waiting for a reply. Record `Acceptance: auto` in the artifact and summary. In review mode, follow the review/edit loop and save only after user approval, recording `Acceptance: user`. In both modes, a later user request to pause or stop takes precedence. Automatic acceptance never substitutes for evidence or successful persistence.
 
 ## When to Use
 
@@ -21,17 +27,11 @@ Trigger when the user asks to:
 
 Do **not** use for building or coding — that is Phase 5 (website-builder).
 
-## Repo Sync Before Edits (mandatory)
+## Repository Handling
 
-The approved `tasks.md` is persisted with `Write`. When that output path lives inside a git worktree, sync before the write to avoid clobbering remote work:
+Work only in the resolved project directory. When called by website-cloner, inherit its new-project boundary and repository handling; never sync or publish a containing repository. A new project or a local repository without a remote needs no fetch/pull.
 
-```bash
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin
-git pull --rebase origin "$branch"
-```
-
-If the working tree is dirty: stash → sync → pop. If `origin` is missing or a conflict occurs: **stop and ask the user.** Skip this section only when the output path is outside any git repository.
+For a standalone invocation targeting an existing dedicated repository with `origin`, sync the current branch once before edits when the worktree is clean. Preserve dirty user changes; do not automatically stash unrelated files or reset/rebase over them. Resolve recoverable issues locally and ask only if a conflict or ambiguous target prevents safe progress. Do not repeat repository sync for every phase artifact.
 
 ## Workflow
 
@@ -41,8 +41,8 @@ If the working tree is dirty: stash → sync → pop. If `origin` is missing or 
 3. For each task: define scope, outputs, acceptance criteria
 4. Track assets: collect from original vs. create new
 5. Assemble into tasks.md
-6. Present for review
-7. Incorporate edits (loop until approved)
+6. Validate and automatically accept, or present for user review
+7. Incorporate requested edits in review mode
 8. Persist tasks.md
 ```
 
@@ -93,6 +93,8 @@ Read [references/tasks-template.md](references/tasks-template.md) and fill it wi
 
 ## Step 6: Present for Review
 
+In auto mode, validate and accept the draft, then proceed directly to persistence. The following review prompt applies only in review mode.
+
 "Here is the implementation plan. Please:
 1. **Approve** — save as tasks.md
 2. **Edit** — specify changes
@@ -102,11 +104,11 @@ Read [references/tasks-template.md](references/tasks-template.md) and fill it wi
 
 If edits requested: update, re-present, repeat until approved.
 
-Do **not** persist until explicit approval.
+In review mode, do **not** persist until explicit user approval. In auto mode, skip this loop after validating the draft.
 
 ## Step 8: Persist tasks.md
 
-Persist the assembled content using the `Write` tool with literal content only. If the `Write` tool is unavailable, stop with a descriptive error and do not use shell persistence or another output path.
+Persist the assembled Markdown as literal content using an available file-writing tool such as `Write` or `apply_patch`. If no safe file-writing capability is available, stop with a descriptive error. Verify the saved content at the resolved path.
 
 Resolve the output path in this order:
 
@@ -118,15 +120,16 @@ End every outcome with this summary (the **output contract**), result first and 
 
 ```text
 Result:       PASS | BLOCKED | FAIL — tasks.md saved to <absolute-path> | not saved
-Evidence:     <prd.md path; phase and task counts; Write result>
+Evidence:     <prd.md path; phase and task counts; file-write result>
 Uncertainty:  <estimated targets carried from prd.md, assumptions about pages or assets — or "none">
-Decision:     Approve, edit, or regenerate the plan | No approval needed (plan saved)
+Acceptance:   auto | user | pending
+Decision:     Approve, edit, or regenerate in review mode | No approval needed (plan saved)
 STATUS: approved | pending | aborted
 ```
 
 ## Return Contract
 
-When invoked by the `website-cloner` umbrella (Phase 4 gate), the orchestrator
+When invoked by the `website-cloner` umbrella (Phase 4), the orchestrator
 gates Phase 5 on this skill's outcome. The contract:
 
 | Outcome  | Signal                                                              |
@@ -136,12 +139,11 @@ gates Phase 5 on this skill's outcome. The contract:
 | aborted  | no `tasks.md` written; final line reads `STATUS: aborted` (user declined) |
 
 The orchestrator MUST NOT advance to Phase 5 unless the outcome is `approved`.
-A standalone invocation may ignore the status line, but the file-existence rule
-still holds: no approval, no `tasks.md`.
+Here `approved` means validated automatic acceptance in auto mode or explicit user approval in review mode. A standalone invocation may ignore the status line, but both modes still require a successfully saved artifact; review mode must not write without user approval.
 
 ## Acceptance Criteria and Expected Output
 
-Verify the complete plan before requesting approval:
+Verify the complete plan before acceptance under either mode:
 
 - Every in-scope PRD requirement maps to at least one numbered task or an explicitly justified exclusion.
 - Phase 1 produces an independently usable landing page; later phases preserve dependency order.
@@ -161,7 +163,7 @@ Verify the complete plan before requesting approval:
   Landing page first:  √ pass
   Tasks measurable:    √ pass ([count])
   Assets classified:   √ pass ([collect]/[create])
-  User approved:       √ pass | × pending
+  Acceptance:          √ auto | √ user | × pending
   tasks.md saved:      √ pass ([absolute path]) | — not approved
   Result:              PASS | BLOCKED | FAIL
 ```
@@ -174,6 +176,6 @@ Report `PASS` only when the return contract's file and final status-line conditi
 |---|---|
 | No prd.md provided | Ask for the PRD file path |
 | Invalid PRD format | Report error and ask for valid file |
-| Conflicting PRD requirements | Surface the conflict and ask before task decomposition |
+| Conflicting PRD requirements | In auto mode, follow the user's latest constraints and preserve source intent; document the resolved conflict. Ask only if a material ambiguity remains. In review mode, ask before task decomposition. |
 | No assets required | Include an empty Asset Summary and state that no collection or creation is needed |
-| User never approves | Keep looping; do not auto-save |
+| User never approves in review mode | Wait at the review gate; do not save |

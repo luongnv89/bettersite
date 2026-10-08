@@ -4,7 +4,7 @@ description: "Analyze a website's UI/UX, category, style, performance, surface s
 license: MIT
 effort: high
 metadata:
-  version: 1.6.0
+  version: 1.7.0
   author: "Luong NGUYEN <luongnv89@gmail.com>"
 ---
 
@@ -28,22 +28,16 @@ Do **not** use for full penetration testing, deep security audits, or App Store 
 3. When an output path is supplied, validate that its directory exists and is writable; skip this check for stdout.
 4. If any prerequisite fails, return a descriptive error with the failing input and corrective action.
 
-## Repo Sync Before Edits (mandatory)
+## Repository Handling
 
-When an output path is supplied and it lives inside a git worktree, sync before writing the analysis to avoid clobbering remote work:
+Work only in the resolved project directory. When called by website-cloner, inherit its new-project boundary and repository handling; never sync or publish a containing repository. A new project or a local repository without a remote needs no fetch/pull.
 
-```bash
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin
-git pull --rebase origin "$branch"
-```
-
-If the working tree is dirty: stash → sync → pop. If `origin` is missing or a conflict occurs: **stop and ask the user.** Skip this section when writing to stdout or to a path outside any git repository.
+For a standalone invocation targeting an existing dedicated repository with `origin`, sync the current branch once before edits when the worktree is clean. Preserve dirty user changes; do not automatically stash unrelated files or reset/rebase over them. Resolve recoverable issues locally and ask only if a conflict or ambiguous target prevents safe progress. Do not repeat repository sync for every phase artifact.
 
 ## Workflow
 
 ```
-1. Fetch page content via WebFetch
+1. Fetch page content with an available web/HTTP/browser tool
 2. Extract HTML structure, metadata, headings, links, images, scripts
 3. Estimate performance metrics (LCP, CLS, TTFB, page weight, request count)
 4. Run surface-level security checks
@@ -116,18 +110,18 @@ Produce structured JSON at the requested output path (or stdout):
 
 ## Step 1: Fetch the Page
 
-Use `WebFetch` to retrieve content:
+Use an available page-fetch tool to retrieve content (`WebFetch` when available, otherwise an equivalent web/HTTP/browser tool). For a rendered SPA, use browser inspection when available and distinguish rendered observations from crawlable HTML evidence. The following is an example, not a required tool API:
 
 ```
 WebFetch(url=<url>, prompt="Extract all HTML structure, meta tags, headings, links, images, scripts, styles, and any structured data (JSON-LD, Open Graph, etc.)")
 ```
 
-If WebFetch fails (4xx, 5xx, timeout), return immediately:
+If the source cannot be fetched (4xx, 5xx, timeout), return:
 ```json
 {"url": "<url>", "error": "unreachable", "detail": "<error>"}
 ```
 
-For JS-heavy SPAs where WebFetch returns minimal content, note:
+For JS-heavy SPAs where the available fetch tool returns minimal content, note:
 `{"note": "SPA detected — analysis based on crawlable content only; some metrics may be incomplete"}`
 
 ## Step 2: Extract Structure
@@ -246,4 +240,3 @@ Evidence:     <fetch status, SEO helper exit status, JSON parse check>
 Uncertainty:  performance values are static-analysis estimates; <null dimensions, SPA limits — or "none">
 Decision:     No approval needed (user action, if any: supply a reachable URL)
 ```
-

@@ -7,14 +7,14 @@
 
 # Website Implementation Plan
 
-> Turns approved prd.md into a phased implementation plan with landing page first, asset collection vs creation, individual tasks. Writes tasks.md after user approval.
+> Turns approved prd.md into a phased implementation plan with landing page first, asset collection vs creation, individual tasks. Writes tasks.md after user approval or validated `--auto` acceptance.
 
 ## Highlights
 
 - Phased plan: landing page first (usable early), then deeper pages, then optimization
 - Each task has scope, outputs, and acceptance criteria
 - Asset tracking: distinguishes collect-from-original vs. create-new
-- Approval gate: persists tasks.md only after explicit user approval
+- Review mode by default for standalone use; `--auto` validates, accepts, and saves without a review prompt
 
 ## When to Use
 
@@ -32,12 +32,14 @@ graph TD
     B --> C["Define tasks: scope, outputs, acceptance criteria"]
     C --> D["Track assets: collect from original vs create new"]
     D --> E["Assemble draft tasks.md"]
-    E --> F["Present draft for review"]
+    E --> M{"--auto?"}
+    M -->|Yes| I["Validate, persist tasks.md, and print STATUS: approved"]
+    M -->|No| F["Present draft for review"]
     F --> G{"Approved?"}
     G -->|Edit| H["Incorporate edits"]
     H --> F
     G -->|Regenerate| B
-    G -->|Approve| I["Persist tasks.md and print STATUS: approved"]
+    G -->|Approve| I
     style A fill:#4CAF50,color:#fff
     style I fill:#2196F3,color:#fff
 ```
@@ -45,7 +47,7 @@ graph TD
 ## Usage
 
 ```
-/website-implementation-plan <prd.md>
+/website-implementation-plan <prd.md> [--auto | --no-auto]
 ```
 
 The slash command applies when this skill is installed as a top-level skill. Inside the website-cloner suite, the orchestrator loads this SKILL.md directly.
@@ -59,4 +61,4 @@ The slash command applies when this skill is installed as a top-level skill. Ins
 
 ## Output
 
-`tasks.md` — phased implementation plan ready for the builder skill.
+`tasks.md` — phased implementation plan ready for the builder skill, recording acceptance source. Successful persistence returns `STATUS: approved` in either mode.

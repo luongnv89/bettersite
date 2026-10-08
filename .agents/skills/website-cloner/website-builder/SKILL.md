@@ -6,13 +6,19 @@ effort: high
 dependencies:
   - website-analyzer
 metadata:
-  version: 1.5.0
+  version: 1.6.0
   author: "Luong NGUYEN <luongnv89@gmail.com>"
 ---
 
 # Website Builder
 
 Executes the approved implementation plan (tasks.md) to build a working improved website using Vite + React + shadcn/ui + Tailwind CSS, deployable to GitHub Pages.
+
+## Execution Mode
+
+Accept the umbrella's `--auto` or `--no-auto` and inherit its instructions and project boundary. An approved plan may be automatically accepted (`Acceptance: auto`) or user-approved (`Acceptance: user`); either is executable after input validation. A standalone build instruction authorizes implementation of the supplied plan.
+
+In auto mode, resolve routine implementation choices from the PRD and source, record deviations, and continue without design or plan questions. Honor later user corrections or stop requests. External publication still requires a permitted, intended target; when access is unavailable, finish and deliver the verified local website.
 
 ## When to Use
 
@@ -25,11 +31,11 @@ Do **not** use for design review or planning — those are upstream phases.
 
 ## Prerequisites
 
-- `tasks.md` (Phase 4 plan) exists and is approved
+- `tasks.md` (Phase 4 plan) exists and is accepted under the selected mode
 - `prd.md` (Phase 3 proposal) exists for alignment reference
 - Node.js and npm are available
 - Git is available for repository management
-- For the Step 7 re-audit: `asm` on PATH and the `website-analyzer` skill (bundled beside this skill). Without either, Step 7 is skipped and the result is `PARTIAL`.
+- For the Step 7 re-audit: `website-analyzer` (bundled beside this skill), loaded through `asm` when available or directly otherwise. If the analyzer cannot be loaded, skip Step 7 and return `PARTIAL`.
 
 ## Tech Stack
 
@@ -44,25 +50,24 @@ Do **not** use for design review or planning — those are upstream phases.
 
 ```
 1. Read tasks.md and prd.md
-2. Sync to default branch
+2. Resolve and initialize the dedicated project directory
 3. Execute tasks phase by phase (landing page first)
-4. Collect assets from original site as specified
-5. Create new assets as specified
-6. Build and verify
-7. Deploy to GitHub Pages
-8. Re-audit the deployed URL for comparable after metrics
-9. Emit builder metadata
+4. Collect or create assets as specified
+5. Build and verify
+6. Deploy to GitHub Pages when available
+7. Re-audit the deployed URL for comparable after metrics
+8. Emit builder metadata
 ```
 
 ## Dependency Preflight (mandatory)
 
 Step 7 re-audits the deployed site with `website-analyzer`, declared in frontmatter
-`dependencies`; Steps 1–6 never use it. Run these checks **before** the repo sync below, the first
-step that changes anything. Set `SKILL_DIR` to the directory holding this SKILL.md.
+`dependencies`; Steps 1–6 never use it. Discover it when `asm` is available. Set `SKILL_DIR` to the directory holding this SKILL.md.
 
 ```bash
-command -v asm >/dev/null || echo "Missing installer: npm install -g agent-skill-manager (Step 7 will be skipped)" >&2
-asm deps discover "$SKILL_DIR" --json   # pass the path: a bare name can resolve to another installed copy
+if command -v asm >/dev/null; then
+  asm deps discover "$SKILL_DIR" --json
+fi
 ```
 
 Choose one session id for the run (for example `website-builder-<UTC timestamp>`). Only when
@@ -73,41 +78,18 @@ asm deps acquire "$SKILL_DIR/../website-analyzer" --session "<session-id>" --jso
   || asm deps acquire website-analyzer --session "<session-id>" --json
 ```
 
-Read the returned `skillMdPath` immediately and follow it in Step 7. A missing `asm` or two failed
-acquires is **not a stop**: skip Step 7, set `after_snapshot_status` to `unavailable`, and return
-`PARTIAL` — the same degrade Step 7 documents for a failed re-audit. On every exit after an acquire
+Read the returned `skillMdPath` immediately and follow it in Step 7. If `asm` is unavailable or both acquisitions fail, read the bundled sibling SKILL.md directly when available. If no analyzer can be loaded, skip Step 7, set `after_snapshot_status` to `unavailable`, and return `PARTIAL`. On every exit after an acquire
 (success, failure, or stop), release from your own cleanup path; repeating it is harmless:
 
 ```bash
 asm deps release --session "<session-id>" --json
 ```
 
-## Repo Sync Before Edits (mandatory)
+## Repository Handling
 
-Choose the repository branch before modifying project files:
+Work only in the resolved project directory. When called by website-cloner, inherit its new-project boundary and repository handling; never sync or publish a containing repository. A new project or a local repository without a remote needs no fetch/pull.
 
-1. **Existing git worktree with `origin`:** preserve dirty changes, then sync before edits.
-2. **New project with no git repository or remote:** skip fetch/pull, initialize the project, and add the approved remote only during deployment.
-3. **Existing repository with an unexpectedly missing `origin`:** stop and ask; do not assume it is a new project.
-
-For the existing-worktree branch, run:
-
-```bash
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin
-git pull --rebase origin "$branch"
-```
-
-If dirty, stash first:
-
-```bash
-git stash push -u -m "website-builder: pre-sync"
-branch="$(git rev-parse --abbrev-ref HEAD)"
-git fetch origin && git pull --rebase origin "$branch"
-git stash pop
-```
-
-If rebase or stash restoration fails, stop and ask. Never discard user changes.
+For a standalone invocation targeting an existing dedicated repository with `origin`, sync the current branch once before edits when the worktree is clean. Preserve dirty user changes; do not automatically stash unrelated files or reset/rebase over them. Resolve recoverable issues locally and ask only if a conflict or ambiguous target prevents safe progress. Do not repeat repository sync for every phase artifact.
 
 ## Step 1: Read the Plan
 
@@ -118,7 +100,7 @@ Read file <path-to-tasks.md>
 Read file <path-to-prd.md>
 ```
 
-If either is missing, ask for paths.
+If either is missing, check the umbrella's PROJECT_DIR first. Report a concrete missing-input blocker only if it cannot be recovered.
 
 ## Step 2: Initialize Project
 
@@ -210,11 +192,11 @@ export default defineConfig({
 })
 ```
 
-Only after this configuration is in place, initialize shadcn/ui and install the shared utilities. If `components.json` already exists, retain its configuration and verify its CSS path and aliases instead of reinitializing:
+Only after this configuration is in place, initialize shadcn/ui with an explicit Vite template and preset to avoid interactive choices, then install the shared utilities. Consult the [CLI options](https://ui.shadcn.com/docs/cli) if the available CLI version differs. If `components.json` already exists, retain its configuration and verify its CSS path and aliases instead of reinitializing:
 
 ```bash
 if [ ! -f components.json ]; then
-  npx shadcn@latest init || exit
+  npx shadcn@latest init --template vite --preset nova --yes --no-monorepo || exit
 fi
 npm install class-variance-authority clsx tailwind-merge lucide-react || exit
 ```
@@ -222,6 +204,8 @@ npm install class-variance-authority clsx tailwind-merge lucide-react || exit
 Use `import.meta.env.BASE_URL` for public asset URLs. For a client-routed SPA, prefer `HashRouter`; if the approved plan requires `BrowserRouter`, set its `basename` from `import.meta.env.BASE_URL` and provide a tested Pages 404 fallback. Do not leave root-relative asset or route URLs that bypass the configured base.
 
 ## Step 3: Execute Tasks Phase by Phase
+
+Preserve the original site's brand, substantive content, and core journeys while implementing the specified improvements and user instructions. Use real source assets when accessible; create suitable substitutes for optional missing assets and record them. Do not invent testimonials, business claims, or nonfunctional backend actions.
 
 Process each phase from tasks.md in order. For each task:
 
@@ -256,7 +240,7 @@ Apply performance, SEO, and security improvements:
 - Image optimization (compress, lazy load)
 - Code splitting (Vite handles this by default)
 - SEO meta tags, structured data, Open Graph tags
-- Security headers via meta tags where applicable
+- Security controls supported by the static host; record unsupported response-header changes instead of claiming meta tags implement them
 
 ## Step 4: Asset Management
 
@@ -271,7 +255,7 @@ For each asset listed in tasks.md:
 
 ## Step 5: Build and Verify
 
-After all tasks are complete:
+After all tasks are complete, verify the rendered result as well as the build:
 
 ```bash
 npm run build
@@ -281,7 +265,14 @@ Verify each item and record the observed result:
 - `npm run build` exits 0 and `dist/index.html` exists.
 - `dist/` holds only static files; it has no server entry point or API route.
 - `npm run preview` serves `/` with HTTP 200.
-- In a headless browser, the hero headline from tasks.md is visible at `/`, and every planned route renders after a direct load. If no headless browser is available, mark these two checks untested; never report them as passed.
+- In an available browser, the hero headline from tasks.md is visible at `/`, and every planned route renders after a direct load.
+- Inspect desktop and mobile layouts (for example 1440px and 390px when viewport control is available): text is readable, navigation and CTAs remain usable, no horizontal overflow occurs, and images have correct dimensions.
+- Exercise navigation, mobile menu, primary CTAs, and any forms or other in-scope interactions. Preserve the original destination for externally served actions; never label an unconnected submission successful.
+- Check heading order, image alternatives, form labels, visible keyboard focus, and keyboard operation of menus/dialogs.
+- Compare screenshots or observed rendered states against the source and PRD. Fix concrete layout, content, asset, or interaction regressions; document qualitative improvements and any unmet targets.
+- Allow up to two corrective passes for failed quality checks, rebuilding and repeating affected checks. Record remaining defects and mark the result `PARTIAL` if the site remains usable, or `FAIL` otherwise.
+- If browser or viewport control is unavailable, record the specific render/interaction checks as untested; do not claim them as passed.
+- Keep a working preview when possible and record its URL and exact restart command, including the project directory and chosen port.
 
 ## Step 6: Deploy to GitHub Pages
 
@@ -343,7 +334,13 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-Create or update the GitHub repository for the site, run the repository's required secret scan, then commit and push the project including `package-lock.json`, `vite.config.*`, and the workflow. In Repository Settings → Pages, select **GitHub Actions** as the source; never select `main / (root)` or `/docs` for this Vite build.
+Resolve the intended deployment target from explicit user instructions, an existing dedicated clone remote, or a new dedicated repository in the authenticated user's account when publishing this clone is authorized. Check name availability and choose a unique name for a new repository; never overwrite an unrelated repository or change repository visibility to enable Pages. Use available credential tools; do not request or expose tokens in chat.
+
+Before using a discovered git remote, verify that the worktree root is the resolved clone project. If git discovers a containing repository, ignore that repository and initialize a dedicated repository in the clone directory before commit/push. Never stage or publish files from the containing worktree.
+
+If authorized deployment access is unavailable, save the workflow, retain the verified local `dist/` and preview, record `deployment_status: unavailable` and its reason, skip the deployed re-audit, emit metadata, and continue to the final report. Do not block the local build on a repository question.
+
+When deployment is available, run any repository-required secret scan, then commit and push only this project's source, lockfile, Vite configuration, and workflow. Exclude analysis/reports, builder metadata, screenshots, and other local artifacts from the uploaded `dist/`. In Repository Settings → Pages, select **GitHub Actions** as the source; never select `main / (root)` or `/docs` for this Vite build. Allow at most two attempts to correct actionable deployment failures; do not retry unchanged failures or wait indefinitely for an external service.
 
 Verify the completed workflow uploaded `dist/`, the deploy job succeeded, and its `page_url` responds. Confirm project Pages uses `https://<user>.github.io/<repo>/`, while `<user>.github.io` repositories use the root URL. Report the deployed URL from the workflow output.
 
@@ -369,6 +366,15 @@ without changing their field names or units:
 ```json
 {
   "url": "https://<user>.github.io/<repo>/",
+  "execution_mode": "auto | review",
+  "plan_acceptance": "auto | user",
+  "project_dir": "<absolute local source directory>",
+  "dist_dir": "<absolute local dist directory>",
+  "preview_url": "<verified local preview URL or null>",
+  "preview_command": "<exact command to restart preview>",
+  "deployment_status": "complete | unavailable | failed",
+  "deployment_reason": null,
+  "verification": { "build": "pass", "render": "pass | untested | fail", "interactions": "pass | untested | fail", "accessibility": "pass | untested | fail" },
   "timestamp": "2026-05-07T12:00:00Z",
   "tasks_completed": 12,
   "tasks_total": 12,
@@ -420,7 +426,7 @@ without changing their field names or units:
 ```
 
 `build_output_size_kb` is the complete build artifact size, not page weight; never use it as
-`performance.total_page_weight_kb`. Write metadata to `$PROJECT_DIR/builder-metadata.json`.
+`performance.total_page_weight_kb`. Use actual observed values, not the example values. If no live deployment exists, set `url: null`, `after_snapshot_source: null`, and `after_snapshot_status: unavailable`, with a concrete deployment reason. Retain the structured `performance`, `seo`, and `security` objects and their field names; set unavailable metric/check values to JSON `null`, including `seo.score` and each of the five `seo.dimension_scores` values. Keep explanatory notes about the missing deployment. Local preview checks are separate evidence and must not masquerade as a post-deployment audit. Write metadata to `$PROJECT_DIR/builder-metadata.json`.
 
 ## Acceptance Criteria
 
@@ -431,20 +437,20 @@ Verify the expected output before deployment is marked complete:
 - The workflow-derived `VITE_BASE_PATH` is `/` for user/organization Pages and `/<repo>/` for project Pages; Vite, internal routes, and asset URLs use that base consistently.
 - Every approved task is represented in `tasks_completed` or named in `deviations`; assert `tasks_completed <= tasks_total`.
 - Internal routes and collected asset paths resolve under the GitHub Pages base path, including a direct-refresh check for every supported route strategy.
-- `builder-metadata.json` parses and contains the URL, task counts, asset lists, deviations, output size, exact tech stack, after-snapshot status, and structured performance/SEO/security objects.
-- A `PASS` result requires a responsive Pages URL and a complete comparable after snapshot with every required performance field, SEO overall/dimension score, and security check non-null.
-- Deployment, analyzer, or required after-value gaps are recorded and force `PARTIAL`; a metadata write failure is `FAIL`.
-- No credentials, local paths, or secret environment values appear in generated assets or metadata.
+- `builder-metadata.json` parses and contains the live URL or null, execution mode, acceptance source, source/dist paths, local preview URL and restart command, deployment status/reason, observed verification results, task counts, asset lists, deviations, output size, exact tech stack, after-snapshot status, and structured performance/SEO/security objects.
+- A `PASS` result requires successful applicable quality checks, a responsive Pages URL and a complete comparable after snapshot with every required performance field, SEO overall/dimension score, and security check non-null.
+- Deployment, analyzer, required after-value, or required quality-check gaps (including untested browser checks) are recorded and force `PARTIAL`; a metadata write failure is `FAIL`.
+- No credentials or secret environment values appear in generated assets or metadata. Local paths are permitted only in local delivery metadata; exclude that metadata from the public artifact.
 - The final summary follows the output contract below.
 - Reviewer understanding (evaluation guidance, not a runtime gate): the opening line states the result and status; estimates, assumptions, and untested checks are labeled; each material claim traces to a command result, file, or URL; the next decision is named. Without reviewer feedback, human understanding stays unconfirmed.
 
 ## Edge Cases
 
-- Existing repository or remote: inspect `git status` and `git remote -v`; confirm the target before changing either.
-- Dirty working tree: preserve user changes and follow the mandatory sync guardrail; never discard them.
+- Existing repository or remote: inspect `git status` and `git remote -v`; use the already authorized dedicated target without another confirmation. Ask only if the target is ambiguous or unrelated.
+- Dirty working tree: preserve user changes and follow Repository Handling; never discard them.
 - Build succeeds but deployment fails: keep the verified local build, record the error, set the after snapshot unavailable, and return `PARTIAL`.
 - Deployment succeeds but the re-audit is incomplete: preserve nulls and analyzer caveats, set `after_snapshot_status` to `partial`, and return `PARTIAL`.
-- A task conflicts with the approved PRD: stop that task and ask; do not silently reinterpret the plan.
+- A task conflicts with the PRD: in auto mode, use the latest user instructions and PRD intent, document the adaptation, and continue if scope stays clear. Ask only for an unresolved material ambiguity; in review mode, request clarification.
 
 ## Step Completion Reports
 
@@ -489,5 +495,6 @@ End the run with this summary (the **output contract**). The result comes first:
 Result:       PASS | PARTIAL | FAIL — <deployed URL, or where the build stopped>
 Evidence:     <build, preview, deploy, and re-audit checks with observed results; builder-metadata.json path>
 Uncertainty:  <static-analysis estimates, untested render/route checks, null after-metrics — or "none">
-Decision:     <pending confirmation, e.g. the target repository or remote> | No approval needed
+Website:      <verified Pages or local preview URL; preview restart command>
+Decision:     <required action for a concrete blocker> | No approval needed
 ```

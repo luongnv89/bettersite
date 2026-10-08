@@ -5,6 +5,7 @@ Use this as the only output template. Write in plain language: translate technic
 ```markdown
 # Website Analysis Report: <site name>
 **URL:** <url>
+**Acceptance:** auto | user
 **Date:** <date>
 
 ---
