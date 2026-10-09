@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- BetterSite demo fixture — "after" page. The same fictional café homepage
+     rebuilt the way BetterSite ships: semantic markup, a few DOM nodes, system
+     fonts, dark card aesthetic. Screenshot → public/demo/after.png. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Café Léon — specialty coffee, baked fresh daily</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         background:#0c0a08; color:#f5ead0; }
+  header { display:flex; justify-content:space-between; align-items:center;
+           padding:18px 40px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .brand { font-weight:700; font-size:20px; letter-spacing:-.5px; }
+  .brand em { color:#e8a54b; font-style:normal; }
+  nav a { color:#cbb79a; text-decoration:none; font-size:14px; margin-left:26px; }
+  nav a:hover { color:#fff; }
+  .hero { padding:70px 40px 50px; max-width:860px; margin:0 auto; }
+  .tag { display:inline-block; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+         color:#e8a54b; border:1px solid rgba(232,165,75,.4); border-radius:999px;
+         padding:6px 14px; margin-bottom:24px; }
+  h1 { font-size:52px; line-height:1.06; letter-spacing:-1.6px; }
+  h1 em { font-style:normal; color:#e8a54b; }
+  .sub { margin-top:20px; font-size:18px; color:#cbb79a; max-width:560px; line-height:1.55; }
+  .cta { margin-top:34px; display:flex; gap:14px; }
+  .btn { padding:13px 26px; border-radius:10px; font-weight:600; font-size:15px;
+         text-decoration:none; }
+  .btn.primary { background:#e8a54b; color:#221503; }
+  .btn.ghost { border:1px solid rgba(255,255,255,.16); color:#f5ead0; }
+  .cards { max-width:860px; margin:0 auto; padding:10px 40px 60px;
+           display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+          border-radius:14px; padding:20px; }
+  .card h3 { font-size:15px; margin-bottom:8px; }
+  .card p { font-size:13px; color:#cbb79a; line-height:1.5; }
+  .card .n { font-size:24px; font-weight:700; color:#e8a54b; }
+  footer { border-top:1px solid rgba(255,255,255,.08); padding:22px 40px;
+           font-size:13px; color:#8a7a5f; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Café <em>Léon</em></div>
+  <nav><a href="#">Menu</a><a href="#">Hours</a><a href="#">Find us</a></nav>
+</header>
+<main>
+  <section class="hero">
+    <span class="tag">Neighbourhood café · est. 1998</span>
+    <h1>Coffee roasted in-house.<br>Cakes baked <em>this morning.</em></h1>
+    <p class="sub">The living room of the neighbourhood — same recipes since 1998,
+       now with a menu you can actually read on your phone.</p>
+    <div class="cta">
+      <a class="btn primary" href="#">See today's menu</a>
+      <a class="btn ghost" href="#">Get directions</a>
+    </div>
+  </section>
+  <section class="cards">
+    <div class="card"><div class="n">5 a.m.</div><h3>Baked daily</h3><p>Every cake on the board was in the oven before sunrise.</p></div>
+    <div class="card"><div class="n">Tue</div><h3>Roast day</h3><p>Beans roasted in-house every Tuesday — you can smell it from the corner.</p></div>
+    <div class="card"><div class="n">7–19</div><h3>Open Mon–Sat</h3><p>Free refills on filter coffee before 9 a.m. Sundays are for family.</p></div>
+  </section>
+</main>
+<footer><span>© 2026 Café Léon — 14 rue des Lilas</span><span>01 23 45 67 89</span></footer>
+</body>
+</html>

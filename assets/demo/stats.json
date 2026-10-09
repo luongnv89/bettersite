@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-10-09T02:20:05.318Z",
+  "viewport": "1280x800",
+  "before": {
+    "htmlKb": 6.8,
+    "domNodes": 152,
+    "images": 3
+  },
+  "after": {
+    "htmlKb": 3.3,
+    "domNodes": 40,
+    "images": 0
+  }
+}
