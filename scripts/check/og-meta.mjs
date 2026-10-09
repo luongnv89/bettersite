@@ -5,14 +5,18 @@
 //
 // Usage:
 //   PUBLIC_WEB3FORMS_KEY=dev npm run build
-//   node scripts/check/og-meta.mjs [dist-dir]     # default: dist
+//   node scripts/check/og-meta.mjs [dist-dir]     # default: <repo>/dist
 //
 // Exit 0 = all checks pass; 1 = at least one failed (each failure printed).
 
 import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve } from 'node:path';
 
-const DIST = process.argv[2] ?? 'dist';
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+// Expected path prefix mirrors astro.config.mjs `base: '/bettersite'`.
+const DIST = resolve(ROOT, process.argv[2] ?? 'dist');
+const PUBLIC = join(ROOT, 'public');
 const LOCALES = { en: join(DIST, 'index.html'), fr: join(DIST, 'fr', 'index.html') };
 const EXPECTED = { width: '1200', height: '630' };
 
@@ -65,7 +69,7 @@ for (const [locale, file] of Object.entries(LOCALES)) {
 
   // The referenced PNG must exist and really be 1200x630 (PNG IHDR bytes 16-24).
   try {
-    const png = await readFile(join('public', `og-${locale}.png`));
+    const png = await readFile(join(PUBLIC, `og-${locale}.png`));
     const isPng = png.length > 24 && png.readUInt32BE(0) === 0x89504e47;
     const w = isPng ? png.readUInt32BE(16) : 0;
     const h = isPng ? png.readUInt32BE(20) : 0;
