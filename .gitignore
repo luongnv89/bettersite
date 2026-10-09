@@ -23,3 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .gstack/
+
+# local tooling state
+.gitissue/
+.asm-improver/
