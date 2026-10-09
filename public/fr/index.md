@@ -24,13 +24,11 @@ Vous avez créé votre site il y a des années. Il fonctionnait. Puis le web a �
 - Tourne sur un CMS qui coûte 80–200 €/mois entre hébergement, plugins et patches
 - A des failles de sécurité que vous ignorez — jusqu'au jour du piratage
 
-Chaque jour qui passe, vous perdez des prospects au profit de concurrents avec des sites plus rapides et plus propres. Et les devis d'agence ? 8 000–25 000 € et trois mois de réunions.
-
 **Il y a une meilleure façon.**
 
 ## Nous reconstruisons votre site. Mieux sur tout ce qui compte.
 
-BetterSite reprend votre site existant et le reconstruit de zéro sur des fondations modernes — en gardant ce qui marche, en corrigeant ce qui cloche, en ajoutant ce qui manque. Vous voyez le résultat avant de vous engager.
+BetterSite reconstruit votre site de zéro sur des fondations modernes — et vous voyez le résultat avant de vous engager.
 
 ### UI/UX moderne
 
@@ -46,11 +44,11 @@ Schéma de données structurées, Core Web Vitals parfaits, HTML sémantique et 
 
 ### Sécurité par défaut
 
-Pas de plugins obsolètes. Pas de PHP vulnérable. Pas de back-office exposé. Presque rien à pirater.
+Pas de plugins obsolètes. Pas de PHP vulnérable. Pas de back-office exposé. Rien à pirater.
 
 ### Moins cher à maintenir
 
-Oubliez les 200 €/mois d'hébergement et de licences. La plupart des sites refaits tournent à 5–20 €/mois. Vous gardez les économies.
+Oubliez les 200 €/mois d'hébergement et de licences. Un site refait tourne à 5–20 €/mois. Vous gardez les économies.
 
 ### Livré en 48 heures
 
@@ -66,7 +64,7 @@ Pas d'appel de cadrage, pas de proposition commerciale, pas de slides. Juste un 
 3. **Vous voyez l'aperçu live** — Sous 48 heures, vous recevez un lien privé. Vous adorez ? On continue. Sinon ? Vous partez — sans frais, sans rancune.
 4. **Validez la refonte complète** — Vous connaissez déjà le prix — 490 € fixes, maintenance facultative. Donnez le feu vert, je construis le reste.
 
-## Des chiffres vérifiables.
+## Chiffres vérifiables
 
 - **100/100** — Score Lighthouse — les quatre catégories (Cette page · EN+FR, mobile+desktop · audit oct. 2026)
 - **0,9 s** — premier affichage (FCP), mobile (Même audit — Moto G Power simulé)
@@ -103,11 +101,11 @@ Vraiment gratuit. Pas de carte, pas de contrat. Nous refaisons votre page d'accu
 
 ### Comment faites-vous en 48 heures ce que les agences mettent des mois à livrer ?
 
-La plupart des agences facturent des réunions de cadrage, des slides et des révisions. Nous utilisons un outillage moderne pour cloner votre structure, redesigner la surface et livrer. Moins de blabla, plus de résultats.
+Les agences facturent des réunions de cadrage, des slides et des révisions. Nous utilisons un outillage moderne pour cloner votre structure, redesigner la surface et livrer. Moins de blabla, plus de résultats.
 
 ### Est-ce que je vais perdre mon référencement ?
 
-Non. Nous préservons votre structure d'URL, votre contenu et vos métadonnées — et nous améliorons le SEO technique par-dessus. La plupart des clients gagnent en classement sous 30 jours.
+Non. Nous préservons votre structure d'URL, votre contenu et vos métadonnées — et nous améliorons le SEO technique par-dessus. Les clients gagnent en classement sous 30 jours.
 
 ### Que couvre la maintenance, concrètement ?
 

@@ -24,13 +24,11 @@ You built your site years ago. It worked. Then the web moved on — and yours di
 - Runs on a CMS that costs €80–200/month to host, plugin, and patch
 - Has security holes you don't know about — until you're hacked
 
-Every day this continues, you're losing leads to competitors with faster, cleaner sites. And the agency quotes? €8,000–€25,000 and three months of meetings.
-
 **There's a better way.**
 
 ## We rebuild your site. Better in every way that matters.
 
-BetterSite takes your existing website and rebuilds it from scratch on modern foundations — keeping what works, fixing what doesn't, adding what's missing. You see the result before you commit.
+BetterSite rebuilds your existing website from scratch on modern foundations — and you see the result before you commit.
 
 ### Modern UI/UX
 
@@ -46,11 +44,11 @@ Schema markup, perfect Core Web Vitals, semantic HTML, and metadata done right �
 
 ### Security by Default
 
-No outdated plugins. No vulnerable PHP. No admin panels exposed. Almost nothing left to hack.
+No outdated plugins. No vulnerable PHP. No admin panels exposed. Nothing left to hack.
 
 ### Cheaper to Maintain
 
-Forget €200/month hosting and plugin licenses. Most rebuilds run on €5–20/month. You keep the savings.
+Forget €200/month hosting and plugin licenses. A rebuilt site runs on €5–20/month. You keep the savings.
 
 ### 48-Hour Turnaround
 
@@ -66,7 +64,7 @@ No discovery calls, no proposals, no slide decks. Just a free, working preview o
 3. **Review the live preview** — Within 48 hours you get a private link. Love it? Continue. Don't? Walk away — no charge, no hard feelings.
 4. **Lock in the full build** — You already know the price — €490 fixed, maintenance optional. Say go, and I build the rest.
 
-## Numbers you can check.
+## Numbers you can check
 
 - **100/100** — Lighthouse score — all four categories (This page · EN+FR, mobile+desktop · Oct 2026 audit)
 - **0.9 s** — first contentful paint, mobile (Same audit — simulated Moto G Power)
@@ -103,11 +101,11 @@ Genuinely free. No card, no contract. We rebuild your homepage and show you. If 
 
 ### How can you do this in 48 hours when agencies take months?
 
-Most agencies bill discovery meetings, slide decks, and revisions. We use modern tooling to clone your structure, redesign the surface, and ship. Less theater, more output.
+Agencies bill discovery meetings, slide decks, and revisions. We use modern tooling to clone your structure, redesign the surface, and ship. Less theater, more output.
 
 ### Will I lose my SEO rankings?
 
-No. We preserve your URL structure, content, and metadata — and improve technical SEO on top. Most clients gain rankings within 30 days.
+No. We preserve your URL structure, content, and metadata — and improve technical SEO on top. Clients gain rankings within 30 days.
 
 ### What does maintenance actually cover?
 

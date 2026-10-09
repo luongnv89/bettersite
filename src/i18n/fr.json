@@ -5,7 +5,7 @@
   },
   "nav": {
     "how": "Comment ça marche",
-    "results": "Résultats",
+    "results": "Chiffres vérifiables",
     "samples": "Échantillons",
     "pricing": "Tarifs",
     "faq": "FAQ",
@@ -43,19 +43,18 @@
       "Tourne sur un CMS qui coûte 80–200 €/mois entre hébergement, plugins et patches",
       "A des failles de sécurité que vous ignorez — jusqu'au jour du piratage"
     ],
-    "outro": "Chaque jour qui passe, vous perdez des prospects au profit de concurrents avec des sites plus rapides et plus propres. Et les devis d'agence ? 8 000–25 000 € et trois mois de réunions.",
     "punchline": "Il y a une meilleure façon."
   },
   "solution": {
     "title": "Nous reconstruisons votre site. Mieux sur tout ce qui compte.",
-    "lead": "BetterSite reprend votre site existant et le reconstruit de zéro sur des fondations modernes — en gardant ce qui marche, en corrigeant ce qui cloche, en ajoutant ce qui manque. Vous voyez le résultat avant de vous engager."
+    "lead": "BetterSite reconstruit votre site de zéro sur des fondations modernes — et vous voyez le résultat avant de vous engager."
   },
   "features": [
     { "icon": "🎨", "title": "UI/UX moderne", "body": "Une refonte propre, orientée conversion, qui respecte votre marque. Mobile-first, accessible, conçue pour convertir." },
     { "icon": "⚡", "title": "Performance fulgurante", "body": "Chargements sous la seconde — cette page a obtenu 100/100 dans les quatre catégories Lighthouse lors de l'audit d'oct. 2026. Architecture statique qui scale gratuitement." },
     { "icon": "🔍", "title": "Un SEO qui classe", "body": "Schéma de données structurées, Core Web Vitals parfaits, HTML sémantique et métadonnées soignées — pensés pour grimper sur Google." },
-    { "icon": "🛡️", "title": "Sécurité par défaut", "body": "Pas de plugins obsolètes. Pas de PHP vulnérable. Pas de back-office exposé. Presque rien à pirater." },
-    { "icon": "💰", "title": "Moins cher à maintenir", "body": "Oubliez les 200 €/mois d'hébergement et de licences. La plupart des sites refaits tournent à 5–20 €/mois. Vous gardez les économies." },
+    { "icon": "🛡️", "title": "Sécurité par défaut", "body": "Pas de plugins obsolètes. Pas de PHP vulnérable. Pas de back-office exposé. Rien à pirater." },
+    { "icon": "💰", "title": "Moins cher à maintenir", "body": "Oubliez les 200 €/mois d'hébergement et de licences. Un site refait tourne à 5–20 €/mois. Vous gardez les économies." },
     { "icon": "⏱️", "title": "Livré en 48 heures", "body": "Moins de blabla, plus de résultats. Votre aperçu live arrive dans votre boîte mail en deux jours — pas en deux mois." }
   ],
   "how": {
@@ -70,7 +69,7 @@
     { "n": "04", "title": "Validez la refonte complète", "body": "Vous connaissez déjà le prix — 490 € fixes, maintenance facultative. Donnez le feu vert, je construis le reste." }
   ],
   "proof": {
-    "title": "Des chiffres vérifiables.",
+    "title": "Chiffres vérifiables",
     "metrics": [
       { "value": "100/100", "label": "Score Lighthouse — les quatre catégories", "source": "Cette page · EN+FR, mobile+desktop · audit oct. 2026" },
       { "value": "0,9 s", "label": "premier affichage (FCP), mobile", "source": "Même audit — Moto G Power simulé" },
@@ -110,8 +109,8 @@
     "title": "Vos questions, nos réponses.",
     "items": [
       { "q": "L'échantillon est-il vraiment gratuit ? Où est le piège ?", "a": "Vraiment gratuit. Pas de carte, pas de contrat. Nous refaisons votre page d'accueil et nous vous la montrons. Si vous ne continuez pas, vous ne devez rien — on garde juste le travail comme pièce de portfolio." },
-      { "q": "Comment faites-vous en 48 heures ce que les agences mettent des mois à livrer ?", "a": "La plupart des agences facturent des réunions de cadrage, des slides et des révisions. Nous utilisons un outillage moderne pour cloner votre structure, redesigner la surface et livrer. Moins de blabla, plus de résultats." },
-      { "q": "Est-ce que je vais perdre mon référencement ?", "a": "Non. Nous préservons votre structure d'URL, votre contenu et vos métadonnées — et nous améliorons le SEO technique par-dessus. La plupart des clients gagnent en classement sous 30 jours." },
+      { "q": "Comment faites-vous en 48 heures ce que les agences mettent des mois à livrer ?", "a": "Les agences facturent des réunions de cadrage, des slides et des révisions. Nous utilisons un outillage moderne pour cloner votre structure, redesigner la surface et livrer. Moins de blabla, plus de résultats." },
+      { "q": "Est-ce que je vais perdre mon référencement ?", "a": "Non. Nous préservons votre structure d'URL, votre contenu et vos métadonnées — et nous améliorons le SEO technique par-dessus. Les clients gagnent en classement sous 30 jours." },
       { "q": "Que couvre la maintenance, concrètement ?", "a": "Hébergement, patchs de sécurité, monitoring uptime, mises à jour de contenu (dans la limite du raisonnable) et petits ajustements de design. Facultative : 29 €/mois fixe, résiliable à tout moment — ou 0 € si vous préférez gérer vous-même." },
       { "q": "Et si je veux des modifications après l'échantillon ?", "a": "C'est le but de l'échantillon. On discute des révisions à la phase contrat, on cadre le périmètre et on construit le reste. Pas de factures surprises." },
       { "q": "Vous ne faites que des pages d'accueil ?", "a": "L'échantillon gratuit, c'est votre page d'accueil — c'est le moyen le plus rapide de montrer ce qu'on sait faire. La refonte complète couvre l'intégralité de votre site." },

@@ -65,8 +65,6 @@ function mirrorMarkdown(t, locale) {
     '',
     ...t.problem.items.map((item) => `- ${item}`),
     '',
-    t.problem.outro,
-    '',
     `**${t.problem.punchline}**`,
     '',
     `## ${t.solution.title}`,
