@@ -167,7 +167,8 @@
   "footer": {
     "tagline": "Construit en mieux.",
     "privacy": "Confidentialité",
-    "github": "GitHub"
+    "github": "GitHub",
+    "brand": "Marque"
   },
   "form": {
     "website_label": "Votre site actuel",
@@ -192,5 +193,131 @@
   "lang": {
     "en": "EN",
     "fr": "FR"
+  },
+  "brand": {
+    "meta_title": "Identité de marque BetterSite : logo, couleurs, usage",
+    "meta_description": "Le logo BetterSite expliqué : le sens du symbole, ses couleurs et sa typographie, tous les fichiers à télécharger et les règles d’usage.",
+    "back": "Retour à l’accueil",
+    "eyebrow": "Identité de marque",
+    "title": "Une lettre, avant et après.",
+    "lead": "Le symbole BetterSite est un B formé de deux blocs de site web. Celui du haut, c’est votre site actuel. Celui du bas, c’est le site que nous reconstruisons.",
+    "concept_label": "Le symbole",
+    "concept_title": "Ce que signifie le B",
+    "concept_parts": [
+      {
+        "n": "1",
+        "h": "Boucle haute en contour",
+        "body": "Votre site actuel : une structure qui tient encore, tracée en gris pierre chaleureux."
+      },
+      {
+        "n": "2",
+        "h": "La ligne grise",
+        "body": "Le contenu daté à l’intérieur : une seule barre, comme une vieille mise en page en attente."
+      },
+      {
+        "n": "3",
+        "h": "Boucle basse terre cuite",
+        "body": "La refonte : plus large, pleine, dans notre terre cuite. Même fondation, meilleur résultat."
+      }
+    ],
+    "concept_body": "Les deux blocs partagent le même trait vertical à gauche : nous gardons ce qui fonctionne (votre contenu, votre nom, vos clients) et reconstruisons le reste. Lu de haut en bas, le B raconte tout le service : avant, puis après.",
+    "variants_label": "Fichiers du logo",
+    "variants_title": "Toutes les versions, prêtes à l’emploi",
+    "variants_note": "Tous les fichiers sont des vecteurs SVG : nets à toutes les tailles, sans police à installer.",
+    "variants": [
+      {
+        "file": "logo-full.svg",
+        "name": "Logo complet",
+        "use": "Version principale, pour fonds clairs",
+        "bg": "light",
+        "wide": true
+      },
+      {
+        "file": "logo-black.svg",
+        "name": "Noir",
+        "use": "Impression une couleur : tampons, tickets, factures",
+        "bg": "sand",
+        "wide": true
+      },
+      {
+        "file": "logo-white.svg",
+        "name": "Blanc",
+        "use": "Fonds sombres, photos et couleurs",
+        "bg": "accent",
+        "wide": true
+      },
+      {
+        "file": "logo-mark.svg",
+        "name": "Symbole",
+        "use": "Avatars, petits espaces",
+        "bg": "light"
+      },
+      {
+        "file": "logo-icon.svg",
+        "name": "Icône d’app",
+        "use": "512×512, tuile arrondie",
+        "bg": "sand"
+      },
+      {
+        "file": "logo-wordmark.svg",
+        "name": "Logotype",
+        "use": "Version texte seul",
+        "bg": "light"
+      },
+      {
+        "file": "favicon.svg",
+        "name": "Favicon",
+        "use": "16×16, simplifié en deux formes",
+        "bg": "sand"
+      }
+    ],
+    "download": "Télécharger",
+    "palette_label": "Couleurs",
+    "palette_title": "Crème chaleureux, marine rassurant, un accent terre cuite",
+    "palette": [
+      {
+        "hex": "#FBF7F2",
+        "name": "Crème",
+        "role": "Fond de page : chaleureux, comme un beau papier"
+      },
+      {
+        "hex": "#1F2A44",
+        "name": "Marine",
+        "role": "Titres, texte et le mot « Better » : la couleur de la confiance"
+      },
+      {
+        "hex": "#C2553A",
+        "name": "Terre cuite",
+        "role": "L’« après » : la boucle reconstruite, « Site », grands titres"
+      },
+      {
+        "hex": "#A8432B",
+        "name": "Terre cuite foncé",
+        "role": "Boutons, liens et petits textes d’accent"
+      },
+      {
+        "hex": "#4A6A52",
+        "name": "Sauge",
+        "role": "Coches et confirmations"
+      },
+      {
+        "hex": "#8A8178",
+        "name": "Pierre",
+        "role": "L’« avant » : la boucle en contour"
+      }
+    ],
+    "palette_note": "La terre cuite est le signal chaleureux qui veut dire « mieux ». Réservez-la à la boucle reconstruite, aux boutons et aux points clés ; le crème et le marine font le reste.",
+    "type_label": "Typographie",
+    "type_title": "Inter Bold, resserrée",
+    "type_body": "Le logotype est composé en Inter Bold avec un interlettrage légèrement resserré, puis vectorisé pour un rendu identique partout. « Better » est en marine ; « Site » prend la terre cuite, pour que le nom répète l’avant-après du symbole.",
+    "rules_label": "Usage",
+    "rules_title": "Le garder reconnaissable",
+    "rules": [
+      "Laissez autour du logo une marge égale à la hauteur de la boucle haute.",
+      "Pas moins de 20 px pour le symbole, ni de 96 px de large pour le logo complet.",
+      "Utilisez les fichiers tels quels : sans recolorer, étirer, pivoter ni ajouter d’effets.",
+      "Sur fond sombre, photo ou couleur, le logo blanc ; en impression une couleur, le logo noir."
+    ],
+    "contact": "Besoin d’un autre format ? Écrivez-nous à"
   }
 }

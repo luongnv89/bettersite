@@ -167,7 +167,8 @@
   "footer": {
     "tagline": "Built better.",
     "privacy": "Privacy",
-    "github": "GitHub"
+    "github": "GitHub",
+    "brand": "Brand"
   },
   "form": {
     "website_label": "Your current website",
@@ -192,5 +193,131 @@
   "lang": {
     "en": "EN",
     "fr": "FR"
+  },
+  "brand": {
+    "meta_title": "BetterSite brand identity: logo, colors, usage",
+    "meta_description": "The BetterSite logo explained: what the mark means, its colors and type, every logo file to download, and how to use it.",
+    "back": "Back to the homepage",
+    "eyebrow": "Brand identity",
+    "title": "One letter, before and after.",
+    "lead": "The BetterSite mark is a B built from two website blocks. The top one is the site you have today. The bottom one is the site we rebuild.",
+    "concept_label": "The mark",
+    "concept_title": "What the B means",
+    "concept_parts": [
+      {
+        "n": "1",
+        "h": "Outlined top bowl",
+        "body": "Your current website: a frame that still stands, drawn in warm stone grey."
+      },
+      {
+        "n": "2",
+        "h": "The grey line",
+        "body": "Dated content inside it: a single bar, like an old layout waiting for work."
+      },
+      {
+        "n": "3",
+        "h": "Solid terracotta bowl",
+        "body": "The rebuild: wider, filled, in our terracotta. Same foundation, better result."
+      }
+    ],
+    "concept_body": "Both blocks share one straight spine on the left, because we keep what works (your content, your name, your customers) and rebuild the rest. Read top to bottom, the B tells the whole service: before, then after.",
+    "variants_label": "Logo files",
+    "variants_title": "Every version, ready to use",
+    "variants_note": "All files are SVG vectors: sharp at any size, no fonts required.",
+    "variants": [
+      {
+        "file": "logo-full.svg",
+        "name": "Full logo",
+        "use": "Primary logo, for light backgrounds",
+        "bg": "light",
+        "wide": true
+      },
+      {
+        "file": "logo-black.svg",
+        "name": "Black",
+        "use": "One-color print: stamps, receipts, invoices",
+        "bg": "sand",
+        "wide": true
+      },
+      {
+        "file": "logo-white.svg",
+        "name": "White",
+        "use": "Dark backgrounds, photos and color",
+        "bg": "accent",
+        "wide": true
+      },
+      {
+        "file": "logo-mark.svg",
+        "name": "Mark",
+        "use": "Avatars, tight spaces",
+        "bg": "light"
+      },
+      {
+        "file": "logo-icon.svg",
+        "name": "App icon",
+        "use": "512×512, rounded tile",
+        "bg": "sand"
+      },
+      {
+        "file": "logo-wordmark.svg",
+        "name": "Wordmark",
+        "use": "Text-only lockup",
+        "bg": "light"
+      },
+      {
+        "file": "favicon.svg",
+        "name": "Favicon",
+        "use": "16×16, simplified to two shapes",
+        "bg": "sand"
+      }
+    ],
+    "download": "Download",
+    "palette_label": "Colors",
+    "palette_title": "Warm cream, steady navy, one terracotta accent",
+    "palette": [
+      {
+        "hex": "#FBF7F2",
+        "name": "Cream",
+        "role": "Page background: warm, like good paper"
+      },
+      {
+        "hex": "#1F2A44",
+        "name": "Navy",
+        "role": "Headings, text and the word “Better”: the trust color"
+      },
+      {
+        "hex": "#C2553A",
+        "name": "Terracotta",
+        "role": "The “after”: the rebuilt bowl, “Site”, big highlights"
+      },
+      {
+        "hex": "#A8432B",
+        "name": "Terracotta dark",
+        "role": "Buttons, links and small accent text"
+      },
+      {
+        "hex": "#4A6A52",
+        "name": "Sage",
+        "role": "Checkmarks and confirmations"
+      },
+      {
+        "hex": "#8A8178",
+        "name": "Stone",
+        "role": "The “before”: the outlined bowl"
+      }
+    ],
+    "palette_note": "Terracotta is the warm signal that means “better”. Keep it for the rebuilt bowl, buttons and key highlights; let cream and navy do the rest.",
+    "type_label": "Typography",
+    "type_title": "Inter Bold, tightened",
+    "type_body": "The wordmark is set in Inter Bold with slightly tight letter-spacing, then converted to outlines so it looks identical everywhere. “Better” is set in navy; “Site” takes terracotta, so the name repeats the before-and-after of the mark.",
+    "rules_label": "Usage",
+    "rules_title": "Keep it recognizable",
+    "rules": [
+      "Leave clear space around the logo equal to the height of the top bowl.",
+      "Do not go below 20 px for the mark or 96 px wide for the full logo.",
+      "Use the files as they are: do not recolor, stretch, rotate or add effects.",
+      "On dark backgrounds, photos or color use the white logo; for one-color print use the black one."
+    ],
+    "contact": "Need another format? Email us at"
   }
 }

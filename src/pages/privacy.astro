@@ -10,13 +10,13 @@ const t = getDict(locale);
 <Layout locale={locale} path="privacy/" title={t.privacy.meta_title} description={t.privacy.meta_description}>
   <main class="max-w-3xl mx-auto px-6 py-16 md:py-24">
     <div class="flex items-center justify-between gap-4">
-      <a href={withBase('')} class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
+      <a href={withBase('')} class="inline-flex items-center gap-2 text-sm text-brand-muted hover:text-brand-ink transition">
         <span aria-hidden="true">←</span> {t.privacy.back}
       </a>
       <LangSwitcher current={locale} path="privacy/" />
     </div>
     <h1 class="mt-12 text-3xl md:text-5xl font-bold tracking-tight">{t.privacy.title}</h1>
-    <p class="mt-6 text-lg text-slate-300">{t.privacy.lead}</p>
+    <p class="mt-6 text-lg text-brand-body">{t.privacy.lead}</p>
     {/* Issue #32: the contact address below must survive Cloudflare email
         obfuscation — email_off markers exempt the block (see
         docs/origin/README.md). */}
@@ -25,11 +25,11 @@ const t = getDict(locale);
       {t.privacy.sections.map((s) => (
         <section>
           <h2 class="text-xl font-semibold">{s.h}</h2>
-          <p class="mt-3 text-slate-400 leading-relaxed">{s.body}</p>
+          <p class="mt-3 text-brand-muted leading-relaxed">{s.body}</p>
         </section>
       ))}
     </div>
     <!--/email_off-->
-    <p class="mt-12 text-sm text-slate-500">{t.privacy.updated}</p>
+    <p class="mt-12 text-sm text-brand-muted">{t.privacy.updated}</p>
   </main>
 </Layout>

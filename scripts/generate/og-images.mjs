@@ -34,13 +34,10 @@ function cardHtml(t) {
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: ${WIDTH}px; height: ${HEIGHT}px; overflow: hidden;
-    background: #020617; color: #f1f5f9;
+    background: #fbf7f2; color: #1f2a44;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     position: relative;
   }
-  .glow-a, .glow-b { position: absolute; border-radius: 50%; filter: blur(110px); }
-  .glow-a { top: -180px; left: -140px; width: 560px; height: 560px; background: rgba(16,185,129,.28); }
-  .glow-b { top: 220px; right: -180px; width: 560px; height: 560px; background: rgba(34,211,238,.16); }
   .card {
     position: absolute; inset: 0; padding: 64px 72px;
     display: flex; flex-direction: column; justify-content: space-between;
@@ -48,25 +45,23 @@ function cardHtml(t) {
   .brand { display: flex; align-items: center; gap: 18px; }
   .brand svg { width: 60px; height: 60px; }
   .brand .name { font-size: 40px; font-weight: 700; letter-spacing: -1px; }
-  .brand .name .accent { color: #34d399; }
+  .brand .name .accent { color: #c2553a; }
   .badge {
     display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
-    background: rgba(52,211,153,.10); border: 1px solid rgba(52,211,153,.35);
-    color: #6ee7b7; font-size: 22px; font-weight: 500;
+    background: #f8e8e0; border: 1px solid rgba(194,85,58,.25);
+    color: #a8432b; font-size: 22px; font-weight: 500;
     border-radius: 999px; padding: 10px 22px; margin-bottom: 30px;
   }
-  .badge .dot { width: 10px; height: 10px; border-radius: 50%; background: #34d399; }
+  .badge .dot { width: 10px; height: 10px; border-radius: 50%; background: #c2553a; }
   h1 { font-size: 64px; font-weight: 700; letter-spacing: -2px; line-height: 1.08; max-width: 980px; }
   h1 em {
     font-style: normal;
-    background: linear-gradient(90deg, #6ee7b7, #67e8f9);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+    color: #c2553a;
   }
-  .foot { display: flex; align-items: center; justify-content: space-between; color: #94a3b8; font-size: 26px; }
-  .foot .url { color: #cbd5e1; font-weight: 600; letter-spacing: 0.5px; }
+  .foot { display: flex; align-items: center; justify-content: space-between; color: #6e655c; font-size: 26px; }
+  .foot .url { color: #1f2a44; font-weight: 600; letter-spacing: 0.5px; }
 </style></head>
 <body>
-  <div class="glow-a"></div><div class="glow-b"></div>
   <div class="card">
     <div class="brand">${logoSvg}<span class="name">Better<span class="accent">Site</span></span></div>
     <div>
@@ -89,7 +84,7 @@ try {
     const page = await browser.newPage({ viewport: { width: WIDTH, height: HEIGHT } });
     try {
       await page.setContent(cardHtml(dict), { waitUntil: 'load' });
-      await page.waitForTimeout(150); // settle font/gradient paint
+      await page.waitForTimeout(150); // settle font paint
       const out = join(OUT_DIR, `og-${locale}.png`);
       await page.screenshot({ path: out, clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT } });
       console.log(`wrote ${out}`);

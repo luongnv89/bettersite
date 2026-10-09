@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* Brand palette (assets/logo/brand-showcase.html, /brand/). Warm and light
+   for small-business owners: cream ground, navy for trust, terracotta for
+   warmth. terra is display-size only (4.2:1 on cream); small text and
+   buttons use terra-dark. stone is the logo's "before" bowl, never text. */
+@theme {
+  --color-brand-cream: #fbf7f2;
+  --color-brand-sand: #f4ede3;
+  --color-brand-ink: #1f2a44;
+  --color-brand-body: #454d60;
+  --color-brand-muted: #6e655c;
+  --color-brand-terra: #c2553a;
+  --color-brand-terra-dark: #a8432b;
+  --color-brand-terra-deep: #8f3823;
+  --color-brand-terra-soft: #f8e8e0;
+  --color-brand-sage: #4a6a52;
+  --color-brand-stone: #8a8178;
+}
+
 /* Issue #31 — explicit keyboard focus indicator for every interactive
    element (links, buttons, <summary>, the language switch). Sitting in
    @layer base keeps it under the utilities layer, so the form inputs'
