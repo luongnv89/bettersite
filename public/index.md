@@ -1,6 +1,6 @@
 # More customers from your website. Rebuilt in 48 hours. Proof, not promises.
 
-> We rebuild your existing website on the stack that scored this page 100/100 on Lighthouse. Free homepage sample, live preview in 48 hours — pay only if you love it.
+> Website redesign for small businesses. Get a free homepage preview within 48 hours, then choose a full rebuild for €490. English and French.
 
 _Free sample. No card. 48-hour turnaround._
 

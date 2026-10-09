@@ -14,8 +14,8 @@ interface Props {
 }
 
 const {
-  title = 'BetterSite — Your Website, Rebuilt Better. In 48 Hours.',
-  description = 'We rebuild your existing website with modern UI/UX, top SEO, bulletproof security, and lower hosting costs. See a free sample before you pay a cent.',
+  title,
+  description,
   locale = defaultLocale,
   path = '',
 } = Astro.props;
@@ -40,17 +40,19 @@ const llmsTxt = new URL(withBase('llms.txt'), site).toString();
 // link relation for documentation; rel="describedby" exposes the PRM JSON.
 const authMd = new URL(withBase('auth.md'), site).toString();
 const oauthPrm = new URL(withBase('.well-known/oauth-protected-resource'), site).toString();
-// The Service entity lives at the locale's landing root regardless of which
-// page embeds the JSON-LD (issue #20): url/@id equal the locale canonical.
+// Service describes the locale landing page; auxiliary pages use WebPage
+// so their privacy/brand descriptions are not assigned to the same service.
 const serviceUrl = new URL(withBase(locale === 'fr' ? 'fr/' : ''), site).toString();
 const dict = getDict(locale);
+const pageTitle = title ?? dict.meta.title;
+const pageDescription = description ?? dict.meta.description;
 ---
 <!doctype html>
 <html lang={locale} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical.toString()} />
     <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="alternate" hreflang="fr" href={frHref} />
@@ -62,8 +64,8 @@ const dict = getDict(locale);
     <link rel="describedby" type="text/plain" href={llmsTxt} />
     <link rel="help" type="text/markdown" href={authMd} />
     <link rel="describedby" type="application/json" href={oauthPrm} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical.toString()} />
     <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_US'} />
@@ -71,18 +73,18 @@ const dict = getDict(locale);
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:alt" content={pageTitle} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={title} />
+    <meta name="twitter:image:alt" content={pageTitle} />
     <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
-    <title>{title}</title>
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(path === '' ? {
       "@context": "https://schema.org",
       "@type": "Service",
       "@id": serviceUrl,
       "name": "BetterSite",
-      "description": description,
+      "description": pageDescription,
       "url": serviceUrl,
       "image": ogImage,
       "provider": {
@@ -97,6 +99,19 @@ const dict = getDict(locale);
         { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "url": serviceUrl, "description": dict.jsonld.offer_sample_desc },
         { "@type": "Offer", "price": dict.pricing.price_amount, "priceCurrency": "EUR", "url": `${serviceUrl}#pricing`, "description": dict.jsonld.offer_rebuild_desc }
       ]
+    } : {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": canonical.toString(),
+      "name": pageTitle,
+      "description": pageDescription,
+      "url": canonical.toString(),
+      "inLanguage": locale,
+      "publisher": {
+        "@type": "Organization",
+        "name": "BetterSite",
+        "url": new URL(withBase(''), site).toString()
+      }
     })} />
     {/* Browser-language auto-redirect runs on the default-locale root only:
         an explicit /fr/ URL is itself a locale choice and must never be
