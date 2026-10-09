@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LangSwitcher from '../components/LangSwitcher.astro';
+import { withBase } from '../lib/url';
+import { getDict } from '../i18n';
+
+const locale = 'en';
+const t = getDict(locale);
+---
+<Layout locale={locale} path="privacy/" title={t.privacy.meta_title} description={t.privacy.meta_description}>
+  <main class="max-w-3xl mx-auto px-6 py-16 md:py-24">
+    <div class="flex items-center justify-between gap-4">
+      <a href={withBase('')} class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
+        <span aria-hidden="true">←</span> {t.privacy.back}
+      </a>
+      <LangSwitcher current={locale} path="privacy/" />
+    </div>
+    <h1 class="mt-12 text-3xl md:text-5xl font-bold tracking-tight">{t.privacy.title}</h1>
+    <p class="mt-6 text-lg text-slate-300">{t.privacy.lead}</p>
+    <div class="mt-10 space-y-8">
+      {t.privacy.sections.map((s) => (
+        <section>
+          <h2 class="text-xl font-semibold">{s.h}</h2>
+          <p class="mt-3 text-slate-400 leading-relaxed">{s.body}</p>
+        </section>
+      ))}
+    </div>
+    <p class="mt-12 text-sm text-slate-500">{t.privacy.updated}</p>
+  </main>
+</Layout>

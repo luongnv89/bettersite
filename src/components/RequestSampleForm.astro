@@ -21,6 +21,8 @@ const redirectTo = new URL(
   `${withBase(locale === 'fr' ? 'fr/' : '')}#${id}-sent`,
   Astro.site ?? 'https://luongnv89.github.io/bettersite/'
 ).toString();
+// Issue #24: the fineprint links to the localized privacy page.
+const privacyHref = withBase(locale === 'fr' ? 'fr/privacy/' : 'privacy/');
 ---
 <form
   id={id}
@@ -69,7 +71,10 @@ const redirectTo = new URL(
       <span data-submit-text>{t.submit}</span>
       <span class="transition-transform group-hover:translate-x-0.5">→</span>
     </button>
-    <p class="text-xs text-slate-400 text-center">{t.fineprint}</p>
+    <p class="text-xs text-slate-400 text-center">
+      {t.fineprint}{' '}
+      <a href={privacyHref} class="underline decoration-slate-600 underline-offset-2 hover:text-slate-300">{t.privacy_label}</a>
+    </p>
   </div>
 
   <div id={`${id}-sent`} class="hidden target:block mt-6 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 p-4 text-sm text-emerald-200" data-success role="status">

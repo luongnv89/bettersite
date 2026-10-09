@@ -1,13 +1,13 @@
-# Plus de clients grâce à votre site. Refait en 48 heures. Échantillon gratuit d'abord.
+# Plus de clients grâce à votre site. Refait en 48 heures. Des preuves, pas des promesses.
 
 > Nous refaisons votre site existant sur la stack notée 100/100 à l'audit Lighthouse de cette page. Échantillon gratuit, aperçu live en 48 heures — vous ne payez que si vous l'aimez.
 
 _Échantillon gratuit. Sans carte. Livré en 48 heures._
 
-Nous refaisons votre page d'accueil sur la stack qui a valu 100/100 à cette page à l'audit Lighthouse — conçue pour convertir. Échantillon gratuit, aperçu live en 48 heures, vous ne payez que si vous l'aimez.
+Nous refaisons votre page d'accueil sur la stack qui a valu 100/100 à cette page à l'audit Lighthouse — pensée pour convertir vos visiteurs en clients.
 
-- Échantillon gratuit, sans carte bancaire
-- Livré en 2 jours
+- Vraie démo avant/après — mesurée, pas promise
+- Lien d'aperçu live dans votre boîte mail
 - Vous ne payez que si ça vous plaît
 
 ## Une vraie refonte — mesurée, pas promise
@@ -62,9 +62,9 @@ Moins de blabla, plus de résultats. Votre aperçu live arrive dans votre boîte
 Pas d'appel de cadrage, pas de proposition commerciale, pas de slides. Juste un aperçu gratuit et fonctionnel de votre nouveau site.
 
 1. **Demandez votre échantillon gratuit** — Donnez-nous l'URL de votre site et votre e-mail. Votre demande arrive directement dans notre boîte — rien d'autre à faire.
-2. **Nous le reconstruisons (à nos frais)** — Notre équipe refait votre page d'accueil avec un nouveau design, une stack moderne et une passe complète sur la performance. Aucun paiement requis.
+2. **Nous le reconstruisons (à nos frais)** — Je refais votre page d'accueil avec un nouveau design, une stack moderne et une passe complète sur la performance. Aucun paiement requis.
 3. **Vous voyez l'aperçu live** — Sous 48 heures, vous recevez un lien privé. Vous adorez ? On continue. Sinon ? Vous partez — sans frais, sans rancune.
-4. **Validez la refonte complète** — On envoie un devis détaillé couvrant la refonte complète plus un forfait mensuel de maintenance. Vous signez, on livre.
+4. **Validez la refonte complète** — Vous connaissez déjà le prix — 490 € fixes, maintenance facultative. Donnez le feu vert, je construis le reste.
 
 ## Des chiffres vérifiables.
 
@@ -80,10 +80,10 @@ Les vrais compromis — à vous de choisir.
 | | BetterSite | Agence | Fait maison |
 |---|---|---|
 | Premier résultat visible | Aperçu live en 48 h | Des semaines de réunions | Des semaines de soirées |
-| Coût initial | 0 € — échantillon gratuit | Devis type : 8–25 k€ | Outils, thèmes, votre temps |
+| Coût initial | Échantillon 0 € · refonte 490 € fixe | Devis type : 8–25 k€ | Outils, thèmes, votre temps |
 | Performance | 100/100 — audité sur cette page | Variable selon le prestataire | Rarement mesurée |
 | Si ça rate | Vous partez sans payer | Contrat et frais de révision | Des week-ends perdus |
-| Après le lancement | Forfait mensuel fixe | Factures de régie | Vous patchez vous-même |
+| Après le lancement | Forfait facultatif 29 €/mois | Factures de régie | Vous patchez vous-même |
 
 _Chaque mesure lab ci-dessus a été prise sur cette page (Lighthouse 12.8.2, EN + FR, mobile + desktop — 9 oct. 2026)._
 
@@ -111,7 +111,7 @@ Non. Nous préservons votre structure d'URL, votre contenu et vos métadonnées 
 
 ### Que couvre la maintenance, concrètement ?
 
-Hébergement, patchs de sécurité, monitoring uptime, mises à jour de contenu (dans la limite du raisonnable) et petits ajustements de design. Forfait mensuel fixe, résiliable à tout moment. Détaillé dans le contrat.
+Hébergement, patchs de sécurité, monitoring uptime, mises à jour de contenu (dans la limite du raisonnable) et petits ajustements de design. Facultative : 29 €/mois fixe, résiliable à tout moment — ou 0 € si vous préférez gérer vous-même.
 
 ### Et si je veux des modifications après l'échantillon ?
 
@@ -126,15 +126,34 @@ L'échantillon gratuit, c'est votre page d'accueil — c'est le moyen le plus ra
 Des stacks de sites statiques modernes (Astro, Next.js) déployées sur infrastructure edge. Traduction : très rapide, très bon marché, très sécurisé.
 
 
+## Un prix. Pas de théâtre de devis.
+
+Vous connaissez le coût avant de commencer — et l'échantillon reste gratuit.
+
+- **Refonte complète: 490 €** (forfait fixe, une fois)
+- Toutes les pages refaites sur la stack BetterSite auditée — pas seulement l'accueil
+- Contenu, URLs et métadonnées SEO préservés
+- Passe performance, accessibilité et données structurées incluse
+- Vous avez vu l'aperçu live d'abord — aucun saut de foi
+
+La maintenance est facultative : 29 €/mois couvrent hébergement, patchs de sécurité et petites mises à jour — résiliable à tout moment. Ou 0 € : vous repartez avec les clés, le code est à vous.
+
 ## Voyez votre site, refait — avant de payer un centime.
 
 Dans deux jours, vous pourriez regarder une version plus rapide, plus belle et moins chère de votre site. Ou vous pourriez continuer à perdre des visiteurs au profit de concurrents. À vous de voir.
 
 _Échantillon gratuit. Sans carte. Vous partez quand vous voulez. La seule façon de perdre, c'est de ne rien faire._
 
+### Qui refait votre site
+
+**Luong Nguyen** — Fondateur, BetterSite
+
+Je fais tourner BetterSite seul. Après des années à voir des petites entreprises payer des prix d'agence pour des sites lents et fragiles, j'ai construit un pipeline qui les refait en 48 heures. Votre demande arrive dans ma boîte — et je relis personnellement chaque refonte avant l'envoi.
+
 ---
 
 - GitHub: https://github.com/luongnv89/bettersite
 - Email: hello@bettersite.dev
+- Confidentialité: https://luongnv.com/bettersite/fr/privacy/
 - Canonical HTML: https://luongnv.com/bettersite/fr/
 - This file: https://luongnv.com/bettersite/fr/index.md

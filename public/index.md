@@ -1,13 +1,13 @@
-# More customers from your website. Rebuilt in 48 hours. Free sample first.
+# More customers from your website. Rebuilt in 48 hours. Proof, not promises.
 
 > We rebuild your existing website on the stack that scored this page 100/100 on Lighthouse. Free homepage sample, live preview in 48 hours — pay only if you love it.
 
 _Free sample. No card. 48-hour turnaround._
 
-We rebuild your homepage on the stack that scored this page 100/100 on Lighthouse — designed to convert. Free sample, live preview in 48 hours, pay only if you love it.
+We rebuild your homepage on the stack that scored this page 100/100 on Lighthouse — engineered to convert visitors into customers.
 
-- Free sample, no credit card
-- Delivered in 2 days
+- Real before/after demo — measured, not claimed
+- Live preview link in your inbox
 - Pay only if you love it
 
 ## One real rebuild — measured, not claimed
@@ -62,9 +62,9 @@ Less theater, more output. Your live preview lands in your inbox in two days —
 No discovery calls, no proposals, no slide decks. Just a free, working preview of your new site.
 
 1. **Request your free sample** — Drop your website URL and email. Your request lands straight in our inbox — nothing else to do.
-2. **We rebuild it (on us)** — Our team rebuilds your homepage with a fresh design, modern stack, and full performance pass. No payment required.
+2. **We rebuild it (on us)** — I rebuild your homepage with a fresh design, modern stack, and full performance pass. No payment required.
 3. **Review the live preview** — Within 48 hours you get a private link. Love it? Continue. Don't? Walk away — no charge, no hard feelings.
-4. **Lock in the full build** — We send a detailed quote covering the full rebuild plus a flat monthly maintenance plan. Sign, and we ship.
+4. **Lock in the full build** — You already know the price — €490 fixed, maintenance optional. Say go, and I build the rest.
 
 ## Numbers you can check.
 
@@ -80,10 +80,10 @@ The honest trade-offs — pick what fits.
 | | BetterSite | Agency | DIY |
 |---|---|---|
 | First visible result | Live preview in 48 h | Weeks of meetings | Weeks of evenings |
-| Upfront cost | €0 — free sample | Typical quote €8k–25k | Tools, themes, your time |
+| Upfront cost | €0 sample · €490 fixed rebuild | Typical quote €8k–25k | Tools, themes, your time |
 | Performance | 100/100 — audited on this page | Varies by vendor | Rarely measured |
 | If it flops | Walk away, pay nothing | Contract & change fees | Sunk weekends |
-| After launch | Flat monthly plan | Retainer invoices | You patch it yourself |
+| After launch | Optional €29/mo plan | Retainer invoices | You patch it yourself |
 
 _Every lab number above was measured on this page (Lighthouse 12.8.2, EN + FR, mobile + desktop — 2026-10-09)._
 
@@ -111,7 +111,7 @@ No. We preserve your URL structure, content, and metadata — and improve techni
 
 ### What does maintenance actually cover?
 
-Hosting, security patches, uptime monitoring, content updates (within reason), and minor design tweaks. Flat monthly fee, cancel anytime. Detailed in the contract.
+Hosting, security patches, uptime monitoring, content updates (within reason), and minor design tweaks. Optional: €29/month flat, cancel anytime — or €0 if you prefer to run it yourself.
 
 ### What if I want changes after seeing the sample?
 
@@ -126,15 +126,34 @@ The free sample is your homepage — fastest way to show what we can do. The ful
 Modern static-site stacks (Astro, Next.js) deployed on edge infrastructure. Translation: very fast, very cheap, very secure.
 
 
+## One price. No quote theater.
+
+You know the cost before we start — and the sample is still free.
+
+- **Full rebuild: €490** (fixed, one-time)
+- Every page rebuilt on the audited BetterSite stack — not just the homepage
+- Content, URLs and SEO metadata preserved
+- Performance, accessibility and schema pass included
+- You saw the live preview first — no leap of faith
+
+Maintenance is optional: €29/month covers hosting, security patches and small updates — cancel anytime. Or €0: you take the keys, the code is yours.
+
 ## See your website, rebuilt — before you pay a cent.
 
 Two days from now, you could be looking at a faster, prettier, cheaper version of your site. Or you could still be losing visitors to competitors. Your call.
 
 _Free sample. No card required. Walk away anytime. The only way to lose is to do nothing._
 
+### Who's rebuilding your site
+
+**Luong Nguyen** — Founder, BetterSite
+
+I run BetterSite alone. After years of watching small businesses pay agency prices for slow, fragile sites, I built a pipeline that rebuilds them in 48 hours. Your request lands in my inbox — and I personally review every rebuild before it ships.
+
 ---
 
 - GitHub: https://github.com/luongnv89/bettersite
 - Email: hello@bettersite.dev
+- Privacy: https://luongnv.com/bettersite/privacy/
 - Canonical HTML: https://luongnv.com/bettersite/
 - This file: https://luongnv.com/bettersite/index.md
