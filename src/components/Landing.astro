@@ -36,6 +36,18 @@ const t = getDict(locale);
         </a>
       </div>
     </div>
+    {/* Mobile section nav (#23): the desktop nav above is `hidden md:flex`, so
+        below 768 px this sticky anchor strip is the only way to reach the
+        page sections. Kept inside the sticky header so it stays reachable at
+        any scroll depth; overflow-x-auto keeps 320 px viewports safe. */}
+    <nav class="md:hidden border-t border-white/5" aria-label={t.nav.sections}>
+      <div class="max-w-6xl mx-auto px-6 h-11 flex items-center gap-6 overflow-x-auto text-sm text-slate-300">
+        <a href="#how" class="whitespace-nowrap hover:text-white">{t.nav.how}</a>
+        <a href="#proof" class="whitespace-nowrap hover:text-white">{t.nav.results}</a>
+        <a href="#samples" class="whitespace-nowrap hover:text-white">{t.nav.samples}</a>
+        <a href="#faq" class="whitespace-nowrap hover:text-white">{t.nav.faq}</a>
+      </div>
+    </nav>
   </header>
 
   <section id="top" class="relative overflow-hidden">
@@ -59,7 +71,7 @@ const t = getDict(locale);
           {t.hero.bullets.map((b) => <span class="flex items-center gap-2">✓ {b}</span>)}
         </div>
       </div>
-      <div id="request" class="lg:justify-self-end w-full">
+      <div id="request" class="lg:justify-self-end w-full scroll-mt-32 md:scroll-mt-24">
         <RequestSampleForm variant="hero" id="form-hero" locale={locale} />
       </div>
     </div>
@@ -138,7 +150,7 @@ const t = getDict(locale);
     </div>
   </section>
 
-  <section id="how" class="border-t border-white/5 bg-slate-950">
+  <section id="how" class="border-t border-white/5 bg-slate-950 scroll-mt-32 md:scroll-mt-24">
     <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
       <div class="max-w-3xl">
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight">{t.how.title}</h2>
@@ -161,7 +173,7 @@ const t = getDict(locale);
     </div>
   </section>
 
-  <section id="proof" class="border-t border-white/5 bg-gradient-to-b from-slate-900 to-slate-950">
+  <section id="proof" class="border-t border-white/5 bg-gradient-to-b from-slate-900 to-slate-950 scroll-mt-32 md:scroll-mt-24">
     <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight">{t.proof.title}</h2>
       <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -212,7 +224,7 @@ const t = getDict(locale);
     </div>
   </section>
 
-  <section id="samples" class="border-t border-white/5 bg-slate-950">
+  <section id="samples" class="border-t border-white/5 bg-slate-950 scroll-mt-32 md:scroll-mt-24">
     <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
       <div class="max-w-3xl">
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight">{t.samples.title}</h2>
@@ -271,7 +283,7 @@ const t = getDict(locale);
     </div>
   </section>
 
-  <section id="faq" class="border-t border-white/5 bg-slate-950">
+  <section id="faq" class="border-t border-white/5 bg-slate-950 scroll-mt-32 md:scroll-mt-24">
     <div class="max-w-3xl mx-auto px-6 py-20 md:py-28">
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight">{t.faq.title}</h2>
       <div class="mt-12 divide-y divide-white/5 rounded-2xl bg-slate-900/40 ring-1 ring-white/10">
