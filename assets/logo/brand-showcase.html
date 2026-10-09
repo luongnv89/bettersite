@@ -5,166 +5,216 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BetterSite — Brand Identity</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<!-- Self-contained: system font stack only (the wordmark is outlined to paths),
+     so no third-party font request. Published copy: /brand/ (src/components/BrandPage.astro). -->
 <style>
   :root {
-    --base:#020617; --surface:#0f172a; --surface-2:#1e293b;
-    --accent:#34d399; --accent-2:#10b981;
-    --muted:#475569; --text:#f1f5f9; --text-dim:#94a3b8;
-    --light:#fafafa; --light-2:#f1f5f9;
+    --cream:#fbf7f2; --sand:#f4ede3; --ink:#1f2a44; --body:#454d60; --muted:#6e655c;
+    --terra:#c2553a; --terra-dark:#a8432b; --terra-soft:#f8e8e0; --sage:#4a6a52; --stone:#8a8178;
+    --line:rgba(31,42,68,.10);
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }
   *,*::before,*::after{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--base);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1100px;margin:0 auto;padding:64px 32px}
-  h1{font-size:clamp(40px,6vw,72px);line-height:1.05;letter-spacing:-1.5px;margin:0 0 16px;font-weight:800}
-  h1 .accent{color:var(--accent)}
-  h2{font-size:28px;letter-spacing:-0.4px;margin:0 0 24px;font-weight:700}
-  h3{font-size:14px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin:0 0 16px;font-weight:600}
-  p{color:var(--text-dim);max-width:62ch}
-  section{margin-bottom:88px}
-  .hero{display:flex;flex-direction:column;align-items:flex-start;gap:32px;padding:48px 0 24px}
-  .hero img{height:88px}
-  .tagline{font-size:20px;color:var(--text-dim);max-width:60ch}
-  .grid{display:grid;gap:20px}
-  .grid-3{grid-template-columns:repeat(3,1fr)}
-  .grid-2{grid-template-columns:repeat(2,1fr)}
-  @media (max-width:760px){.grid-3,.grid-2{grid-template-columns:1fr}}
-  .card{background:var(--surface);border:1px solid var(--surface-2);border-radius:16px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px}
-  .card.light{background:var(--light)}
-  .card .label{margin-top:24px;font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
-  .card.light .label{color:#64748b}
-  .card img{max-width:100%;height:auto;max-height:120px}
-  .card .favicon-row{display:flex;align-items:center;gap:24px}
-  .card .favicon-row img{height:48px;width:48px}
-  .card .favicon-row .small{height:16px;width:16px}
-  .palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
-  .swatch{border-radius:12px;padding:24px;border:1px solid var(--surface-2);min-height:140px;display:flex;flex-direction:column;justify-content:flex-end}
-  .swatch .name{font-weight:600;font-size:14px}
-  .swatch .hex{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;opacity:.85}
-  .concept{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-  @media (max-width:760px){.concept{grid-template-columns:1fr}}
-  .concept .visual{background:var(--surface);border:1px solid var(--surface-2);border-radius:16px;padding:48px;display:flex;align-items:center;justify-content:center}
-  .concept .visual img{height:160px}
-  ul.notes{padding-left:18px}
-  ul.notes li{margin-bottom:8px;color:var(--text-dim)}
-  pre{background:var(--surface);border:1px solid var(--surface-2);border-radius:12px;padding:20px;overflow-x:auto;font-size:13px;color:var(--text)}
-  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-  .typo-sample{background:var(--surface);border:1px solid var(--surface-2);border-radius:16px;padding:32px}
-  .typo-sample .display{font-size:48px;font-weight:800;letter-spacing:-1px;margin:0 0 8px}
-  .typo-sample .body{color:var(--text-dim);margin:0}
-  footer{border-top:1px solid var(--surface-2);padding-top:32px;color:var(--text-dim);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  html,body{margin:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  section{padding:88px 0;border-top:1px solid var(--line)}
+  section.alt{background:var(--sand)}
+  .label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--terra-dark);margin:0 0 12px}
+  h1{font-size:clamp(34px,5vw,56px);line-height:1.08;letter-spacing:-.02em;margin:40px 0 16px}
+  h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0 0 16px}
+  p{color:var(--body);margin:0}
+  .lead{font-size:19px;max-width:60ch;margin:0 auto}
+  .hero{text-align:center;padding:96px 0 88px;border:0}
+  .hero-mark{width:120px;height:120px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .stage{background:#fff;border:1px solid var(--line);border-radius:24px;padding:48px;display:flex;justify-content:center}
+  .stage svg{width:min(260px,100%);height:auto;overflow:visible}
+  .parts{list-style:none;padding:0;margin:28px 0;display:grid;gap:18px}
+  .parts li{display:flex;gap:14px}
+  .parts svg{width:44px;height:44px;flex:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px}
+  .parts b{display:block}
+  .parts b span{font-family:var(--mono);color:var(--terra-dark);font-size:13px;margin-right:8px}
+  .parts p{font-size:14px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+  .card{border-radius:18px;display:flex;flex-direction:column;overflow:hidden;transition:transform .2s ease}
+  .card:hover{transform:translateY(-3px)}
+  .card .art{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px;min-height:170px}
+  .card .art img{max-width:100%;height:72px}
+  .card.wide{grid-column:span 4}
+  .card.wide .art img{height:80px}
+  .card .meta{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font-size:13px}
+  .card .meta code{font-family:var(--mono);font-size:12px;opacity:.75}
+  .light{background:#fff;border:1px solid var(--line);color:var(--ink);box-shadow:0 1px 2px rgba(31,42,68,.06),0 8px 24px rgba(31,42,68,.06)}
+  .sand{background:var(--sand);border:1px solid var(--line);color:var(--ink)}
+  .accent{background:var(--terra-dark);color:#fff}
+  .chips{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:40px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .chip .sw{height:96px;display:flex;align-items:flex-end;padding:10px 12px;font-family:var(--mono);font-size:12px;box-shadow:inset 0 -1px 0 var(--line)}
+  .chip div+div{padding:12px 14px}
+  .chip b{display:block;font-size:14px}
+  .chip p{font-size:12px;line-height:1.5;margin-top:4px;color:var(--muted)}
+  .specimen{background:#fff;border:1px solid var(--line);border-radius:18px;padding:36px;margin:24px 0}
+  .specimen img{display:block;width:min(300px,100%);height:auto;margin:0 auto 28px}
+  .weights{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-top:1px solid var(--line);padding-top:20px;flex-wrap:wrap}
+  .weights span{font-size:15px;color:var(--muted)}
+  .weights .bold{font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+  pre{background:var(--ink);border-radius:16px;padding:22px 24px;overflow-x:auto;font:13px/1.7 var(--mono);color:#f4ede3;margin:24px 0 0}
+  pre .k{color:#f2b8a6} pre .s{color:#e9c46a} pre .c{color:#a8a29e}
+  ul.rules{padding:0;list-style:none;margin:24px 0 0;display:grid;gap:12px;color:var(--body)}
+  ul.rules li::before{content:"✓";color:var(--sage);margin-right:10px;font-weight:700}
+  footer{border-top:1px solid var(--line);padding:40px 0;font-size:14px;color:var(--muted)}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  footer img{height:32px}
+  @media (max-width:860px){
+    .two{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr 1fr}
+    .card.wide{grid-column:span 2}
+    .chips{grid-template-columns:repeat(2,1fr)}
+    .card.wide .art img{height:56px}
+  }
+  @media (max-width:480px){ .grid{grid-template-columns:1fr} .card.wide{grid-column:auto} section{padding:64px 0} }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <section class="hero">
-    <img src="logo-full.svg" alt="BetterSite logo" />
+<header class="hero wrap">
+  <p class="label">Brand identity</p>
+  <svg class="hero-mark" viewBox="0 0 64 64" role="img" aria-label="BetterSite mark">
+    <path d="M16,8 H34 A11,11 0 0 1 34,30 H16 A3,3 0 0 1 13,27 V11 A3,3 0 0 1 16,8 Z M18,13 H34 A6,6 0 0 1 34,25 H18 Z" fill="#8a8178" fill-rule="evenodd"/>
+    <path d="M21,17 H29 A2,2 0 0 1 29,21 H21 A2,2 0 0 1 21,17 Z" fill="#8a8178"/>
+    <path d="M16,34 H40 A11,11 0 0 1 40,56 H16 A3,3 0 0 1 13,53 V37 A3,3 0 0 1 16,34 Z" fill="#c2553a"/>
+  </svg>
+  <h1>One letter, before and after.</h1>
+  <p class="lead">The BetterSite mark is a B built from two website blocks. The top one is the site you have today. The bottom one is the site we rebuild.</p>
+</header>
+
+<section class="alt">
+  <div class="wrap two">
+    <div class="stage">
+      <!-- Annotated mark: numbered callouts on the three canonical paths -->
+      <svg viewBox="0 0 64 64" role="img" aria-label="Annotated BetterSite mark">
+        <path d="M16,8 H34 A11,11 0 0 1 34,30 H16 A3,3 0 0 1 13,27 V11 A3,3 0 0 1 16,8 Z M18,13 H34 A6,6 0 0 1 34,25 H18 Z" fill="#8a8178" fill-rule="evenodd"/>
+        <path d="M21,17 H29 A2,2 0 0 1 29,21 H21 A2,2 0 0 1 21,17 Z" fill="#8a8178"/>
+        <path d="M16,34 H40 A11,11 0 0 1 40,56 H16 A3,3 0 0 1 13,53 V37 A3,3 0 0 1 16,34 Z" fill="#c2553a"/>
+        <g font-family="ui-monospace,Menlo,monospace" font-size="3.6" font-weight="700" text-anchor="middle">
+          <line x1="44" y1="13" x2="55" y2="9" stroke="#6e655c" stroke-width=".4"/>
+          <circle cx="57" cy="8.5" r="3" fill="#fff" stroke="#6e655c" stroke-width=".4"/><text x="57" y="9.8" fill="#1f2a44">1</text>
+          <line x1="29" y1="19" x2="55" y2="22" stroke="#6e655c" stroke-width=".4"/>
+          <circle cx="57" cy="22.5" r="3" fill="#fff" stroke="#6e655c" stroke-width=".4"/><text x="57" y="23.8" fill="#1f2a44">2</text>
+          <line x1="50" y1="45" x2="54" y2="45" stroke="#a8432b" stroke-width=".4"/>
+          <circle cx="57" cy="45" r="3" fill="#fff" stroke="#a8432b" stroke-width=".4"/><text x="57" y="46.3" fill="#a8432b">3</text>
+        </g>
+      </svg>
+    </div>
     <div>
-      <h1>Better<span class="accent">Site</span> brand identity</h1>
-      <p class="tagline">A small studio that rebuilds outdated websites with modern UI, performance, SEO, and security — free homepage sample within 48 hours.</p>
+      <p class="label">The mark</p>
+      <h2>What the B means</h2>
+      <ol class="parts">
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16,8 H34 A11,11 0 0 1 34,30 H16 A3,3 0 0 1 13,27 V11 A3,3 0 0 1 16,8 Z M18,13 H34 A6,6 0 0 1 34,25 H18 Z" fill="#8a8178" fill-rule="evenodd"/><path d="M21,17 H29 A2,2 0 0 1 29,21 H21 A2,2 0 0 1 21,17 Z" fill="#8a8178" opacity=".15"/><path d="M16,34 H40 A11,11 0 0 1 40,56 H16 A3,3 0 0 1 13,53 V37 A3,3 0 0 1 16,34 Z" fill="#c2553a" opacity=".15"/></svg>
+          <div><b><span>1</span>Outlined top bowl</b><p>Your current website: a frame that still stands, drawn in warm stone grey.</p></div></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16,8 H34 A11,11 0 0 1 34,30 H16 A3,3 0 0 1 13,27 V11 A3,3 0 0 1 16,8 Z M18,13 H34 A6,6 0 0 1 34,25 H18 Z" fill="#8a8178" fill-rule="evenodd" opacity=".15"/><path d="M21,17 H29 A2,2 0 0 1 29,21 H21 A2,2 0 0 1 21,17 Z" fill="#8a8178"/><path d="M16,34 H40 A11,11 0 0 1 40,56 H16 A3,3 0 0 1 13,53 V37 A3,3 0 0 1 16,34 Z" fill="#c2553a" opacity=".15"/></svg>
+          <div><b><span>2</span>The grey line</b><p>Dated content inside it: a single bar, like an old layout waiting for work.</p></div></li>
+        <li><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16,8 H34 A11,11 0 0 1 34,30 H16 A3,3 0 0 1 13,27 V11 A3,3 0 0 1 16,8 Z M18,13 H34 A6,6 0 0 1 34,25 H18 Z" fill="#8a8178" fill-rule="evenodd" opacity=".15"/><path d="M21,17 H29 A2,2 0 0 1 29,21 H21 A2,2 0 0 1 21,17 Z" fill="#8a8178" opacity=".15"/><path d="M16,34 H40 A11,11 0 0 1 40,56 H16 A3,3 0 0 1 13,53 V37 A3,3 0 0 1 16,34 Z" fill="#c2553a"/></svg>
+          <div><b><span>3</span>Solid terracotta bowl</b><p>The rebuild: wider, filled, in our terracotta. Same foundation, better result.</p></div></li>
+      </ol>
+      <p>Both blocks share one straight spine on the left, because we keep what works (your content, your name, your customers) and rebuild the rest. Read top to bottom, the B tells the whole service: before, then after.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h3>Design concept</h3>
-    <div class="concept">
-      <div class="visual"><img src="logo-mark.svg" alt="BetterSite mark" /></div>
-      <div>
-        <h2>Before → After, in one mark</h2>
-        <p>The mark is a stylized <strong>B</strong> split vertically. On the left, three muted, fragmented bars represent the existing site — broken, inconsistent, dated. On the right, a single solid emerald bar represents the rebuild — clean, continuous, fast.</p>
-        <p>Read at a glance, the eye resolves the fragments into a unified form. That moment of resolution is the product.</p>
+<section>
+  <div class="wrap">
+    <p class="label">Logo files</p>
+    <h2>Every version, ready to use</h2>
+    <p>All files are SVG vectors: sharp at any size, no fonts required.</p>
+    <div class="grid">
+      <div class="card wide light"><div class="art"><img src="logo-full.svg" alt="Full logo"></div><div class="meta"><span>Full logo · primary, light backgrounds</span><code>logo-full.svg</code></div></div>
+      <div class="card wide accent"><div class="art"><img src="logo-white.svg" alt="White logo"></div><div class="meta"><span>White · dark backgrounds, photos and color</span><code>logo-white.svg</code></div></div>
+      <div class="card wide sand"><div class="art"><img src="logo-black.svg" alt="Black logo"></div><div class="meta"><span>Black · one-color print: stamps, receipts, invoices</span><code>logo-black.svg</code></div></div>
+      <div class="card light"><div class="art"><img src="logo-mark.svg" alt="Mark"></div><div class="meta"><span>Mark</span><code>logo-mark.svg</code></div></div>
+      <div class="card sand"><div class="art"><img src="logo-icon.svg" alt="App icon" style="height:96px"></div><div class="meta"><span>App icon · 512×512</span><code>logo-icon.svg</code></div></div>
+      <div class="card light"><div class="art"><img src="logo-wordmark.svg" alt="Wordmark" style="height:40px"></div><div class="meta"><span>Wordmark</span><code>logo-wordmark.svg</code></div></div>
+      <div class="card sand"><div class="art"><img src="favicon.svg" alt="Favicon" style="width:64px;height:64px"></div><div class="meta"><span>Favicon · 16×16px</span><code>favicon.svg</code></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="label">Colors</p>
+    <h2>Warm cream, steady navy, one terracotta accent</h2>
+    <div class="chips">
+      <div class="chip"><div class="sw" style="background:#fbf7f2;color:#1f2a44">#FBF7F2</div><div><b>Cream</b><p>Page background: warm, like good paper</p></div></div>
+      <div class="chip"><div class="sw" style="background:#1f2a44;color:#fbf7f2">#1F2A44</div><div><b>Navy</b><p>Headings, text, “Better”: the trust color</p></div></div>
+      <div class="chip"><div class="sw" style="background:#c2553a;color:#fff">#C2553A</div><div><b>Terracotta</b><p>The “after”: rebuilt bowl, “Site”, big highlights</p></div></div>
+      <div class="chip"><div class="sw" style="background:#a8432b;color:#fff">#A8432B</div><div><b>Terracotta dark</b><p>Buttons, links, small accent text</p></div></div>
+      <div class="chip"><div class="sw" style="background:#4a6a52;color:#fff">#4A6A52</div><div><b>Sage</b><p>Checkmarks and confirmations</p></div></div>
+      <div class="chip"><div class="sw" style="background:#8a8178;color:#fff">#8A8178</div><div><b>Stone</b><p>The “before”: the outlined bowl</p></div></div>
+    </div>
+    <p style="margin-top:28px;max-width:70ch">Terracotta is the warm signal that means “better”. Keep it for the rebuilt bowl, buttons and key highlights; let cream and navy do the rest. Terracotta (#C2553A) is for display text 24px and up; use Terracotta dark (#A8432B) for smaller text and buttons.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap two" style="align-items:start">
+    <div>
+      <p class="label">Typography</p>
+      <h2>Inter Bold, tightened</h2>
+      <div class="specimen">
+        <img src="logo-wordmark.svg" alt="BetterSite wordmark">
+        <div class="weights"><span class="bold">Rebuilt better.</span><span>Interface text: system UI, regular 400</span></div>
       </div>
+      <p>The wordmark is set in Inter Bold with slightly tight letter-spacing (−0.6 at 34px), then converted to outlines so it looks identical everywhere. “Better” is set in navy; “Site” takes terracotta, so the name repeats the before-and-after of the mark.</p>
     </div>
-  </section>
-
-  <section>
-    <h3>Variants</h3>
-    <div class="grid grid-3">
-      <div class="card"><img src="logo-mark.svg" alt="Mark" /><div class="label">Mark · 64×64</div></div>
-      <div class="card"><img src="logo-wordmark.svg" alt="Wordmark" /><div class="label">Wordmark</div></div>
-      <div class="card"><img src="logo-icon.svg" alt="App icon" style="height:120px;width:120px;border-radius:24px" /><div class="label">App icon · 512×512</div></div>
+    <div>
+      <p class="label">Usage</p>
+      <h2>Keep it recognizable</h2>
+      <ul class="rules">
+        <li>Leave clear space around the logo equal to the height of the top bowl.</li>
+        <li>Do not go below 20px for the mark or 96px wide for the full logo.</li>
+        <li>Use the files as they are: do not recolor, stretch, rotate or add effects.</li>
+        <li>On dark backgrounds, photos or color use the white logo; for one-color print use the black one.</li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h3>Light / Dark</h3>
-    <div class="grid grid-2">
-      <div class="card"><img src="logo-white.svg" alt="White on dark" /><div class="label">On dark · logo-white.svg</div></div>
-      <div class="card light"><img src="logo-black.svg" alt="Black on light" /><div class="label">On light · logo-black.svg</div></div>
-    </div>
-  </section>
+<section class="alt">
+  <div class="wrap">
+    <p class="label">Developer reference</p>
+    <h2>Tokens and files</h2>
+<pre><span class="c">/* Tailwind v4 — defined in src/styles/global.css → bg-brand-cream, text-brand-ink … */</span>
+<span class="k">@theme</span> {
+  --color-brand-cream: <span class="s">#fbf7f2</span>;
+  --color-brand-sand: <span class="s">#f4ede3</span>;
+  --color-brand-ink: <span class="s">#1f2a44</span>;
+  --color-brand-body: <span class="s">#454d60</span>;
+  --color-brand-muted: <span class="s">#6e655c</span>;
+  --color-brand-terra: <span class="s">#c2553a</span>;
+  --color-brand-terra-dark: <span class="s">#a8432b</span>;
+  --color-brand-terra-deep: <span class="s">#8f3823</span>;
+  --color-brand-terra-soft: <span class="s">#f8e8e0</span>;
+  --color-brand-sage: <span class="s">#4a6a52</span>;
+  --color-brand-stone: <span class="s">#8a8178</span>;
+}</pre>
+<pre>assets/logo/
+├── logo-mark.svg       <span class="c"># 64×64 canonical mark — source of truth</span>
+├── logo-full.svg       <span class="c"># 320×72 mark + wordmark, light backgrounds</span>
+├── logo-wordmark.svg   <span class="c"># 180×40 text only</span>
+├── logo-icon.svg       <span class="c"># 512×512 app icon on Cream tile</span>
+├── favicon.svg         <span class="c"># 16×16 two-shape version</span>
+├── logo-white.svg      <span class="c"># 320×72 all white</span>
+├── logo-black.svg      <span class="c"># 320×72 all black</span>
+└── brand-showcase.html <span class="c"># this page</span></pre>
+  </div>
+</section>
 
-  <section>
-    <h3>Favicon</h3>
-    <div class="grid grid-2">
-      <div class="card">
-        <div class="favicon-row">
-          <img src="favicon.svg" alt="Favicon 48px" />
-          <img src="favicon.svg" alt="Favicon 16px" class="small" />
-        </div>
-        <div class="label">Simplified 2-layer mark · 48px and 16px</div>
-      </div>
-      <div class="card light">
-        <div class="favicon-row">
-          <img src="favicon.svg" alt="Favicon 48px" />
-          <img src="favicon.svg" alt="Favicon 16px" class="small" />
-        </div>
-        <div class="label" style="color:#64748b">Renders identically on light surfaces</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h3>Color palette</h3>
-    <div class="palette">
-      <div class="swatch" style="background:#020617"><div class="name" style="color:#f1f5f9">Base</div><div class="hex" style="color:#94a3b8">#020617</div></div>
-      <div class="swatch" style="background:#0f172a"><div class="name" style="color:#f1f5f9">Surface</div><div class="hex" style="color:#94a3b8">#0F172A</div></div>
-      <div class="swatch" style="background:#34d399"><div class="name" style="color:#022c22">Accent</div><div class="hex" style="color:#022c22">#34D399</div></div>
-      <div class="swatch" style="background:#475569"><div class="name" style="color:#f1f5f9">Muted (before)</div><div class="hex" style="color:#cbd5e1">#475569</div></div>
-      <div class="swatch" style="background:#f1f5f9"><div class="name" style="color:#020617">Text</div><div class="hex" style="color:#475569">#F1F5F9</div></div>
-    </div>
-  </section>
-
-  <section>
-    <h3>Typography</h3>
-    <div class="typo-sample">
-      <p class="display">Better<span style="color:var(--accent)">Site</span></p>
-      <p class="body">Inter, weights 400 / 600 / 700 / 800. Tight tracking (-0.5 to -1.5px) on display. System fallback: <code>system-ui, -apple-system, "Segoe UI", Helvetica, Arial</code>.</p>
-    </div>
-  </section>
-
-  <section>
-    <h3>Developer reference</h3>
-    <pre><code>/* CSS variables */
-:root {
-  --bs-base:    #020617;
-  --bs-surface: #0F172A;
-  --bs-accent:  #34D399;
-  --bs-muted:   #475569;
-  --bs-text:    #F1F5F9;
-}
-
-/* Tailwind v4 (in your @theme block) */
-@theme {
-  --color-bs-base:    #020617;
-  --color-bs-surface: #0F172A;
-  --color-bs-accent:  #34D399;
-  --color-bs-muted:   #475569;
-  --color-bs-text:    #F1F5F9;
-}</code></pre>
-    <ul class="notes">
-      <li>Use the accent <code>#34D399</code> sparingly — for the right-hand bar of the mark, the "Site" half of the wordmark, primary CTAs, and links only.</li>
-      <li>Never invert the mark's split: the muted "before" is always on the left, the accent "after" is always on the right.</li>
-      <li>Maintain a clear-space margin equal to the height of one fragment bar around the mark.</li>
-      <li>Minimum mark size: 16px (use <code>favicon.svg</code> below 24px — the full mark loses legibility).</li>
-    </ul>
-  </section>
-
-  <footer>
-    <div>BetterSite · brand identity v1</div>
-    <div>Generated with /logo-designer</div>
-  </footer>
-</div>
+<footer>
+  <div class="wrap">
+    <img src="logo-full.svg" alt="BetterSite">
+    <span>Brand Identity · BetterSite, 2026</span>
+  </div>
+</footer>
 </body>
 </html>
