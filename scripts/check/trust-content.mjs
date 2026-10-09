@@ -155,7 +155,7 @@ try {
 }
 
 // ── Issue #24: privacy links + per-locale privacy pages ─────────────────────
-const PRIVACY_HREF = { en: '/bettersite/privacy/', fr: '/bettersite/fr/privacy/' };
+const PRIVACY_HREF = { en: '/privacy/', fr: '/fr/privacy/' };
 for (const locale of ['en', 'fr']) {
   const page = html[locale];
   if (!page) continue;

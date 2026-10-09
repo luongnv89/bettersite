@@ -30,7 +30,7 @@ import { dirname, join, resolve } from 'node:path';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const DIST = resolve(ROOT, process.argv[2] ?? 'dist');
 const PAGES = { en: join(DIST, 'index.html'), fr: join(DIST, 'fr', 'index.html') };
-const PAGE_URL = { en: 'luongnv.com%2Fbettersite%2F', fr: 'luongnv.com%2Fbettersite%2Ffr%2F' };
+const PAGE_URL = { en: 'bettersite.luongnv.com%2F', fr: 'bettersite.luongnv.com%2Ffr%2F' };
 
 let failures = 0;
 let checks = 0;

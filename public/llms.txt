@@ -6,22 +6,22 @@ We rebuild your homepage on the stack that scored this page 100/100 on Lighthous
 
 ## Pages
 
-- [BetterSite (EN)](https://luongnv.com/bettersite/) — BetterSite — Your Website, Rebuilt Better. In 48 Hours.
-- [BetterSite (FR)](https://luongnv.com/bettersite/fr/) — BetterSite — Votre site web, refait en mieux. En 48 heures.
-- [Privacy (EN)](https://luongnv.com/bettersite/privacy/) — BetterSite — Privacy
-- [Confidentialité (FR)](https://luongnv.com/bettersite/fr/privacy/) — BetterSite — Confidentialité
+- [BetterSite (EN)](https://bettersite.luongnv.com/) — BetterSite — Your Website, Rebuilt Better. In 48 Hours.
+- [BetterSite (FR)](https://bettersite.luongnv.com/fr/) — BetterSite — Votre site web, refait en mieux. En 48 heures.
+- [Privacy (EN)](https://bettersite.luongnv.com/privacy/) — BetterSite — Privacy
+- [Confidentialité (FR)](https://bettersite.luongnv.com/fr/privacy/) — BetterSite — Confidentialité
 
 ## Machine-readable
 
-- [Markdown mirror (EN)](https://luongnv.com/bettersite/index.md) — text/markdown rendition of the EN landing page
-- [Markdown mirror (FR)](https://luongnv.com/bettersite/fr/index.md) — text/markdown rendition of the FR landing page
-- [auth.md](https://luongnv.com/bettersite/auth.md) — agent authentication doc: none required, all BetterSite content is public
-- [OAuth Protected Resource metadata](https://luongnv.com/bettersite/.well-known/oauth-protected-resource) — RFC 9728 JSON, delegates to the luongnv.com authorization server
+- [Markdown mirror (EN)](https://bettersite.luongnv.com/index.md) — text/markdown rendition of the EN landing page
+- [Markdown mirror (FR)](https://bettersite.luongnv.com/fr/index.md) — text/markdown rendition of the FR landing page
+- [auth.md](https://bettersite.luongnv.com/auth.md) — agent authentication doc: none required, all BetterSite content is public
+- [OAuth Protected Resource metadata](https://bettersite.luongnv.com/.well-known/oauth-protected-resource) — RFC 9728 JSON, delegates to the luongnv.com authorization server
 
 ## Agent tools
 
-- [request_sample_hero](https://luongnv.com/bettersite/#request) — WebMCP declarative tool on the sample-request form: an agent can fill the website URL and email fields; the visitor confirms the submit
-- [request_sample_final](https://luongnv.com/bettersite/#form-final) — same tool on the bottom-of-page form variant
+- [request_sample_hero](https://bettersite.luongnv.com/#request) — WebMCP declarative tool on the sample-request form: an agent can fill the website URL and email fields; the visitor confirms the submit
+- [request_sample_final](https://bettersite.luongnv.com/#form-final) — same tool on the bottom-of-page form variant
 
 ## Contact
 

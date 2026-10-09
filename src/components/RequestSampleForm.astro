@@ -10,7 +10,7 @@ interface Props {
 const { variant = 'hero', id = 'request-sample', locale = 'en' } = Astro.props;
 const t = getDict(locale).form;
 const accessKey = (import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '').trim();
-const site = Astro.site ?? 'https://luongnv89.github.io/bettersite/';
+const site = Astro.site ?? 'https://bettersite.luongnv.com/';
 const pageUrl = new URL(withBase(locale === 'fr' ? 'fr/' : ''), site).toString();
 if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
   throw new Error(

@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-// Expected path prefix mirrors astro.config.mjs `base: '/bettersite'`.
+// Expected path: the site is served at the domain root (astro.config.mjs has no `base`).
 const DIST = resolve(ROOT, process.argv[2] ?? 'dist');
 const PUBLIC = join(ROOT, 'public');
 const LOCALES = { en: join(DIST, 'index.html'), fr: join(DIST, 'fr', 'index.html') };
@@ -48,7 +48,7 @@ for (const [locale, file] of Object.entries(LOCALES)) {
 
   const ogImage = metaContent(html, 'og:image');
   const twImage = metaContent(html, 'twitter:image');
-  const expectedPath = `/bettersite/og-${locale}.png`;
+  const expectedPath = `/og-${locale}.png`;
 
   if (!ogImage) fail(locale, 'missing og:image');
   else if (!ogImage.endsWith(expectedPath)) fail(locale, `og:image ${ogImage} does not end with ${expectedPath}`);

@@ -2,7 +2,7 @@
 // Acceptance check for issue #18: the browser-language auto-redirect must only
 // ever fire from the default-locale root (dist/index.html). An explicit /fr/
 // URL is itself a locale choice — a fresh non-FR browser profile opening
-// /bettersite/fr/ must stay on /fr/. The language switcher's bs_lang cookie
+// /fr/ must stay on /fr/. The language switcher's bs_lang cookie
 // must keep working on both pages.
 //
 // Run after `npm run build` — reads the emitted HTML from dist/.

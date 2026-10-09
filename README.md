@@ -2,7 +2,7 @@
 
 Landing page for **BetterSite** — a service that rebuilds your existing website with modern UI/UX, top-tier performance, SEO, and security, at a fraction of typical agency cost. Free homepage sample within 48h, no card required.
 
-Live: https://luongnv89.github.io/bettersite
+Live: https://bettersite.luongnv.com
 
 ## Stack
 
@@ -20,7 +20,7 @@ npm run dev           # http://localhost:4321
 npm run build         # outputs to ./dist — fails without PUBLIC_WEB3FORMS_KEY
 npm run preview
 npm run measure       # viewport + WCAG contrast audit; needs `npm i`, a built
-                      # dist/ served under /bettersite/, and playwright-core.
+                      # dist/ served at the root, and playwright-core.
                       # See docs/audits/2026-10-09/report.md for full recipe.
 npm run generate:og   # regenerate public/og-{en,fr}.png social cards (1200x630;
                       # needs playwright-core and installed Google Chrome)
@@ -73,11 +73,11 @@ npm run check:form   # verify the form/landing surface batch (#30/#31/#35/#38):
 ### Agent endpoints
 
 Every page's `<head>` carries RFC 8288 web links to per-locale markdown
-mirrors (`rel="alternate" type="text/markdown"` → `/bettersite/index.md`,
-`/bettersite/fr/index.md`), to an `llms.txt` service index
+mirrors (`rel="alternate" type="text/markdown"` → `/index.md`,
+`/fr/index.md`), to an `llms.txt` service index
 (`rel="service-doc"` / `rel="describedby"`), to a BetterSite-scoped
 `auth.md` (`rel="help"`), and to OAuth Protected Resource metadata
-(`rel="describedby"` → `/bettersite/.well-known/oauth-protected-resource`).
+(`rel="describedby"` → `/.well-known/oauth-protected-resource`).
 The contact email is wrapped in `<!--email_off-->` markers so Cloudflare's
 Scrape Shield leaves it readable for agents and no-JS readers.
 
@@ -107,7 +107,8 @@ Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site
 1. In the repo on GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 2. Get a free access key from [web3forms.com](https://web3forms.com) (used to receive sample requests by email).
 3. Add it as a repo secret: **Settings → Secrets and variables → Actions → New repository secret**, name `PUBLIC_WEB3FORMS_KEY`.
-4. Push to `main` — first deploy takes ~1–2 minutes.
+4. Custom domain `bettersite.luongnv.com`: a Cloudflare DNS record `CNAME bettersite → luongnv89.github.io` (proxied, zone SSL mode *Full*), and **Settings → Pages → Custom domain** set to `bettersite.luongnv.com`. GitHub redirects the old `luongnv.com/bettersite/` path to it.
+5. Push to `main` — first deploy takes ~1–2 minutes.
 
 ## Roadmap
 
@@ -115,7 +116,7 @@ Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site
 - [x] Before/after rebuild pair in the hero + `#samples` gallery (one measured demo rebuild — `npm run generate:demo`)
 - [ ] Interactive before/after slider
 - [ ] More samples in the gallery (3–5 anonymised past rebuilds)
-- [ ] Custom domain (bettersite.dev)
+- [x] Custom domain (`bettersite.luongnv.com`)
 
 ## Workflow
 

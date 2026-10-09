@@ -3,8 +3,9 @@
 Batches: GitHub issues **#32, #33, #36, #37** (phase:p3, agent/origin
 discovery); **#35, #38** appended 2026-10-09 (form/landing surface batch).
 
-This site deploys to **GitHub Pages at `/bettersite/`** — the `luongnv.com`
-origin, its Cloudflare edge settings, and its DNS zone are **outside this
+This site deploys to **GitHub Pages at `https://bettersite.luongnv.com/`**
+(moved from `luongnv.com/bettersite/`, which GitHub now 301-redirects) — the
+`luongnv.com` origin, its Cloudflare edge settings, and its DNS zone are **outside this
 repo's deploy scope**. This directory records the decision for each issue and
 carries the ready-to-apply artifacts the origin owner needs. Nothing here is
 served by the site; `public/` is what deploys.
@@ -34,12 +35,12 @@ edge, so the served page keeps a plain `mailto:` link:
 
 **Owner action (optional belt):** if the markers ever prove insufficient,
 disable *Email Address Obfuscation* zone-wide in Cloudflare → Scrape Shield,
-or scope a Configuration Rule disabling it for `/bettersite/*`.
+or scope a Configuration Rule disabling it for hostname `bettersite.luongnv.com`.
 
 **Verify after deploy:**
 
 ```sh
-curl -s https://luongnv.com/bettersite/ | grep -o 'mailto:bettersite@luongnv.com'
+curl -s https://bettersite.luongnv.com/ | grep -o 'mailto:bettersite@luongnv.com'
 # expected: mailto:bettersite@luongnv.com (×3 — footer + two error blocks), no data-cfemail
 ```
 
@@ -55,13 +56,13 @@ copy — it cannot drift:
   in the origin `llms.txt`.
 
 This repo already ships the site-scoped `public/llms.txt` (served at
-`/bettersite/llms.txt`), which the origin entry links to.
+`https://bettersite.luongnv.com/llms.txt`), which the origin entry links to.
 
 **Owner action:** paste `docs/origin/llms-txt-entry.md`'s block into the
 origin `llms.txt` under `## Products`.
 
 **Verify:** `curl -s https://luongnv.com/llms.txt | grep -i bettersite` — then
-the AC's link check: `https://luongnv.com/bettersite/` and `…/fr/` already
+the AC's link check: `https://bettersite.luongnv.com/` and `…/fr/` already
 return 200 and the entry's description is generated from `en.meta.description`
 (matches page copy by construction).
 
@@ -104,12 +105,12 @@ the AS metadata. What remains:
 
 - the origin `auth.md` document itself has no explicit `agent_auth` block →
   **`auth-md-addition.md`** has the section to append (owner action).
-- nothing under `/bettersite/` advertised auth metadata → **shipped in-repo:**
-  - `public/auth.md` — self-contained agent-auth doc for the `/bettersite/`
-    scope (per the auth-md guide's self-contained path: audience, registration
+- nothing on the BetterSite site advertised auth metadata → **shipped in-repo:**
+  - `public/auth.md` — self-contained agent-auth doc for the
+    `bettersite.luongnv.com` scope (per the auth-md guide's self-contained path: audience, registration
     — none needed, methods, credential use — none).
   - `public/.well-known/oauth-protected-resource` — RFC 9728 JSON declaring
-    the `/bettersite/` resource and delegating to `https://auth.luongnv.com`.
+    the `https://bettersite.luongnv.com/` resource and delegating to `https://auth.luongnv.com`.
   - `<link rel="help" type="text/markdown">` → `auth.md` and
     `<link rel="describedby" type="application/json">` → the PRM on every
     page (`src/layouts/Layout.astro`), plus both listed in `llms.txt`.
@@ -127,8 +128,8 @@ already exist.
 **Verify:**
 
 ```sh
-curl -s https://luongnv.com/bettersite/auth.md | head -3            # "# auth.md"
-curl -s https://luongnv.com/bettersite/.well-known/oauth-protected-resource
+curl -s https://bettersite.luongnv.com/auth.md | head -3            # "# auth.md"
+curl -s https://bettersite.luongnv.com/.well-known/oauth-protected-resource
 # expected: JSON with resource + authorization_servers + bearer_methods_supported
 ```
 
@@ -144,7 +145,7 @@ share line so recipients can forward it to another business:
 
 ```text
 Know another business that could use this? Forward them the free-sample link:
-EN https://luongnv.com/bettersite/ · FR https://luongnv.com/bettersite/fr/
+EN https://bettersite.luongnv.com/ · FR https://bettersite.luongnv.com/fr/
 ```
 
 (The same copy lives in `form.share_prompt` / `form.share_body` /
@@ -164,18 +165,18 @@ visitor always confirms the submit. No JS is needed — browsers without
 WebMCP ignore the attributes, and the tools are listed in `llms.txt`.
 
 **Not verifiable from this repo:** the remaining acceptance criteria are
-deploy-time facts — a re-scan of `https://luongnv.com/bettersite/` returning
+deploy-time facts — a re-scan of `https://bettersite.luongnv.com/` returning
 `checks.discovery.webMcp.status == "pass"` requires the merged build to be
 live at the origin (the scanner loads the page in a WebMCP-capable browser).
 Verify after deploy:
 
 ```sh
-curl -s https://luongnv.com/bettersite/ | grep -o 'toolname="[^"]*"'
+curl -s https://bettersite.luongnv.com/ | grep -o 'toolname="[^"]*"'
 # expected: toolname="request_sample_hero" and toolname="request_sample_final"
 
 curl -s -X POST https://isitagentready.com/api/scan \
   -H 'Content-Type: application/json' \
-  -d '{"url": "https://luongnv.com/bettersite/"}' \
+  -d '{"url": "https://bettersite.luongnv.com/"}' \
   | python3 -c 'import json,sys; print(json.load(sys.stdin)["checks"]["discovery"]["webMcp"])'
 # expected: status "pass"
 ```

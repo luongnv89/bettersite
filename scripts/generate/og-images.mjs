@@ -8,7 +8,7 @@
 //   npm i -D playwright-core        # one-time, dev-only
 //   node scripts/generate/og-images.mjs            # writes public/og-{en,fr}.png
 //
-// Output is committed: Layout.astro references /bettersite/og-{locale}.png as
+// Output is committed: Layout.astro references /og-{locale}.png as
 // the absolute og:image/twitter:image of each locale's pages.
 
 import { chromium } from 'playwright-core';
@@ -68,7 +68,7 @@ function cardHtml(t) {
       <div class="badge"><span class="dot"></span>${esc(t.hero.badge)}</div>
       <h1>${headline}</h1>
     </div>
-    <div class="foot"><span>${esc(t.meta.title.split('—')[0].trim())}</span><span class="url">luongnv.com/bettersite</span></div>
+    <div class="foot"><span>${esc(t.meta.title.split('—')[0].trim())}</span><span class="url">bettersite.luongnv.com</span></div>
   </div>
 </body></html>`;
 }
