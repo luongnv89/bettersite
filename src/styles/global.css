@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* Issue #31 — explicit keyboard focus indicator for every interactive
+   element (links, buttons, <summary>, the language switch). Sitting in
+   @layer base keeps it under the utilities layer, so the form inputs'
+   `focus:outline-none` still wins and their `focus:ring-2` ring remains
+   the indicator — everything else gets this outline. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--bs-accent, #34d399);
+    outline-offset: 2px;
+  }
+}

@@ -10,6 +10,8 @@ interface Props {
 const { variant = 'hero', id = 'request-sample', locale = 'en' } = Astro.props;
 const t = getDict(locale).form;
 const accessKey = (import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '').trim();
+const site = Astro.site ?? 'https://luongnv89.github.io/bettersite/';
+const pageUrl = new URL(withBase(locale === 'fr' ? 'fr/' : ''), site).toString();
 if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
   throw new Error(
     'PUBLIC_WEB3FORMS_KEY is unset or empty. Set it in the repo secrets (CI deploy) or in .env (local dev) — refusing to build a sample-request form with a dead Web3Forms access_key.'
@@ -17,21 +19,26 @@ if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
 }
 // No-JS fallback: native POST to Web3Forms, then back to this page's
 // confirmation block (`#{id}-sent`, revealed by :target — no JS needed).
-const redirectTo = new URL(
-  `${withBase(locale === 'fr' ? 'fr/' : '')}#${id}-sent`,
-  Astro.site ?? 'https://luongnv89.github.io/bettersite/'
-).toString();
+const redirectTo = `${pageUrl}#${id}-sent`;
 // Issue #24: the fineprint links to the localized privacy page.
 const privacyHref = withBase(locale === 'fr' ? 'fr/privacy/' : 'privacy/');
+// Issue #35: the success block offers a share path for another business — a
+// mailto: draft (no recipient) works with and without JS, so it lives inside
+// the :target-revealed block. The page URL rides in the prefilled body.
+const shareHref =
+  `mailto:?subject=${encodeURIComponent(t.share_subject)}` +
+  `&body=${encodeURIComponent(`${t.share_body}\n\n${pageUrl}`)}`;
 ---
 <form
   id={id}
   method="POST"
   action="https://api.web3forms.com/submit"
-  class="w-full max-w-xl mx-auto bg-slate-900/60 backdrop-blur ring-1 ring-white/10 rounded-2xl p-6 md:p-8 shadow-2xl"
+  class="w-full max-w-xl mx-auto bg-slate-900/60 backdrop-blur ring-1 ring-white/10 rounded-2xl p-6 md:p-8 shadow-2xl text-left"
   data-variant={variant}
   data-submit-label={t.submit}
   data-sending-label={t.sending}
+  toolname={`request_sample_${variant}`}
+  tooldescription={t.tool_description}
 >
   <input type="hidden" name="access_key" value={accessKey} />
   <input type="hidden" name="redirect" value={redirectTo} />
@@ -50,6 +57,7 @@ const privacyHref = withBase(locale === 'fr' ? 'fr/privacy/' : 'privacy/');
         required
         placeholder={t.website_placeholder}
         autocomplete="url"
+        toolparamdescription={t.website_tool_param}
         class="w-full rounded-lg bg-slate-950/60 ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-400 focus:outline-none px-4 py-3 placeholder:text-slate-400"
       />
     </label>
@@ -61,6 +69,7 @@ const privacyHref = withBase(locale === 'fr' ? 'fr/privacy/' : 'privacy/');
         required
         placeholder={t.email_placeholder}
         autocomplete="email"
+        toolparamdescription={t.email_tool_param}
         class="w-full rounded-lg bg-slate-950/60 ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-400 focus:outline-none px-4 py-3 placeholder:text-slate-400"
       />
     </label>
@@ -80,6 +89,12 @@ const privacyHref = withBase(locale === 'fr' ? 'fr/privacy/' : 'privacy/');
   <div id={`${id}-sent`} class="hidden target:block mt-6 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 p-4 text-sm text-emerald-200" data-success role="status">
     <strong class="block text-emerald-100 mb-1">{t.success_title}</strong>
     {t.success_body}
+    {/* Issue #35: share path consistent with this success block — visible on
+        both the JS-revealed and the no-JS :target-revealed variants. */}
+    <p class="mt-3 pt-3 border-t border-emerald-400/20 text-emerald-100/80">
+      {t.share_prompt}{' '}
+      <a href={shareHref} class="font-medium text-emerald-100 underline decoration-emerald-300/50 underline-offset-2 hover:text-white">{t.share_cta} →</a>
+    </p>
   </div>
   {/* Issue #32: keep the error message's contact mailto readable through
       Cloudflare email obfuscation — the email_off markers exempt this block

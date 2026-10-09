@@ -18,6 +18,11 @@ We rebuild your homepage on the stack that scored this page 100/100 on Lighthous
 - [auth.md](https://luongnv.com/bettersite/auth.md) — agent authentication doc: none required, all BetterSite content is public
 - [OAuth Protected Resource metadata](https://luongnv.com/bettersite/.well-known/oauth-protected-resource) — RFC 9728 JSON, delegates to the luongnv.com authorization server
 
+## Agent tools
+
+- [request_sample_hero](https://luongnv.com/bettersite/#request) — WebMCP declarative tool on the sample-request form: an agent can fill the website URL and email fields; the visitor confirms the submit
+- [request_sample_final](https://luongnv.com/bettersite/#form-final) — same tool on the bottom-of-page form variant
+
 ## Contact
 
 - Email: hello@bettersite.dev
