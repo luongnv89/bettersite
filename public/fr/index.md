@@ -1,0 +1,140 @@
+# Plus de clients grâce à votre site. Refait en 48 heures. Échantillon gratuit d'abord.
+
+> Nous refaisons votre site existant sur la stack notée 100/100 à l'audit Lighthouse de cette page. Échantillon gratuit, aperçu live en 48 heures — vous ne payez que si vous l'aimez.
+
+_Échantillon gratuit. Sans carte. Livré en 48 heures._
+
+Nous refaisons votre page d'accueil sur la stack qui a valu 100/100 à cette page à l'audit Lighthouse — conçue pour convertir. Échantillon gratuit, aperçu live en 48 heures, vous ne payez que si vous l'aimez.
+
+- Échantillon gratuit, sans carte bancaire
+- Livré en 2 jours
+- Vous ne payez que si ça vous plaît
+
+## Une vraie refonte — mesurée, pas promise
+
+Une page d'accueil vieillotte et sa refonte BetterSite — de vraies pages rendues, mesurées en Chrome headless.
+
+## Votre site web vous fait perdre des clients, en silence.
+
+Vous avez créé votre site il y a des années. Il fonctionnait. Puis le web a évolué — et le vôtre, non.
+
+- Met plus de 6 secondes à charger sur mobile (53 % des visiteurs partent avant)
+- Ressemble à un design de 2015 — parce que c'est le cas
+- Page 4 sur Google parce que les Core Web Vitals s'effondrent
+- Tourne sur un CMS qui coûte 80–200 €/mois entre hébergement, plugins et patches
+- A des failles de sécurité que vous ignorez — jusqu'au jour du piratage
+
+Chaque jour qui passe, vous perdez des prospects au profit de concurrents avec des sites plus rapides et plus propres. Et les devis d'agence ? 8 000–25 000 € et trois mois de réunions.
+
+**Il y a une meilleure façon.**
+
+## Nous reconstruisons votre site. Mieux sur tout ce qui compte.
+
+BetterSite reprend votre site existant et le reconstruit de zéro sur des fondations modernes — en gardant ce qui marche, en corrigeant ce qui cloche, en ajoutant ce qui manque. Vous voyez le résultat avant de vous engager.
+
+### UI/UX moderne
+
+Une refonte propre, orientée conversion, qui respecte votre marque. Mobile-first, accessible, conçue pour convertir.
+
+### Performance fulgurante
+
+Chargements sous la seconde — cette page a obtenu 100/100 dans les quatre catégories Lighthouse lors de l'audit d'oct. 2026. Architecture statique qui scale gratuitement.
+
+### Un SEO qui classe
+
+Schéma de données structurées, Core Web Vitals parfaits, HTML sémantique et métadonnées soignées — pensés pour grimper sur Google.
+
+### Sécurité par défaut
+
+Pas de plugins obsolètes. Pas de PHP vulnérable. Pas de back-office exposé. Presque rien à pirater.
+
+### Moins cher à maintenir
+
+Oubliez les 200 €/mois d'hébergement et de licences. La plupart des sites refaits tournent à 5–20 €/mois. Vous gardez les économies.
+
+### Livré en 48 heures
+
+Moins de blabla, plus de résultats. Votre aperçu live arrive dans votre boîte mail en deux jours — pas en deux mois.
+
+
+## Quatre étapes. Deux jours. Zéro risque.
+
+Pas d'appel de cadrage, pas de proposition commerciale, pas de slides. Juste un aperçu gratuit et fonctionnel de votre nouveau site.
+
+1. **Demandez votre échantillon gratuit** — Donnez-nous l'URL de votre site et votre e-mail. Votre demande arrive directement dans notre boîte — rien d'autre à faire.
+2. **Nous le reconstruisons (à nos frais)** — Notre équipe refait votre page d'accueil avec un nouveau design, une stack moderne et une passe complète sur la performance. Aucun paiement requis.
+3. **Vous voyez l'aperçu live** — Sous 48 heures, vous recevez un lien privé. Vous adorez ? On continue. Sinon ? Vous partez — sans frais, sans rancune.
+4. **Validez la refonte complète** — On envoie un devis détaillé couvrant la refonte complète plus un forfait mensuel de maintenance. Vous signez, on livre.
+
+## Des chiffres vérifiables.
+
+- **100/100** — Score Lighthouse — les quatre catégories (Cette page · EN+FR, mobile+desktop · audit oct. 2026)
+- **0,9 s** — premier affichage (FCP), mobile (Même audit — Moto G Power simulé)
+- **0 ms** — temps de blocage total (Même audit — EN+FR, mobile+desktop)
+- **48 h** — de la demande à l'aperçu live (Notre engagement de délai)
+
+### BetterSite, agence ou fait maison
+
+Les vrais compromis — à vous de choisir.
+
+| | BetterSite | Agence | Fait maison |
+|---|---|---|
+| Premier résultat visible | Aperçu live en 48 h | Des semaines de réunions | Des semaines de soirées |
+| Coût initial | 0 € — échantillon gratuit | Devis type : 8–25 k€ | Outils, thèmes, votre temps |
+| Performance | 100/100 — audité sur cette page | Variable selon le prestataire | Rarement mesurée |
+| Si ça rate | Vous partez sans payer | Contrat et frais de révision | Des week-ends perdus |
+| Après le lancement | Forfait mensuel fixe | Factures de régie | Vous patchez vous-même |
+
+_Chaque mesure lab ci-dessus a été prise sur cette page (Lighthouse 12.8.2, EN + FR, mobile + desktop — 9 oct. 2026)._
+
+## Galerie d'échantillons
+
+La même page d'accueil, avant et après une refonte BetterSite. Les chiffres ci-dessous sont mesurés, pas marketing.
+
+### Café Léon — refonte de la page d'accueil
+
+Une page façon 2010 reconstruite sur la stack BetterSite — même commerce, nouvelles fondations.
+
+## Vos questions, nos réponses.
+
+### L'échantillon est-il vraiment gratuit ? Où est le piège ?
+
+Vraiment gratuit. Pas de carte, pas de contrat. Nous refaisons votre page d'accueil et nous vous la montrons. Si vous ne continuez pas, vous ne devez rien — on garde juste le travail comme pièce de portfolio.
+
+### Comment faites-vous en 48 heures ce que les agences mettent des mois à livrer ?
+
+La plupart des agences facturent des réunions de cadrage, des slides et des révisions. Nous utilisons un outillage moderne pour cloner votre structure, redesigner la surface et livrer. Moins de blabla, plus de résultats.
+
+### Est-ce que je vais perdre mon référencement ?
+
+Non. Nous préservons votre structure d'URL, votre contenu et vos métadonnées — et nous améliorons le SEO technique par-dessus. La plupart des clients gagnent en classement sous 30 jours.
+
+### Que couvre la maintenance, concrètement ?
+
+Hébergement, patchs de sécurité, monitoring uptime, mises à jour de contenu (dans la limite du raisonnable) et petits ajustements de design. Forfait mensuel fixe, résiliable à tout moment. Détaillé dans le contrat.
+
+### Et si je veux des modifications après l'échantillon ?
+
+C'est le but de l'échantillon. On discute des révisions à la phase contrat, on cadre le périmètre et on construit le reste. Pas de factures surprises.
+
+### Vous ne faites que des pages d'accueil ?
+
+L'échantillon gratuit, c'est votre page d'accueil — c'est le moyen le plus rapide de montrer ce qu'on sait faire. La refonte complète couvre l'intégralité de votre site.
+
+### Quelles technologies utilisez-vous ?
+
+Des stacks de sites statiques modernes (Astro, Next.js) déployées sur infrastructure edge. Traduction : très rapide, très bon marché, très sécurisé.
+
+
+## Voyez votre site, refait — avant de payer un centime.
+
+Dans deux jours, vous pourriez regarder une version plus rapide, plus belle et moins chère de votre site. Ou vous pourriez continuer à perdre des visiteurs au profit de concurrents. À vous de voir.
+
+_Échantillon gratuit. Sans carte. Vous partez quand vous voulez. La seule façon de perdre, c'est de ne rien faire._
+
+---
+
+- GitHub: https://github.com/luongnv89/bettersite
+- Email: hello@bettersite.dev
+- Canonical HTML: https://luongnv.com/bettersite/fr/
+- This file: https://luongnv.com/bettersite/fr/index.md
