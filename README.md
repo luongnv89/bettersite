@@ -55,6 +55,9 @@ npm run check:copy    # verify the P3 copy polish batch (#27/#29/#34):
                       # problem outro trimmed, one-sentence solution lead, nav
                       # label matches the #proof heading, no hedge words —
                       # run after `npm run build`
+npm run check:tap-targets # verify the EN/FR switch tap targets (#28): each
+                      # language link measures ≥44px tall / ≥24px wide in the
+                      # built pages — run after `npm run build`
 ```
 
 ### Agent endpoints

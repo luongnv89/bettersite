@@ -25,7 +25,9 @@ const items: { code: Locale; label: string; href: string }[] = [
         data-bs-lang={item.code}
         aria-current={current === item.code ? 'true' : undefined}
         class:list={[
-          'px-1.5 py-1 rounded transition',
+          // Tap target (#28): text-xs is 16 px line-height, so py-3.5 (14 px ×2)
+          // gives a 44 px tall target; px-2.5 keeps ~36 px width for EN/FR.
+          'px-2.5 py-3.5 rounded transition',
           current === item.code
             ? 'text-emerald-400'
             : 'hover:text-white',
