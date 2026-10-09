@@ -13,10 +13,12 @@
     "measure": "node scripts/measure/viewports-and-contrast.mjs",
     "generate:og": "node scripts/generate/og-images.mjs",
     "generate:demo": "node scripts/generate/demo-shots.mjs",
+    "generate:mirrors": "node scripts/generate/agent-mirrors.mjs",
     "check:og": "node scripts/check/og-meta.mjs",
     "check:landing": "node scripts/check/landing.mjs",
     "check:locale": "node scripts/check/locale-redirect.mjs",
-    "check:nojs": "node scripts/check/nojs-form.mjs"
+    "check:nojs": "node scripts/check/nojs-form.mjs",
+    "check:mirrors": "node scripts/check/agent-discovery.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",

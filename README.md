@@ -26,6 +26,9 @@ npm run generate:og   # regenerate public/og-{en,fr}.png social cards (1200x630;
                       # needs playwright-core and installed Google Chrome)
 npm run generate:demo # regenerate public/demo/{before,after}.png from the
                       # assets/demo/ fixtures + refresh assets/demo/stats.json
+npm run generate:mirrors # regenerate public/{,fr/}index.md + llms.txt — the
+                      # agent-facing markdown mirrors rendered from the i18n
+                      # dictionaries (run after editing src/i18n/*.json)
 npm run check:og      # verify built pages declare og:image/twitter:image
                       # 1200x630 with alt — run after `npm run build`
 npm run check:landing # verify landing acceptance checks (#10/#11/#12/#16):
@@ -37,7 +40,21 @@ npm run check:locale  # verify locale redirect rules (#18): /fr/ never
 npm run check:nojs    # verify the no-JS form fallback (#19): native POST to
                       # Web3Forms + redirect back to the confirmation block —
                       # run after `npm run build`
+npm run check:mirrors # verify agent discovery (#25/#26): built pages link the
+                      # markdown mirrors + llms.txt, mirrors exist in dist and
+                      # match a fresh i18n render — run after `npm run build`
 ```
+
+### Agent endpoints
+
+Every page's `<head>` carries RFC 8288 web links to per-locale markdown
+mirrors (`rel="alternate" type="text/markdown"` → `/bettersite/index.md`,
+`/bettersite/fr/index.md`) and to an `llms.txt` service index
+(`rel="service-doc"` / `rel="describedby"`). True `Accept: text/markdown`
+content negotiation and HTTP `Link:` response headers are **not** expressible
+from a static site — they need origin/CDN configuration on `luongnv.com`
+(e.g. Cloudflare Transform/Worker rules). The in-repo files above are the
+deployable floor; wiring the origin is tracked separately.
 
 ## Deploy
 
