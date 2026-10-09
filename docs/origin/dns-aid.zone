@@ -1,0 +1,27 @@
+; ---------------------------------------------------------------------------
+; DNS-AID — DNS for AI Discovery records for luongnv.com   (bettersite #36)
+; Guide: https://isitagentready.com/.well-known/agent-skills/dns-aid/SKILL.md
+;
+; DNS-AID publishes ServiceMode SVCB/HTTPS records under the `_agents`
+; namespace so agents can discover a domain's agent endpoints through DNS.
+; These records live in the luongnv.com DNS zone — outside this repo's deploy
+; scope (/bettersite/ on GitHub Pages). The owner creates them at the DNS
+; provider (Cloudflare: DNS → Records → Add record, type "HTTPS").
+;
+; Endpoint being advertised: the luongnv.com origin itself, which serves the
+; agent-facing discovery surface over HTTP/2 on port 443:
+;   /llms.txt  /.well-known/ai-catalog.json  /auth.md
+;   /bettersite/llms.txt  /bettersite/auth.md  /bettersite/{,fr/}index.md
+;
+; TTL 300 during rollout; raise to 3600 once verified. Enable DNSSEC on the
+; zone — the guide recommends signed discovery zones.
+; ---------------------------------------------------------------------------
+
+; Agent index endpoint — the origin's machine-readable catalog.
+; HTTPS 1 = ServiceMode priority; target luongnv.com. = connection host;
+; alpn="h2" port=443 = how to reach it; mandatory pins both params.
+_index._agents.luongnv.com.       300 IN HTTPS 1 luongnv.com. alpn="h2" port=443 mandatory=alpn,port
+
+; BetterSite path scope — same HTTPS endpoint; discovery documents live
+; under /bettersite/ (llms.txt, auth.md, markdown mirrors, OAuth PRM).
+_bettersite._agents.luongnv.com.  300 IN HTTPS 1 luongnv.com. alpn="h2" port=443 mandatory=alpn,port

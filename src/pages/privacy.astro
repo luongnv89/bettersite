@@ -17,6 +17,10 @@ const t = getDict(locale);
     </div>
     <h1 class="mt-12 text-3xl md:text-5xl font-bold tracking-tight">{t.privacy.title}</h1>
     <p class="mt-6 text-lg text-slate-300">{t.privacy.lead}</p>
+    {/* Issue #32: the contact address below must survive Cloudflare email
+        obfuscation — email_off markers exempt the block (see
+        docs/origin/README.md). */}
+    <!--email_off-->
     <div class="mt-10 space-y-8">
       {t.privacy.sections.map((s) => (
         <section>
@@ -25,6 +29,7 @@ const t = getDict(locale);
         </section>
       ))}
     </div>
+    <!--/email_off-->
     <p class="mt-12 text-sm text-slate-500">{t.privacy.updated}</p>
   </main>
 </Layout>

@@ -81,7 +81,12 @@ const privacyHref = withBase(locale === 'fr' ? 'fr/privacy/' : 'privacy/');
     <strong class="block text-emerald-100 mb-1">{t.success_title}</strong>
     {t.success_body}
   </div>
+  {/* Issue #32: keep the error message's contact mailto readable through
+      Cloudflare email obfuscation — the email_off markers exempt this block
+      (decision record: docs/origin/README.md). */}
+  <!--email_off-->
   <div class="hidden mt-6 rounded-lg bg-rose-400/10 ring-1 ring-rose-400/30 p-4 text-sm text-rose-200" data-error role="alert" set:html={t.error_body} />
+  <!--/email_off-->
 </form>
 
 <script>
