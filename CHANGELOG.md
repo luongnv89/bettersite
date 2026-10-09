@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.2.0 — 2026-10-09
+
+Rebrand and domain move: a new "Rebuilt B" logo, a warm light theme and a public brand page (EN/FR), with the site now served at https://bettersite.luongnv.com and a new contact address.
+
+### Features
+- Replace the logo with the "Rebuilt B" mark, a B of two website blocks (stone-grey outline over solid terracotta); all 7 SVGs regenerated (#53) @luongnv89
+- Re-theme from dark slate/neon emerald to a flat, warm light palette (cream, navy, terracotta, sage) with WCAG AA text pairings; OG cards regenerated (#53) @luongnv89
+- Add a localized brand page (`/brand/`, `/fr/brand/`) with the mark explained, logo downloads, palette, typography and usage rules, linked from the footer (#53) @luongnv89
+- Serve the site at `https://bettersite.luongnv.com` (old `luongnv.com/bettersite/` URLs 301-redirect) and point every absolute URL at it (#54) @luongnv89
+
+### Other Changes
+- Change the contact email from `hello@bettersite.dev` to `bettersite@luongnv.com` across the EN/FR pages and agent files (#54) @luongnv89
+
+**Full Changelog**: https://github.com/luongnv89/bettersite/compare/v0.1.0...v0.2.0
+
 ## v0.1.0 — 2026-10-09
 
 First public release of BetterSite — an Astro landing site (EN/FR) that turns outdated websites into fast, modern ones, plus an agentic website-cloner skill and agent-discovery surface (llms.txt, markdown mirrors, RFC 8288 links, auth.md/PRM, WebMCP tools).

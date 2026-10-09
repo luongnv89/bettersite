@@ -21,7 +21,8 @@ npm run build         # outputs to ./dist — fails without PUBLIC_WEB3FORMS_KEY
 npm run preview
 npm run measure       # viewport + WCAG contrast audit; needs `npm i`, a built
                       # dist/ served at the root, and playwright-core.
-                      # See docs/audits/2026-10-09/report.md for full recipe.
+                      # Recipe: header of scripts/measure/viewports-and-contrast.mjs
+                      # (pass a fresh --out, not the dated docs/audits/ dir).
 npm run generate:og   # regenerate public/og-{en,fr}.png social cards (1200x630;
                       # needs playwright-core and installed Google Chrome)
 npm run generate:demo # regenerate public/demo/{before,after}.png from the
@@ -97,6 +98,18 @@ records, and the origin `auth.md` are **not** expressible from a static site —
 they need origin/CDN/DNS configuration on `luongnv.com`. The in-repo files
 above are the deployable floor; `docs/origin/README.md` records the decisions
 and carries the ready-to-apply artifacts (owner actions tracked there).
+
+### Brand assets
+
+The canonical logo set lives in `assets/logo/` (7 SVGs, plus
+`brand-showcase.html` for the full identity). The site serves copies of it:
+`public/brand/*.svg` (the downloads on the `/brand/` and `/fr/brand/` page,
+linked from the footer), `public/logo-full.svg`, `public/logo-mark.svg` and
+`public/favicon.svg`. No script syncs them: after changing a logo in
+`assets/logo/`, copy it to those paths, update the inline mark in
+`src/components/BrandPage.astro`, and re-run `npm run generate:og` (the OG
+cards embed `public/logo-mark.svg`). The palette is defined as `brand-*` tokens in
+`src/styles/global.css`.
 
 ## Deploy
 
