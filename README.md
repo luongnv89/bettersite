@@ -17,7 +17,7 @@ Live: https://luongnv89.github.io/bettersite
 npm install
 cp .env.example .env  # add your Web3Forms key
 npm run dev           # http://localhost:4321
-npm run build         # outputs to ./dist
+npm run build         # outputs to ./dist — fails without PUBLIC_WEB3FORMS_KEY
 npm run preview
 ```
 
