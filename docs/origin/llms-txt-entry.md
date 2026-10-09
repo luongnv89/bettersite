@@ -2,4 +2,4 @@
 <!-- paste the block below into https://luongnv.com/llms.txt under "## Products" -->
 
 - [BetterSite](https://bettersite.luongnv.com/)
-  We rebuild your existing website on the stack that scored this page 100/100 on Lighthouse. Free homepage sample, live preview in 48 hours — pay only if you love it. EN + FR: https://bettersite.luongnv.com/ · https://bettersite.luongnv.com/fr/
+  Website redesign for small businesses. Get a free homepage preview within 48 hours, then choose a full rebuild for €490. English and French. EN + FR: https://bettersite.luongnv.com/ · https://bettersite.luongnv.com/fr/

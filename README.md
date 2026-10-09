@@ -71,6 +71,16 @@ npm run check:form   # verify the form/landing surface batch (#30/#31/#35/#38):
                       # `npm run build`
 ```
 
+### Search discovery
+
+`public/robots.txt` preserves open crawling and advertises `/sitemap.xml`.
+Astro generates that sitemap from `src/pages/sitemap.xml.ts` at build time:
+six canonical English/French HTML pages with reciprocal language alternates.
+When adding public HTML pages, add their locale-neutral paths to the sitemap
+and their links to `scripts/generate/agent-mirrors.mjs`, then regenerate the
+mirrors. Metadata comes from `src/i18n/{en,fr}.json`; homepage JSON-LD describes
+the service, while privacy and brand pages describe their own page content.
+
 ### Agent endpoints
 
 Every page's `<head>` carries RFC 8288 web links to per-locale markdown

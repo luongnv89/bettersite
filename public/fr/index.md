@@ -1,6 +1,6 @@
 # Plus de clients grâce à votre site. Refait en 48 heures. Des preuves, pas des promesses.
 
-> Nous refaisons votre site existant sur la stack notée 100/100 à l'audit Lighthouse de cette page. Échantillon gratuit, aperçu live en 48 heures — vous ne payez que si vous l'aimez.
+> Refonte de site web pour petites entreprises. Aperçu gratuit de votre page d’accueil sous 48 h, puis refonte complète à 490 €. En français et en anglais.
 
 _Échantillon gratuit. Sans carte. Livré en 48 heures._
 

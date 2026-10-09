@@ -163,6 +163,8 @@ function llmsTxt() {
     `- [BetterSite (FR)](${pageUrl('fr/')}) — ${dicts.fr.meta.title}`,
     `- [Privacy (EN)](${pageUrl('privacy/')}) — ${en.privacy.meta_title}`,
     `- [Confidentialité (FR)](${pageUrl('fr/privacy/')}) — ${dicts.fr.privacy.meta_title}`,
+    `- [Brand identity (EN)](${pageUrl('brand/')}) — ${en.brand.meta_title}`,
+    `- [Identité de marque (FR)](${pageUrl('fr/brand/')}) — ${dicts.fr.brand.meta_title}`,
     '',
     '## Machine-readable',
     '',

@@ -1,0 +1,5 @@
+# Preserve the site's existing open crawling policy.
+User-agent: *
+Allow: /
+
+Sitemap: https://bettersite.luongnv.com/sitemap.xml
