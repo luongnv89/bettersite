@@ -8,7 +8,12 @@ interface Props {
 }
 const { variant = 'hero', id = 'request-sample', locale = 'en' } = Astro.props;
 const t = getDict(locale).form;
-const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? 'YOUR_WEB3FORMS_ACCESS_KEY';
+const accessKey = (import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '').trim();
+if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+  throw new Error(
+    'PUBLIC_WEB3FORMS_KEY is unset or empty. Set it in the repo secrets (CI deploy) or in .env (local dev) — refusing to build a sample-request form with a dead Web3Forms access_key.'
+  );
+}
 ---
 <form
   id={id}
