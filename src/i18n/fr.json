@@ -1,25 +1,35 @@
 {
   "meta": {
     "title": "BetterSite — Votre site web, refait en mieux. En 48 heures.",
-    "description": "Nous reconstruisons votre site existant avec une UI/UX moderne, un SEO au top, une sécurité blindée et des coûts d'hébergement réduits. Voyez un échantillon gratuit avant de payer un centime."
+    "description": "Nous refaisons votre site existant sur la stack notée 100/100 à l'audit Lighthouse de cette page. Échantillon gratuit, aperçu live en 48 heures — vous ne payez que si vous l'aimez."
   },
   "nav": {
     "how": "Comment ça marche",
     "results": "Résultats",
+    "samples": "Échantillons",
     "faq": "FAQ",
     "cta": "Échantillon gratuit"
   },
   "hero": {
     "badge": "Échantillon gratuit. Sans carte. Livré en 48 heures.",
-    "title_1": "Votre site web,",
-    "title_highlight": "refait en mieux.",
-    "title_2": "En 48 heures.",
-    "subtitle": "Plus rapide, plus beau, plus sûr et moins cher à maintenir. Nous reconstruisons votre site existant avec une UI/UX moderne, un excellent SEO et une sécurité blindée — et nous le prouvons avec un échantillon gratuit avant que vous ne payiez un centime.",
+    "title_1": "Plus de clients grâce à votre site.",
+    "title_highlight": "Refait en 48 heures.",
+    "title_2": "Échantillon gratuit d'abord.",
+    "subtitle": "Nous refaisons votre page d'accueil sur la stack qui a valu 100/100 à cette page à l'audit Lighthouse — conçue pour convertir. Échantillon gratuit, aperçu live en 48 heures, vous ne payez que si vous l'aimez.",
     "bullets": [
       "Échantillon gratuit, sans carte bancaire",
       "Livré en 2 jours",
       "Vous ne payez que si ça vous plaît"
     ]
+  },
+  "demo": {
+    "title": "Une vraie refonte — mesurée, pas promise",
+    "before_label": "Avant",
+    "after_label": "Après — refonte BetterSite",
+    "stat_weight": "poids du HTML",
+    "stat_nodes": "nœuds DOM",
+    "caption": "Une page d'accueil vieillotte et sa refonte BetterSite — de vraies pages rendues, mesurées en Chrome headless.",
+    "link": "Voir la galerie d'échantillons"
   },
   "problem": {
     "title": "Votre site web vous fait perdre des clients, en silence.",
@@ -40,7 +50,7 @@
   },
   "features": [
     { "icon": "🎨", "title": "UI/UX moderne", "body": "Une refonte propre, orientée conversion, qui respecte votre marque. Mobile-first, accessible, conçue pour convertir." },
-    { "icon": "⚡", "title": "Performance fulgurante", "body": "Chargements sous la seconde. Scores Lighthouse 95+. Architecture statique qui scale gratuitement." },
+    { "icon": "⚡", "title": "Performance fulgurante", "body": "Chargements sous la seconde — cette page a obtenu 100/100 dans les quatre catégories Lighthouse lors de l'audit d'oct. 2026. Architecture statique qui scale gratuitement." },
     { "icon": "🔍", "title": "Un SEO qui classe", "body": "Schéma de données structurées, Core Web Vitals parfaits, HTML sémantique et métadonnées soignées — pensés pour grimper sur Google." },
     { "icon": "🛡️", "title": "Sécurité par défaut", "body": "Pas de plugins obsolètes. Pas de PHP vulnérable. Pas de back-office exposé. Presque rien à pirater." },
     { "icon": "💰", "title": "Moins cher à maintenir", "body": "Oubliez les 200 €/mois d'hébergement et de licences. La plupart des sites refaits tournent à 5–20 €/mois. Vous gardez les économies." },
@@ -52,31 +62,47 @@
     "cta": "Je veux mon échantillon gratuit"
   },
   "steps": [
-    { "n": "01", "title": "Demandez votre échantillon gratuit", "body": "Donnez-nous l'URL de votre site et votre e-mail. Confirmez votre e-mail en un clic pour qu'on sache que vous êtes réel." },
+    { "n": "01", "title": "Demandez votre échantillon gratuit", "body": "Donnez-nous l'URL de votre site et votre e-mail. Votre demande arrive directement dans notre boîte — rien d'autre à faire." },
     { "n": "02", "title": "Nous le reconstruisons (à nos frais)", "body": "Notre équipe refait votre page d'accueil avec un nouveau design, une stack moderne et une passe complète sur la performance. Aucun paiement requis." },
     { "n": "03", "title": "Vous voyez l'aperçu live", "body": "Sous 48 heures, vous recevez un lien privé. Vous adorez ? On continue. Sinon ? Vous partez — sans frais, sans rancune." },
     { "n": "04", "title": "Validez la refonte complète", "body": "On envoie un devis détaillé couvrant la refonte complète plus un forfait mensuel de maintenance. Vous signez, on livre." }
   ],
   "proof": {
-    "title": "Les chiffres ne mentent pas.",
+    "title": "Des chiffres vérifiables.",
     "metrics": [
-      { "value": "+47 %", "label": "trafic organique moyen à 90 jours" },
-      { "value": "6,2 s → 0,9 s", "label": "temps de chargement moyen" },
-      { "value": "−78 %", "label": "coût d'hébergement mensuel moyen" },
-      { "value": "48 h", "label": "de la demande à l'aperçu live" }
+      { "value": "100/100", "label": "Score Lighthouse — les quatre catégories", "source": "Cette page · EN+FR, mobile+desktop · audit oct. 2026" },
+      { "value": "0,9 s", "label": "premier affichage (FCP), mobile", "source": "Même audit — Moto G Power simulé" },
+      { "value": "0 ms", "label": "temps de blocage total", "source": "Même audit — EN+FR, mobile+desktop" },
+      { "value": "48 h", "label": "de la demande à l'aperçu live", "source": "Notre engagement de délai" }
     ],
-    "testimonials": [
-      {
-        "quote": "Je m'attendais à du bas de gamme. J'ai eu une page d'accueil qui charge instantanément, qui a l'air faite par une vraie agence, et qui a fait passer ma facture d'hébergement de 180 €/mois à 12 €. L'échantillon gratuit m'a convaincue en cinq minutes.",
-        "name": "Marie L.",
-        "role": "Propriétaire, Boulangerie Saint-Pierre"
-      },
-      {
-        "quote": "Trois devis d'agence entre 12 000 et 19 000 €. BetterSite a livré mieux pour une fraction du prix, en deux jours. Notre taux de rebond a été divisé par deux.",
-        "name": "James K.",
-        "role": "Directeur, Northgate Dental"
-      }
-    ]
+    "audit_note": "Chaque mesure lab ci-dessus a été prise sur cette page (Lighthouse 12.8.2, EN + FR, mobile + desktop — 9 oct. 2026).",
+    "audit_link": "Rapports bruts",
+    "compare": {
+      "title": "BetterSite, agence ou fait maison",
+      "lead": "Les vrais compromis — à vous de choisir.",
+      "columns": ["BetterSite", "Agence", "Fait maison"],
+      "rows": [
+        { "label": "Premier résultat visible", "cells": ["Aperçu live en 48 h", "Des semaines de réunions", "Des semaines de soirées"] },
+        { "label": "Coût initial", "cells": ["0 € — échantillon gratuit", "Devis type : 8–25 k€", "Outils, thèmes, votre temps"] },
+        { "label": "Performance", "cells": ["100/100 — audité sur cette page", "Variable selon le prestataire", "Rarement mesurée"] },
+        { "label": "Si ça rate", "cells": ["Vous partez sans payer", "Contrat et frais de révision", "Des week-ends perdus"] },
+        { "label": "Après le lancement", "cells": ["Forfait mensuel fixe", "Factures de régie", "Vous patchez vous-même"] }
+      ]
+    }
+  },
+  "samples": {
+    "title": "Galerie d'échantillons",
+    "lead": "La même page d'accueil, avant et après une refonte BetterSite. Les chiffres ci-dessous sont mesurés, pas marketing.",
+    "item_title": "Café Léon — refonte de la page d'accueil",
+    "item_desc": "Une page façon 2010 reconstruite sur la stack BetterSite — même commerce, nouvelles fondations.",
+    "stat_weight": "Poids du HTML",
+    "stat_nodes": "Nœuds DOM",
+    "stat_measured": "Mesuré en Chrome headless",
+    "before_alt": "Capture de la page d'accueil « avant » du Café Léon — tableaux, serif, fond beige",
+    "after_alt": "Capture de la page d'accueil « après » refonte du Café Léon — design sombre et moderne",
+    "cta_title": "Votre site pourrait être le prochain.",
+    "cta_body": "Demandez un échantillon gratuit et voyez votre propre page d'accueil refaite — avant de payer quoi que ce soit.",
+    "cta_link": "Demander mon échantillon gratuit"
   },
   "faq": {
     "title": "Vos questions, nos réponses.",
@@ -106,9 +132,9 @@
     "email_placeholder": "vous@entreprise.com",
     "submit": "Recevoir mon échantillon gratuit",
     "sending": "Envoi…",
-    "fineprint": "Nous vous enverrons un lien de confirmation par e-mail. Sans carte. Sans engagement. Vous répondez et on supprime vos données.",
-    "success_title": "Vérifiez votre boîte mail 📬",
-    "success_body": "Nous venons de vous envoyer un lien de confirmation. Cliquez dessus et nous commençons à reconstruire votre site sous 48 heures.",
+    "fineprint": "Sans carte. Sans engagement. Votre demande arrive directement dans notre boîte — nous vous envoyons l'aperçu live par e-mail sous 48 heures.",
+    "success_title": "Demande reçue 🎉",
+    "success_body": "Votre demande vient d'arriver dans notre boîte. Nous lançons la refonte de votre page d'accueil et vous envoyons votre lien d'aperçu privé sous 48 heures.",
     "error_body": "Quelque chose a planté. Écrivez-nous à <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> et nous traitons ça à la main."
   },
   "lang": {
