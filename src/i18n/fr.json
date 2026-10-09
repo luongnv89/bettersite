@@ -101,7 +101,7 @@
   },
   "form": {
     "website_label": "Votre site actuel",
-    "website_placeholder": "https://votresite.com",
+    "website_placeholder": "votresite.com",
     "email_label": "Votre e-mail",
     "email_placeholder": "vous@entreprise.com",
     "submit": "Recevoir mon échantillon gratuit",
