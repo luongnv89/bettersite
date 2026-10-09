@@ -180,7 +180,14 @@
     "privacy_label": "Privacy",
     "success_title": "Request received 🎉",
     "success_body": "Your request just landed in our inbox. We start your homepage rebuild now and email your private preview link within 48 hours.",
-    "error_body": "Something went wrong. Email us at <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> and we'll handle it manually."
+    "share_prompt": "Know another business that could use this?",
+    "share_cta": "Send them the link",
+    "share_subject": "Free website sample — homepage rebuilt in 48 hours",
+    "share_body": "I just requested a free homepage rebuild from BetterSite — they rebuild your site and email a private live preview within 48 hours, no card. Worth a look:",
+    "error_body": "Something went wrong. Email us at <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> and we'll handle it manually.",
+    "tool_description": "Request a free BetterSite homepage sample: fills the website URL and email fields so the visitor gets a private live-preview link by email within 48 hours.",
+    "website_tool_param": "The current website URL to rebuild, e.g. yoursite.com",
+    "email_tool_param": "Email address that receives the private live-preview link"
   },
   "lang": {
     "en": "EN",

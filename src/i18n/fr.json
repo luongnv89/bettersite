@@ -180,7 +180,14 @@
     "privacy_label": "Confidentialité",
     "success_title": "Demande reçue 🎉",
     "success_body": "Votre demande vient d'arriver dans notre boîte. Nous lançons la refonte de votre page d'accueil et vous envoyons votre lien d'aperçu privé sous 48 heures.",
-    "error_body": "Quelque chose a planté. Écrivez-nous à <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> et nous traitons ça à la main."
+    "share_prompt": "Vous connaissez un autre commerce qui en aurait besoin ?",
+    "share_cta": "Envoyez-leur le lien",
+    "share_subject": "Échantillon gratuit — page d'accueil refaite en 48 heures",
+    "share_body": "Je viens de demander une refonte gratuite de ma page d'accueil à BetterSite — ils refont votre site et envoient un aperçu live privé sous 48 heures, sans carte. Ça vaut le coup d'œil :",
+    "error_body": "Quelque chose a planté. Écrivez-nous à <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> et nous traitons ça à la main.",
+    "tool_description": "Demander un échantillon gratuit BetterSite : remplit les champs URL du site et e-mail pour que le visiteur reçoive un lien d'aperçu live privé sous 48 heures.",
+    "website_tool_param": "L'URL du site actuel à refaire, ex. votresite.com",
+    "email_tool_param": "Adresse e-mail qui recevra le lien d'aperçu privé"
   },
   "lang": {
     "en": "EN",

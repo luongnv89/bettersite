@@ -63,6 +63,11 @@ npm run check:copy    # verify the P3 copy polish batch (#27/#29/#34):
 npm run check:tap-targets # verify the EN/FR switch tap targets (#28): each
                       # language link measures ≥44px tall / ≥24px wide in the
                       # built pages — run after `npm run build`
+npm run check:form   # verify the form/landing surface batch (#30/#31/#35/#38):
+                      # final-form labels left-aligned, motion-safe pulse +
+                      # :focus-visible indicator, success-block share link,
+                      # declarative WebMCP tool annotations — run after
+                      # `npm run build`
 ```
 
 ### Agent endpoints
@@ -75,6 +80,16 @@ mirrors (`rel="alternate" type="text/markdown"` → `/bettersite/index.md`,
 (`rel="describedby"` → `/bettersite/.well-known/oauth-protected-resource`).
 The contact email is wrapped in `<!--email_off-->` markers so Cloudflare's
 Scrape Shield leaves it readable for agents and no-JS readers.
+
+The sample-request forms are also **declarative WebMCP tools**
+([spec](https://webmachinelearning.github.io/webmcp/)): `toolname` /
+`tooldescription` on each `<form>` (`request_sample_hero`,
+`request_sample_final`) and `toolparamdescription` on the website/email
+inputs. Supporting browsers synthesize a JSON Schema from the fields and let
+an agent fill the form for the visitor — there is deliberately no
+`toolautosubmit`, so the visitor always confirms a submit that sends real
+email. Browsers without WebMCP ignore the attributes. The tools are listed
+in `llms.txt`.
 
 True `Accept: text/markdown` content negotiation, HTTP `Link:` response
 headers, the **origin** `luongnv.com/llms.txt` entry, DNS-AID `_agents`

@@ -171,6 +171,13 @@ function llmsTxt() {
     `- [auth.md](${pageUrl('auth.md')}) — agent authentication doc: none required, all BetterSite content is public`,
     `- [OAuth Protected Resource metadata](${pageUrl('.well-known/oauth-protected-resource')}) — RFC 9728 JSON, delegates to the luongnv.com authorization server`,
     '',
+    '## Agent tools',
+    '',
+    // Issue #38: declarative WebMCP — the sample-request forms carry
+    // toolname/tooldescription annotations, one tool per page variant.
+    `- [request_sample_hero](${pageUrl('')}#request) — WebMCP declarative tool on the sample-request form: an agent can fill the website URL and email fields; the visitor confirms the submit`,
+    `- [request_sample_final](${pageUrl('')}#form-final) — same tool on the bottom-of-page form variant`,
+    '',
     '## Contact',
     '',
     '- Email: hello@bettersite.dev',

@@ -1,6 +1,7 @@
 # Origin-layer agent discovery — decisions & owner actions
 
-Batch: GitHub issues **#32, #33, #36, #37** (phase:p3, agent/origin discovery).
+Batches: GitHub issues **#32, #33, #36, #37** (phase:p3, agent/origin
+discovery); **#35, #38** appended 2026-10-09 (form/landing surface batch).
 
 This site deploys to **GitHub Pages at `/bettersite/`** — the `luongnv.com`
 origin, its Cloudflare edge settings, and its DNS zone are **outside this
@@ -131,11 +132,61 @@ curl -s https://luongnv.com/bettersite/.well-known/oauth-protected-resource
 # expected: JSON with resource + authorization_servers + bearer_methods_supported
 ```
 
+## #35 — share link in the delivered-sample email (owner action)
+
+The success state carries the in-repo half: a localized `mailto:` share draft
+inside `#…-sent` (`RequestSampleForm.astro`), prefilled with subject/body +
+the page URL, so it works with and without JS.
+
+The delivered-sample email is written by hand at send time — no template
+exists in-repo. **Owner action:** when emailing a preview link, append the
+share line so recipients can forward it to another business:
+
+```text
+Know another business that could use this? Forward them the free-sample link:
+EN https://luongnv.com/bettersite/ · FR https://luongnv.com/bettersite/fr/
+```
+
+(The same copy lives in `form.share_prompt` / `form.share_body` /
+`form.share_cta` in `src/i18n/{en,fr}.json` — keep the email line in sync if
+the dictionary copy changes.)
+
+## #38 — WebMCP declarative tools on the sample-request forms
+
+**Implemented in-repo (spec-complete, deployable):** both `<form>` variants
+carry `toolname` (`request_sample_hero` / `request_sample_final`) +
+`tooldescription`, and the `website`/`email` inputs carry
+`toolparamdescription` — per the declarative WebMCP API
+(https://webmachinelearning.github.io/webmcp/, guide:
+https://isitagentready.com/.well-known/agent-skills/webmcp/SKILL.md).
+`toolautosubmit` is deliberately absent: the form sends real email, so the
+visitor always confirms the submit. No JS is needed — browsers without
+WebMCP ignore the attributes, and the tools are listed in `llms.txt`.
+
+**Not verifiable from this repo:** the remaining acceptance criteria are
+deploy-time facts — a re-scan of `https://luongnv.com/bettersite/` returning
+`checks.discovery.webMcp.status == "pass"` requires the merged build to be
+live at the origin (the scanner loads the page in a WebMCP-capable browser).
+Verify after deploy:
+
+```sh
+curl -s https://luongnv.com/bettersite/ | grep -o 'toolname="[^"]*"'
+# expected: toolname="request_sample_hero" and toolname="request_sample_final"
+
+curl -s -X POST https://isitagentready.com/api/scan \
+  -H 'Content-Type: application/json' \
+  -d '{"url": "https://luongnv.com/bettersite/"}' \
+  | python3 -c 'import json,sys; print(json.load(sys.stdin)["checks"]["discovery"]["webMcp"])'
+# expected: status "pass"
+```
+
 ## Owner checklist
 
 | Issue | Owner action | In-repo artifact |
 |-------|--------------|------------------|
 | #32 | none required (optional: disable Scrape Shield email obfuscation) | `email_off` markers in src/ |
 | #33 | paste entry into origin `llms.txt` | `llms-txt-entry.md` (generated) |
+| #35 | append the share line to the delivered-sample email | `mailto:` share block in `RequestSampleForm.astro` + `form.share_*` dict keys |
 | #36 | create DNS records + enable DNSSEC | `dns-aid.zone` |
 | #37 | append block to origin `auth.md`; fix `auth.luongnv.com` DNS (NXDOMAIN) | `auth-md-addition.md` + `public/auth.md` + `public/.well-known/` |
+| #38 | none — verify the live re-scan after deploy (commands above) | `toolname`/`tooldescription`/`toolparamdescription` in `RequestSampleForm.astro` + `llms.txt` tool list |

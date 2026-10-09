@@ -22,7 +22,8 @@
     "check:mirrors": "node scripts/check/agent-discovery.mjs",
     "check:trust": "node scripts/check/trust-content.mjs",
     "check:copy": "node scripts/check/copy-polish.mjs",
-    "check:tap-targets": "node scripts/check/tap-targets.mjs"
+    "check:tap-targets": "node scripts/check/tap-targets.mjs",
+    "check:form": "node scripts/check/form-surface.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
