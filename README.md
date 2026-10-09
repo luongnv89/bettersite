@@ -34,6 +34,9 @@ npm run check:landing # verify landing acceptance checks (#10/#11/#12/#16):
 npm run check:locale  # verify locale redirect rules (#18): /fr/ never
                       # auto-redirects away; root keeps FR-ward detection and
                       # the bs_lang language switch — run after `npm run build`
+npm run check:nojs    # verify the no-JS form fallback (#19): native POST to
+                      # Web3Forms + redirect back to the confirmation block —
+                      # run after `npm run build`
 ```
 
 ## Deploy
