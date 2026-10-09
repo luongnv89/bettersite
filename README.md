@@ -22,6 +22,10 @@ npm run preview
 npm run measure       # viewport + WCAG contrast audit; needs `npm i`, a built
                       # dist/ served under /bettersite/, and playwright-core.
                       # See docs/audits/2026-10-09/report.md for full recipe.
+npm run generate:og   # regenerate public/og-{en,fr}.png social cards (1200x630;
+                      # needs playwright-core and installed Google Chrome)
+npm run check:og      # verify built pages declare og:image/twitter:image
+                      # 1200x630 with alt — run after `npm run build`
 ```
 
 ## Deploy
