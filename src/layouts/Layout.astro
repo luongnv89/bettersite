@@ -34,6 +34,12 @@ const ogImage = new URL(withBase(`og-${locale}.png`), site).toString();
 const mdEn = new URL(withBase('index.md'), site).toString();
 const mdFr = new URL(withBase('fr/index.md'), site).toString();
 const llmsTxt = new URL(withBase('llms.txt'), site).toString();
+// Issue #37: BetterSite-scoped auth.md + RFC 9728 Protected Resource Metadata,
+// shipped as static files under /bettersite/ (the origin-wide equivalents live
+// on luongnv.com — see docs/origin/README.md). rel="help" is the registered
+// link relation for documentation; rel="describedby" exposes the PRM JSON.
+const authMd = new URL(withBase('auth.md'), site).toString();
+const oauthPrm = new URL(withBase('.well-known/oauth-protected-resource'), site).toString();
 // The Service entity lives at the locale's landing root regardless of which
 // page embeds the JSON-LD (issue #20): url/@id equal the locale canonical.
 const serviceUrl = new URL(withBase(locale === 'fr' ? 'fr/' : ''), site).toString();
@@ -54,6 +60,8 @@ const dict = getDict(locale);
     <link rel="alternate" type="text/markdown" hreflang="x-default" href={mdEn} />
     <link rel="service-doc" type="text/plain" href={llmsTxt} />
     <link rel="describedby" type="text/plain" href={llmsTxt} />
+    <link rel="help" type="text/markdown" href={authMd} />
+    <link rel="describedby" type="application/json" href={oauthPrm} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />

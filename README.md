@@ -28,7 +28,9 @@ npm run generate:demo # regenerate public/demo/{before,after}.png from the
                       # assets/demo/ fixtures + refresh assets/demo/stats.json
 npm run generate:mirrors # regenerate public/{,fr/}index.md + llms.txt — the
                       # agent-facing markdown mirrors rendered from the i18n
-                      # dictionaries (run after editing src/i18n/*.json)
+                      # dictionaries — plus docs/origin/llms-txt-entry.md,
+                      # the BetterSite block for the origin llms.txt (#33)
+                      # (run after editing src/i18n/*.json)
 npm run check:og      # verify built pages declare og:image/twitter:image
                       # 1200x630 with alt — run after `npm run build`
 npm run check:landing # verify landing acceptance checks (#10/#11/#12/#16):
@@ -44,9 +46,12 @@ npm run check:nav     # verify the below-768px section nav (#23): a `md:hidden`
                       # anchor strip in the sticky header reaches #how/#proof/
                       # #samples/#faq and targets carry scroll-margin —
                       # run after `npm run build`
-npm run check:mirrors # verify agent discovery (#25/#26): built pages link the
-                      # markdown mirrors + llms.txt, mirrors exist in dist and
-                      # match a fresh i18n render — run after `npm run build`
+npm run check:mirrors # verify agent discovery (#25/#26/#32/#33/#36/#37):
+                      # built pages link the markdown mirrors + llms.txt +
+                      # auth.md + OAuth PRM, mirrors exist in dist and match a
+                      # fresh i18n render, every contact email sits inside
+                      # Cloudflare email_off markers, and the docs/origin/
+                      # artifacts exist — run after `npm run build`
 npm run check:trust   # verify the P2 trust batch (#17/#20/#21/#22/#24):
                       # deduped hero promise, enriched localized JSON-LD,
                       # published price + Pricing nav link, founder block,
@@ -64,12 +69,19 @@ npm run check:tap-targets # verify the EN/FR switch tap targets (#28): each
 
 Every page's `<head>` carries RFC 8288 web links to per-locale markdown
 mirrors (`rel="alternate" type="text/markdown"` → `/bettersite/index.md`,
-`/bettersite/fr/index.md`) and to an `llms.txt` service index
-(`rel="service-doc"` / `rel="describedby"`). True `Accept: text/markdown`
-content negotiation and HTTP `Link:` response headers are **not** expressible
-from a static site — they need origin/CDN configuration on `luongnv.com`
-(e.g. Cloudflare Transform/Worker rules). The in-repo files above are the
-deployable floor; wiring the origin is tracked separately.
+`/bettersite/fr/index.md`), to an `llms.txt` service index
+(`rel="service-doc"` / `rel="describedby"`), to a BetterSite-scoped
+`auth.md` (`rel="help"`), and to OAuth Protected Resource metadata
+(`rel="describedby"` → `/bettersite/.well-known/oauth-protected-resource`).
+The contact email is wrapped in `<!--email_off-->` markers so Cloudflare's
+Scrape Shield leaves it readable for agents and no-JS readers.
+
+True `Accept: text/markdown` content negotiation, HTTP `Link:` response
+headers, the **origin** `luongnv.com/llms.txt` entry, DNS-AID `_agents`
+records, and the origin `auth.md` are **not** expressible from a static site —
+they need origin/CDN/DNS configuration on `luongnv.com`. The in-repo files
+above are the deployable floor; `docs/origin/README.md` records the decisions
+and carries the ready-to-apply artifacts (owner actions tracked there).
 
 ## Deploy
 

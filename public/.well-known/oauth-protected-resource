@@ -1,0 +1,7 @@
+{
+  "resource": "https://luongnv.com/bettersite/",
+  "authorization_servers": ["https://auth.luongnv.com"],
+  "scopes_supported": ["read:public"],
+  "bearer_methods_supported": ["header"],
+  "resource_documentation": "https://luongnv.com/bettersite/auth.md"
+}
