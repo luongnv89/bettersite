@@ -5,7 +5,7 @@
   },
   "nav": {
     "how": "How it works",
-    "results": "Results",
+    "results": "Numbers you can check",
     "samples": "Samples",
     "pricing": "Pricing",
     "faq": "FAQ",
@@ -43,19 +43,18 @@
       "Runs on a CMS that costs €80–200/month to host, plugin, and patch",
       "Has security holes you don't know about — until you're hacked"
     ],
-    "outro": "Every day this continues, you're losing leads to competitors with faster, cleaner sites. And the agency quotes? €8,000–€25,000 and three months of meetings.",
     "punchline": "There's a better way."
   },
   "solution": {
     "title": "We rebuild your site. Better in every way that matters.",
-    "lead": "BetterSite takes your existing website and rebuilds it from scratch on modern foundations — keeping what works, fixing what doesn't, adding what's missing. You see the result before you commit."
+    "lead": "BetterSite rebuilds your existing website from scratch on modern foundations — and you see the result before you commit."
   },
   "features": [
     { "icon": "🎨", "title": "Modern UI/UX", "body": "A clean, conversion-focused redesign that respects your brand. Mobile-first, accessible, built to convert." },
     { "icon": "⚡", "title": "Lightning Performance", "body": "Sub-second loads — this page scored 100/100 in every Lighthouse category in the Oct 2026 audit. Static-first architecture that scales for free." },
     { "icon": "🔍", "title": "SEO That Ranks", "body": "Schema markup, perfect Core Web Vitals, semantic HTML, and metadata done right — engineered to climb Google." },
-    { "icon": "🛡️", "title": "Security by Default", "body": "No outdated plugins. No vulnerable PHP. No admin panels exposed. Almost nothing left to hack." },
-    { "icon": "💰", "title": "Cheaper to Maintain", "body": "Forget €200/month hosting and plugin licenses. Most rebuilds run on €5–20/month. You keep the savings." },
+    { "icon": "🛡️", "title": "Security by Default", "body": "No outdated plugins. No vulnerable PHP. No admin panels exposed. Nothing left to hack." },
+    { "icon": "💰", "title": "Cheaper to Maintain", "body": "Forget €200/month hosting and plugin licenses. A rebuilt site runs on €5–20/month. You keep the savings." },
     { "icon": "⏱️", "title": "48-Hour Turnaround", "body": "Less theater, more output. Your live preview lands in your inbox in two days — not two months." }
   ],
   "how": {
@@ -70,7 +69,7 @@
     { "n": "04", "title": "Lock in the full build", "body": "You already know the price — €490 fixed, maintenance optional. Say go, and I build the rest." }
   ],
   "proof": {
-    "title": "Numbers you can check.",
+    "title": "Numbers you can check",
     "metrics": [
       { "value": "100/100", "label": "Lighthouse score — all four categories", "source": "This page · EN+FR, mobile+desktop · Oct 2026 audit" },
       { "value": "0.9 s", "label": "first contentful paint, mobile", "source": "Same audit — simulated Moto G Power" },
@@ -110,8 +109,8 @@
     "title": "Questions, answered.",
     "items": [
       { "q": "Is the sample really free? What's the catch?", "a": "Genuinely free. No card, no contract. We rebuild your homepage and show you. If you don't continue, you owe nothing — we just keep the work as a portfolio piece." },
-      { "q": "How can you do this in 48 hours when agencies take months?", "a": "Most agencies bill discovery meetings, slide decks, and revisions. We use modern tooling to clone your structure, redesign the surface, and ship. Less theater, more output." },
-      { "q": "Will I lose my SEO rankings?", "a": "No. We preserve your URL structure, content, and metadata — and improve technical SEO on top. Most clients gain rankings within 30 days." },
+      { "q": "How can you do this in 48 hours when agencies take months?", "a": "Agencies bill discovery meetings, slide decks, and revisions. We use modern tooling to clone your structure, redesign the surface, and ship. Less theater, more output." },
+      { "q": "Will I lose my SEO rankings?", "a": "No. We preserve your URL structure, content, and metadata — and improve technical SEO on top. Clients gain rankings within 30 days." },
       { "q": "What does maintenance actually cover?", "a": "Hosting, security patches, uptime monitoring, content updates (within reason), and minor design tweaks. Optional: €29/month flat, cancel anytime — or €0 if you prefer to run it yourself." },
       { "q": "What if I want changes after seeing the sample?", "a": "That is the point of the sample. We discuss revisions in the contract phase, lock scope, and build the rest. No surprise invoices." },
       { "q": "Do you only do homepages?", "a": "The free sample is your homepage — fastest way to show what we can do. The full rebuild covers your entire site." },

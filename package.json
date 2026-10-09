@@ -20,7 +20,8 @@
     "check:nojs": "node scripts/check/nojs-form.mjs",
     "check:nav": "node scripts/check/mobile-nav.mjs",
     "check:mirrors": "node scripts/check/agent-discovery.mjs",
-    "check:trust": "node scripts/check/trust-content.mjs"
+    "check:trust": "node scripts/check/trust-content.mjs",
+    "check:copy": "node scripts/check/copy-polish.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",

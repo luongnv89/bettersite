@@ -51,6 +51,10 @@ npm run check:trust   # verify the P2 trust batch (#17/#20/#21/#22/#24):
                       # deduped hero promise, enriched localized JSON-LD,
                       # published price + Pricing nav link, founder block,
                       # privacy links + pages — run after `npm run build`
+npm run check:copy    # verify the P3 copy polish batch (#27/#29/#34):
+                      # problem outro trimmed, one-sentence solution lead, nav
+                      # label matches the #proof heading, no hedge words —
+                      # run after `npm run build`
 ```
 
 ### Agent endpoints
