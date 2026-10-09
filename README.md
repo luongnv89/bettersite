@@ -40,6 +40,10 @@ npm run check:locale  # verify locale redirect rules (#18): /fr/ never
 npm run check:nojs    # verify the no-JS form fallback (#19): native POST to
                       # Web3Forms + redirect back to the confirmation block —
                       # run after `npm run build`
+npm run check:nav     # verify the below-768px section nav (#23): a `md:hidden`
+                      # anchor strip in the sticky header reaches #how/#proof/
+                      # #samples/#faq and targets carry scroll-margin —
+                      # run after `npm run build`
 npm run check:mirrors # verify agent discovery (#25/#26): built pages link the
                       # markdown mirrors + llms.txt, mirrors exist in dist and
                       # match a fresh i18n render — run after `npm run build`
