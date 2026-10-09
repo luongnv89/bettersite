@@ -1,25 +1,35 @@
 {
   "meta": {
     "title": "BetterSite — Your Website, Rebuilt Better. In 48 Hours.",
-    "description": "We rebuild your existing website with modern UI/UX, top SEO, bulletproof security, and lower hosting costs. See a free sample before you pay a cent."
+    "description": "We rebuild your existing website on the stack that scored this page 100/100 on Lighthouse. Free homepage sample, live preview in 48 hours — pay only if you love it."
   },
   "nav": {
     "how": "How it works",
     "results": "Results",
+    "samples": "Samples",
     "faq": "FAQ",
     "cta": "Free sample"
   },
   "hero": {
     "badge": "Free sample. No card. 48-hour turnaround.",
-    "title_1": "Your website,",
-    "title_highlight": "rebuilt better.",
-    "title_2": "In 48 hours.",
-    "subtitle": "Faster, prettier, safer, and cheaper to maintain. We rebuild your existing site with modern UI/UX, top SEO scores, and bulletproof security — and we'll prove it with a free sample before you pay a cent.",
+    "title_1": "More customers from your website.",
+    "title_highlight": "Rebuilt in 48 hours.",
+    "title_2": "Free sample first.",
+    "subtitle": "We rebuild your homepage on the stack that scored this page 100/100 on Lighthouse — designed to convert. Free sample, live preview in 48 hours, pay only if you love it.",
     "bullets": [
       "Free sample, no credit card",
       "Delivered in 2 days",
       "Pay only if you love it"
     ]
+  },
+  "demo": {
+    "title": "One real rebuild — measured, not claimed",
+    "before_label": "Before",
+    "after_label": "After — BetterSite rebuild",
+    "stat_weight": "HTML weight",
+    "stat_nodes": "DOM nodes",
+    "caption": "A dated sample homepage and its BetterSite rebuild — real rendered pages, measured in headless Chrome.",
+    "link": "Browse the sample gallery"
   },
   "problem": {
     "title": "Your website is quietly costing you customers.",
@@ -40,7 +50,7 @@
   },
   "features": [
     { "icon": "🎨", "title": "Modern UI/UX", "body": "A clean, conversion-focused redesign that respects your brand. Mobile-first, accessible, built to convert." },
-    { "icon": "⚡", "title": "Lightning Performance", "body": "Sub-1-second loads. 95+ Lighthouse scores. Static-first architecture that scales for free." },
+    { "icon": "⚡", "title": "Lightning Performance", "body": "Sub-second loads — this page scored 100/100 in every Lighthouse category in the Oct 2026 audit. Static-first architecture that scales for free." },
     { "icon": "🔍", "title": "SEO That Ranks", "body": "Schema markup, perfect Core Web Vitals, semantic HTML, and metadata done right — engineered to climb Google." },
     { "icon": "🛡️", "title": "Security by Default", "body": "No outdated plugins. No vulnerable PHP. No admin panels exposed. Almost nothing left to hack." },
     { "icon": "💰", "title": "Cheaper to Maintain", "body": "Forget €200/month hosting and plugin licenses. Most rebuilds run on €5–20/month. You keep the savings." },
@@ -52,31 +62,47 @@
     "cta": "Start with my free sample"
   },
   "steps": [
-    { "n": "01", "title": "Request your free sample", "body": "Drop your website URL and email. Confirm your email with one click so we know you are real." },
+    { "n": "01", "title": "Request your free sample", "body": "Drop your website URL and email. Your request lands straight in our inbox — nothing else to do." },
     { "n": "02", "title": "We rebuild it (on us)", "body": "Our team rebuilds your homepage with a fresh design, modern stack, and full performance pass. No payment required." },
     { "n": "03", "title": "Review the live preview", "body": "Within 48 hours you get a private link. Love it? Continue. Don't? Walk away — no charge, no hard feelings." },
     { "n": "04", "title": "Lock in the full build", "body": "We send a detailed quote covering the full rebuild plus a flat monthly maintenance plan. Sign, and we ship." }
   ],
   "proof": {
-    "title": "Numbers don't lie.",
+    "title": "Numbers you can check.",
     "metrics": [
-      { "value": "+47%", "label": "avg. organic traffic in 90 days" },
-      { "value": "6.2s → 0.9s", "label": "avg. load time" },
-      { "value": "−78%", "label": "avg. monthly hosting cost" },
-      { "value": "48h", "label": "from request to live preview" }
+      { "value": "100/100", "label": "Lighthouse score — all four categories", "source": "This page · EN+FR, mobile+desktop · Oct 2026 audit" },
+      { "value": "0.9 s", "label": "first contentful paint, mobile", "source": "Same audit — simulated Moto G Power" },
+      { "value": "0 ms", "label": "total blocking time", "source": "Same audit — EN+FR, mobile+desktop" },
+      { "value": "48 h", "label": "from request to live preview", "source": "Our delivery commitment" }
     ],
-    "testimonials": [
-      {
-        "quote": "I expected a knockoff. I got a homepage that loads instantly, looks like a real agency built it, and dropped my hosting bill from €180/month to €12. The free sample sold me in five minutes.",
-        "name": "Marie L.",
-        "role": "Owner, Boulangerie Saint-Pierre"
-      },
-      {
-        "quote": "Three agency quotes between €12K and €19K. BetterSite delivered something better for a fraction of that, in two days. Our bounce rate dropped by half.",
-        "name": "James K.",
-        "role": "Director, Northgate Dental"
-      }
-    ]
+    "audit_note": "Every lab number above was measured on this page (Lighthouse 12.8.2, EN + FR, mobile + desktop — 2026-10-09).",
+    "audit_link": "Raw reports",
+    "compare": {
+      "title": "BetterSite vs agency vs DIY",
+      "lead": "The honest trade-offs — pick what fits.",
+      "columns": ["BetterSite", "Agency", "DIY"],
+      "rows": [
+        { "label": "First visible result", "cells": ["Live preview in 48 h", "Weeks of meetings", "Weeks of evenings"] },
+        { "label": "Upfront cost", "cells": ["€0 — free sample", "Typical quote €8k–25k", "Tools, themes, your time"] },
+        { "label": "Performance", "cells": ["100/100 — audited on this page", "Varies by vendor", "Rarely measured"] },
+        { "label": "If it flops", "cells": ["Walk away, pay nothing", "Contract & change fees", "Sunk weekends"] },
+        { "label": "After launch", "cells": ["Flat monthly plan", "Retainer invoices", "You patch it yourself"] }
+      ]
+    }
+  },
+  "samples": {
+    "title": "Sample gallery",
+    "lead": "The same fixture homepage, before and after a BetterSite rebuild. The numbers below are measured, not marketing.",
+    "item_title": "Café Léon — homepage rebuild",
+    "item_desc": "A 2010-era sample page rebuilt on the BetterSite stack — same business, new foundations.",
+    "stat_weight": "HTML weight",
+    "stat_nodes": "DOM nodes",
+    "stat_measured": "Measured in headless Chrome",
+    "before_alt": "Screenshot of the dated 'before' homepage for Café Léon — table layout, serif fonts, beige background",
+    "after_alt": "Screenshot of the rebuilt 'after' homepage for Café Léon — clean, dark, modern design",
+    "cta_title": "Your site could be next.",
+    "cta_body": "Request a free sample and see your own homepage rebuilt — before you pay anything.",
+    "cta_link": "Request my free sample"
   },
   "faq": {
     "title": "Questions, answered.",
@@ -106,9 +132,9 @@
     "email_placeholder": "you@company.com",
     "submit": "Request My Free Sample",
     "sending": "Sending…",
-    "fineprint": "We'll email you a confirmation link. No card. No commitment. Reply & we delete your data.",
-    "success_title": "Check your inbox 📬",
-    "success_body": "We just emailed you a confirmation link. Click it and we'll start rebuilding your site within 48 hours.",
+    "fineprint": "No card. No commitment. Your request goes straight to our inbox — we email your live preview within 48 hours.",
+    "success_title": "Request received 🎉",
+    "success_body": "Your request just landed in our inbox. We start your homepage rebuild now and email your private preview link within 48 hours.",
     "error_body": "Something went wrong. Email us at <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> and we'll handle it manually."
   },
   "lang": {

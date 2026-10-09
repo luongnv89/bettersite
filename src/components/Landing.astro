@@ -4,6 +4,7 @@ import RequestSampleForm from './RequestSampleForm.astro';
 import LangSwitcher from './LangSwitcher.astro';
 import { withBase } from '../lib/url';
 import { getDict, type Locale } from '../i18n';
+import demoStats from '../../assets/demo/stats.json';
 
 interface Props {
   locale: Locale;
@@ -25,6 +26,7 @@ const t = getDict(locale);
       <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
         <a href="#how" class="hover:text-white">{t.nav.how}</a>
         <a href="#proof" class="hover:text-white">{t.nav.results}</a>
+        <a href="#samples" class="hover:text-white">{t.nav.samples}</a>
         <a href="#faq" class="hover:text-white">{t.nav.faq}</a>
       </nav>
       <div class="flex items-center gap-4">
@@ -41,7 +43,7 @@ const t = getDict(locale);
       <div class="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full bg-emerald-500/20 blur-3xl"></div>
       <div class="absolute top-40 -right-40 w-[40rem] h-[40rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
     </div>
-    <div class="max-w-6xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="max-w-6xl mx-auto px-6 pt-20 pb-12 md:pt-28 md:pb-16 grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <span class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 ring-1 ring-emerald-400/30 text-emerald-300 text-xs font-medium px-3 py-1 mb-6">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -60,6 +62,47 @@ const t = getDict(locale);
       <div id="request" class="lg:justify-self-end w-full">
         <RequestSampleForm variant="hero" id="form-hero" locale={locale} />
       </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 pb-20 md:pb-28">
+      <a href="#samples" class="block rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-5 md:p-6 hover:ring-emerald-400/30 transition group">
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+          <p class="text-sm font-semibold text-white">{t.demo.title}</p>
+          <span class="text-xs font-medium text-emerald-300 group-hover:underline">{t.demo.link} →</span>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <figure class="relative">
+            <img
+              src={withBase('demo/before.png')}
+              alt={t.samples.before_alt}
+              width="1280"
+              height="800"
+              loading="eager"
+              decoding="async"
+              class="w-full rounded-lg ring-1 ring-white/10"
+            />
+            <figcaption class="absolute top-2 left-2 rounded-md bg-slate-950/85 px-2 py-1 text-xs font-medium text-slate-300 ring-1 ring-white/10">{t.demo.before_label}</figcaption>
+          </figure>
+          <figure class="relative">
+            <img
+              src={withBase('demo/after.png')}
+              alt={t.samples.after_alt}
+              width="1280"
+              height="800"
+              loading="eager"
+              decoding="async"
+              class="w-full rounded-lg ring-1 ring-white/10"
+            />
+            <figcaption class="absolute top-2 left-2 rounded-md bg-emerald-400/90 px-2 py-1 text-xs font-semibold text-slate-950">{t.demo.after_label}</figcaption>
+          </figure>
+        </div>
+        <p class="mt-4 text-xs text-slate-400">
+          {t.demo.caption}
+          <span class="text-slate-300 font-medium">
+            {demoStats.before.domNodes} → {demoStats.after.domNodes} {t.demo.stat_nodes}
+            · {demoStats.before.htmlKb} → {demoStats.after.htmlKb} KB {t.demo.stat_weight}
+          </span>
+        </p>
+      </a>
     </div>
   </section>
 
@@ -126,19 +169,104 @@ const t = getDict(locale);
           <div class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6 text-center">
             <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">{m.value}</div>
             <div class="mt-2 text-sm text-slate-400">{m.label}</div>
+            <div class="mt-2 text-xs leading-snug text-slate-500">{m.source}</div>
           </div>
         ))}
       </div>
-      <div class="mt-12 grid md:grid-cols-2 gap-6">
-        {t.proof.testimonials.map((tm) => (
-          <figure class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6 md:p-8">
-            <blockquote class="text-lg text-slate-200 leading-relaxed">"{tm.quote}"</blockquote>
-            <figcaption class="mt-4 text-sm">
-              <div class="font-semibold text-white">{tm.name}</div>
-              <div class="text-slate-400">{tm.role}</div>
-            </figcaption>
-          </figure>
-        ))}
+      <p class="mt-6 text-xs text-slate-500">
+        {t.proof.audit_note}{' '}
+        <a
+          href="https://github.com/luongnv89/bettersite/tree/main/docs/audits/2026-10-09"
+          class="underline decoration-slate-600 underline-offset-2 hover:text-slate-300"
+        >{t.proof.audit_link}</a>
+      </p>
+      <div class="mt-12">
+        <h3 class="text-xl md:text-2xl font-semibold tracking-tight">{t.proof.compare.title}</h3>
+        <p class="mt-2 text-sm text-slate-400">{t.proof.compare.lead}</p>
+        <div class="mt-6 overflow-x-auto rounded-2xl ring-1 ring-white/10">
+          <table class="w-full min-w-[36rem] text-sm text-left">
+            <thead>
+              <tr class="bg-slate-900/80">
+                <th scope="col" class="px-4 py-3 font-medium text-slate-500"></th>
+                {t.proof.compare.columns.map((c, i) => (
+                  <th
+                    scope="col"
+                    class:list={["px-4 py-3 font-semibold", i === 0 ? "text-emerald-300" : "text-slate-300"]}
+                  >{c}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 bg-slate-900/40">
+              {t.proof.compare.rows.map((r) => (
+                <tr>
+                  <th scope="row" class="px-4 py-3 font-medium text-slate-200">{r.label}</th>
+                  {r.cells.map((cell, i) => (
+                    <td class:list={["px-4 py-3", i === 0 ? "text-emerald-200" : "text-slate-400"]}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="samples" class="border-t border-white/5 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">{t.samples.title}</h2>
+        <p class="mt-6 text-lg text-slate-300">{t.samples.lead}</p>
+      </div>
+      <div class="mt-14 grid lg:grid-cols-[2fr_1fr] gap-6 items-start">
+        <div class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-5 md:p-6">
+          <h3 class="text-lg font-semibold">{t.samples.item_title}</h3>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+            <figure class="relative">
+              <img
+                src={withBase('demo/before.png')}
+                alt={t.samples.before_alt}
+                width="1280"
+                height="800"
+                loading="lazy"
+                class="w-full rounded-lg ring-1 ring-white/10"
+              />
+              <figcaption class="absolute top-2 left-2 rounded-md bg-slate-950/85 px-2 py-1 text-xs font-medium text-slate-300 ring-1 ring-white/10">{t.demo.before_label}</figcaption>
+            </figure>
+            <figure class="relative">
+              <img
+                src={withBase('demo/after.png')}
+                alt={t.samples.after_alt}
+                width="1280"
+                height="800"
+                loading="lazy"
+                class="w-full rounded-lg ring-1 ring-white/10"
+              />
+              <figcaption class="absolute top-2 left-2 rounded-md bg-emerald-400/90 px-2 py-1 text-xs font-semibold text-slate-950">{t.demo.after_label}</figcaption>
+            </figure>
+          </div>
+          <p class="mt-4 text-sm text-slate-400">{t.samples.item_desc}</p>
+          <dl class="mt-4 grid grid-cols-2 gap-4">
+            <div class="rounded-lg bg-slate-950/50 ring-1 ring-white/5 p-3">
+              <dt class="text-xs text-slate-500">{t.samples.stat_nodes}</dt>
+              <dd class="mt-1 text-sm font-semibold text-white">{demoStats.before.domNodes} → {demoStats.after.domNodes}</dd>
+            </div>
+            <div class="rounded-lg bg-slate-950/50 ring-1 ring-white/5 p-3">
+              <dt class="text-xs text-slate-500">{t.samples.stat_weight}</dt>
+              <dd class="mt-1 text-sm font-semibold text-white">{demoStats.before.htmlKb} KB → {demoStats.after.htmlKb} KB</dd>
+            </div>
+          </dl>
+          <p class="mt-3 text-xs text-slate-500">
+            {t.samples.stat_measured} · {demoStats.generatedAt.slice(0, 10)} · {demoStats.viewport}
+          </p>
+        </div>
+        <div class="rounded-2xl bg-emerald-400/10 ring-1 ring-emerald-400/30 p-6">
+          <h3 class="text-lg font-semibold text-emerald-200">{t.samples.cta_title}</h3>
+          <p class="mt-2 text-sm text-emerald-100/80 leading-relaxed">{t.samples.cta_body}</p>
+          <a href="#request" class="mt-4 inline-flex items-center gap-2 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-sm font-semibold px-5 py-2.5 transition">
+            {t.samples.cta_link} <span>→</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
