@@ -32,7 +32,8 @@ if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
     <label class="block">
       <span class="block text-sm font-medium text-slate-300 mb-1.5">{t.website_label}</span>
       <input
-        type="url"
+        type="text"
+        inputmode="url"
         name="website"
         required
         placeholder={t.website_placeholder}
@@ -61,11 +62,11 @@ if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
     <p class="text-xs text-slate-400 text-center">{t.fineprint}</p>
   </div>
 
-  <div class="hidden mt-6 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 p-4 text-sm text-emerald-200" data-success>
+  <div class="hidden mt-6 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 p-4 text-sm text-emerald-200" data-success role="status">
     <strong class="block text-emerald-100 mb-1">{t.success_title}</strong>
     {t.success_body}
   </div>
-  <div class="hidden mt-6 rounded-lg bg-rose-400/10 ring-1 ring-rose-400/30 p-4 text-sm text-rose-200" data-error set:html={t.error_body} />
+  <div class="hidden mt-6 rounded-lg bg-rose-400/10 ring-1 ring-rose-400/30 p-4 text-sm text-rose-200" data-error role="alert" set:html={t.error_body} />
 </form>
 
 <script>
@@ -76,6 +77,17 @@ if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
     const sendingLabel = form.dataset.sendingLabel ?? 'Sending…';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const website = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (website) {
+        const raw = website.value.trim();
+        website.value = raw === '' || /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(raw)
+          ? raw
+          : `https://${raw.replace(/^\/+/, '')}`;
+        if (website.value === '') {
+          website.reportValidity();
+          return;
+        }
+      }
       const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
       const submitText = form.querySelector<HTMLElement>('[data-submit-text]');
       const success = form.querySelector<HTMLElement>('[data-success]');

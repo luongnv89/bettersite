@@ -101,7 +101,7 @@
   },
   "form": {
     "website_label": "Your current website",
-    "website_placeholder": "https://yoursite.com",
+    "website_placeholder": "yoursite.com",
     "email_label": "Your email",
     "email_placeholder": "you@company.com",
     "submit": "Request My Free Sample",
