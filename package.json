@@ -14,7 +14,8 @@
     "generate:og": "node scripts/generate/og-images.mjs",
     "generate:demo": "node scripts/generate/demo-shots.mjs",
     "check:og": "node scripts/check/og-meta.mjs",
-    "check:landing": "node scripts/check/landing.mjs"
+    "check:landing": "node scripts/check/landing.mjs",
+    "check:locale": "node scripts/check/locale-redirect.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",

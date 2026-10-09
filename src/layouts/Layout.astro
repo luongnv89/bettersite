@@ -56,20 +56,24 @@ const ogImage = new URL(withBase(`og-${locale}.png`), Astro.site ?? 'https://luo
       "inLanguage": locale,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Free homepage sample, no card required" }
     })} />
-    <script is:inline define:vars={{ enHref, frHref, locale }}>
-      (function () {
-        try {
-          var cookie = document.cookie.split('; ').find(function (c) { return c.indexOf('bs_lang=') === 0; });
-          if (cookie) return;
-          if (sessionStorage.getItem('bs_lang_detected')) return;
-          sessionStorage.setItem('bs_lang_detected', '1');
-          var pref = (navigator.language || 'en').toLowerCase();
-          var wantFr = pref.indexOf('fr') === 0;
-          if (wantFr && locale !== 'fr') { location.replace(frHref); return; }
-          if (!wantFr && locale !== 'en') { location.replace(enHref); return; }
-        } catch (e) { /* noop */ }
-      })();
-    </script>
+    {/* Browser-language auto-redirect runs on the default-locale root only:
+        an explicit /fr/ URL is itself a locale choice and must never be
+        overridden (issue #18). The bs_lang cookie (language switch) and the
+        once-per-session guard are unchanged. */}
+    {locale === defaultLocale && (
+      <script is:inline define:vars={{ frHref }}>
+        (function () {
+          try {
+            var cookie = document.cookie.split('; ').find(function (c) { return c.indexOf('bs_lang=') === 0; });
+            if (cookie) return;
+            if (sessionStorage.getItem('bs_lang_detected')) return;
+            sessionStorage.setItem('bs_lang_detected', '1');
+            var pref = (navigator.language || 'en').toLowerCase();
+            if (pref.indexOf('fr') === 0) { location.replace(frHref); return; }
+          } catch (e) { /* noop */ }
+        })();
+      </script>
+    )}
   </head>
   <body class="bg-slate-950 text-slate-100 antialiased font-sans selection:bg-emerald-400 selection:text-slate-950">
     <slot />
