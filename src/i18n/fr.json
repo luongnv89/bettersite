@@ -7,6 +7,7 @@
     "how": "Comment ça marche",
     "results": "Résultats",
     "samples": "Échantillons",
+    "pricing": "Tarifs",
     "faq": "FAQ",
     "sections": "Sections",
     "cta": "Échantillon gratuit"
@@ -15,11 +16,11 @@
     "badge": "Échantillon gratuit. Sans carte. Livré en 48 heures.",
     "title_1": "Plus de clients grâce à votre site.",
     "title_highlight": "Refait en 48 heures.",
-    "title_2": "Échantillon gratuit d'abord.",
-    "subtitle": "Nous refaisons votre page d'accueil sur la stack qui a valu 100/100 à cette page à l'audit Lighthouse — conçue pour convertir. Échantillon gratuit, aperçu live en 48 heures, vous ne payez que si vous l'aimez.",
+    "title_2": "Des preuves, pas des promesses.",
+    "subtitle": "Nous refaisons votre page d'accueil sur la stack qui a valu 100/100 à cette page à l'audit Lighthouse — pensée pour convertir vos visiteurs en clients.",
     "bullets": [
-      "Échantillon gratuit, sans carte bancaire",
-      "Livré en 2 jours",
+      "Vraie démo avant/après — mesurée, pas promise",
+      "Lien d'aperçu live dans votre boîte mail",
       "Vous ne payez que si ça vous plaît"
     ]
   },
@@ -64,9 +65,9 @@
   },
   "steps": [
     { "n": "01", "title": "Demandez votre échantillon gratuit", "body": "Donnez-nous l'URL de votre site et votre e-mail. Votre demande arrive directement dans notre boîte — rien d'autre à faire." },
-    { "n": "02", "title": "Nous le reconstruisons (à nos frais)", "body": "Notre équipe refait votre page d'accueil avec un nouveau design, une stack moderne et une passe complète sur la performance. Aucun paiement requis." },
+    { "n": "02", "title": "Nous le reconstruisons (à nos frais)", "body": "Je refais votre page d'accueil avec un nouveau design, une stack moderne et une passe complète sur la performance. Aucun paiement requis." },
     { "n": "03", "title": "Vous voyez l'aperçu live", "body": "Sous 48 heures, vous recevez un lien privé. Vous adorez ? On continue. Sinon ? Vous partez — sans frais, sans rancune." },
-    { "n": "04", "title": "Validez la refonte complète", "body": "On envoie un devis détaillé couvrant la refonte complète plus un forfait mensuel de maintenance. Vous signez, on livre." }
+    { "n": "04", "title": "Validez la refonte complète", "body": "Vous connaissez déjà le prix — 490 € fixes, maintenance facultative. Donnez le feu vert, je construis le reste." }
   ],
   "proof": {
     "title": "Des chiffres vérifiables.",
@@ -84,10 +85,10 @@
       "columns": ["BetterSite", "Agence", "Fait maison"],
       "rows": [
         { "label": "Premier résultat visible", "cells": ["Aperçu live en 48 h", "Des semaines de réunions", "Des semaines de soirées"] },
-        { "label": "Coût initial", "cells": ["0 € — échantillon gratuit", "Devis type : 8–25 k€", "Outils, thèmes, votre temps"] },
+        { "label": "Coût initial", "cells": ["Échantillon 0 € · refonte 490 € fixe", "Devis type : 8–25 k€", "Outils, thèmes, votre temps"] },
         { "label": "Performance", "cells": ["100/100 — audité sur cette page", "Variable selon le prestataire", "Rarement mesurée"] },
         { "label": "Si ça rate", "cells": ["Vous partez sans payer", "Contrat et frais de révision", "Des week-ends perdus"] },
-        { "label": "Après le lancement", "cells": ["Forfait mensuel fixe", "Factures de régie", "Vous patchez vous-même"] }
+        { "label": "Après le lancement", "cells": ["Forfait facultatif 29 €/mois", "Factures de régie", "Vous patchez vous-même"] }
       ]
     }
   },
@@ -111,19 +112,62 @@
       { "q": "L'échantillon est-il vraiment gratuit ? Où est le piège ?", "a": "Vraiment gratuit. Pas de carte, pas de contrat. Nous refaisons votre page d'accueil et nous vous la montrons. Si vous ne continuez pas, vous ne devez rien — on garde juste le travail comme pièce de portfolio." },
       { "q": "Comment faites-vous en 48 heures ce que les agences mettent des mois à livrer ?", "a": "La plupart des agences facturent des réunions de cadrage, des slides et des révisions. Nous utilisons un outillage moderne pour cloner votre structure, redesigner la surface et livrer. Moins de blabla, plus de résultats." },
       { "q": "Est-ce que je vais perdre mon référencement ?", "a": "Non. Nous préservons votre structure d'URL, votre contenu et vos métadonnées — et nous améliorons le SEO technique par-dessus. La plupart des clients gagnent en classement sous 30 jours." },
-      { "q": "Que couvre la maintenance, concrètement ?", "a": "Hébergement, patchs de sécurité, monitoring uptime, mises à jour de contenu (dans la limite du raisonnable) et petits ajustements de design. Forfait mensuel fixe, résiliable à tout moment. Détaillé dans le contrat." },
+      { "q": "Que couvre la maintenance, concrètement ?", "a": "Hébergement, patchs de sécurité, monitoring uptime, mises à jour de contenu (dans la limite du raisonnable) et petits ajustements de design. Facultative : 29 €/mois fixe, résiliable à tout moment — ou 0 € si vous préférez gérer vous-même." },
       { "q": "Et si je veux des modifications après l'échantillon ?", "a": "C'est le but de l'échantillon. On discute des révisions à la phase contrat, on cadre le périmètre et on construit le reste. Pas de factures surprises." },
       { "q": "Vous ne faites que des pages d'accueil ?", "a": "L'échantillon gratuit, c'est votre page d'accueil — c'est le moyen le plus rapide de montrer ce qu'on sait faire. La refonte complète couvre l'intégralité de votre site." },
       { "q": "Quelles technologies utilisez-vous ?", "a": "Des stacks de sites statiques modernes (Astro, Next.js) déployées sur infrastructure edge. Traduction : très rapide, très bon marché, très sécurisé." }
     ]
+  },
+  "pricing": {
+    "title": "Un prix. Pas de théâtre de devis.",
+    "lead": "Vous connaissez le coût avant de commencer — et l'échantillon reste gratuit.",
+    "price_label": "Refonte complète",
+    "price": "490 €",
+    "price_amount": "490",
+    "price_note": "forfait fixe, une fois",
+    "includes": [
+      "Toutes les pages refaites sur la stack BetterSite auditée — pas seulement l'accueil",
+      "Contenu, URLs et métadonnées SEO préservés",
+      "Passe performance, accessibilité et données structurées incluse",
+      "Vous avez vu l'aperçu live d'abord — aucun saut de foi"
+    ],
+    "maintenance": "La maintenance est facultative : 29 €/mois couvrent hébergement, patchs de sécurité et petites mises à jour — résiliable à tout moment. Ou 0 € : vous repartez avec les clés, le code est à vous.",
+    "cta": "Commencer par l'échantillon gratuit"
+  },
+  "founder": {
+    "title": "Qui refait votre site",
+    "name": "Luong Nguyen",
+    "role": "Fondateur, BetterSite",
+    "story": "Je fais tourner BetterSite seul. Après des années à voir des petites entreprises payer des prix d'agence pour des sites lents et fragiles, j'ai construit un pipeline qui les refait en 48 heures. Votre demande arrive dans ma boîte — et je relis personnellement chaque refonte avant l'envoi.",
+    "photo_alt": "Portrait de Luong Nguyen, fondateur de BetterSite",
+    "github": "github.com/luongnv89"
   },
   "final": {
     "title": "Voyez votre site, refait — avant de payer un centime.",
     "lead": "Dans deux jours, vous pourriez regarder une version plus rapide, plus belle et moins chère de votre site. Ou vous pourriez continuer à perdre des visiteurs au profit de concurrents. À vous de voir.",
     "fineprint": "Échantillon gratuit. Sans carte. Vous partez quand vous voulez. La seule façon de perdre, c'est de ne rien faire."
   },
+  "privacy": {
+    "meta_title": "BetterSite — Confidentialité",
+    "meta_description": "Ce que BetterSite collecte quand vous demandez un échantillon gratuit, et comment c'est utilisé.",
+    "title": "Confidentialité",
+    "lead": "Version courte : nous ne demandons que ce que l'échantillon exige, et un seul e-mail suffit pour tout effacer.",
+    "sections": [
+      { "h": "Ce que nous collectons", "body": "Le formulaire d'échantillon demande l'URL de votre site actuel et votre adresse e-mail. C'est tout — pas de compte, pas de pixels de suivi, pas d'analytics sur ce site." },
+      { "h": "À quoi ça sert", "body": "Votre URL, c'est ce que nous refaisons ; votre e-mail, c'est où l'aperçu live arrive sous 48 heures. Si vous ne continuez pas, nous ne gardons que la refonte elle-même comme pièce de portfolio." },
+      { "h": "Tiers", "body": "Le formulaire passe par Web3Forms, qui livre votre demande dans notre boîte. Le site est hébergé sur GitHub Pages. Un cookie bs_lang mémorise votre choix de langue ; rien d'autre n'est stocké." },
+      { "h": "Vos droits", "body": "Écrivez à hello@bettersite.dev à tout moment pour voir, corriger ou supprimer ce que nous détenons sur vous. Pas de compte à fermer, aucun data broker dans la boucle." }
+    ],
+    "updated": "Dernière mise à jour : octobre 2026",
+    "back": "Retour à l'accueil"
+  },
+  "jsonld": {
+    "offer_sample_desc": "Échantillon gratuit de votre page d'accueil — sans carte, aperçu live sous 48 heures",
+    "offer_rebuild_desc": "Refonte complète du site à 490 € fixe"
+  },
   "footer": {
     "tagline": "Construit en mieux.",
+    "privacy": "Confidentialité",
     "github": "GitHub"
   },
   "form": {
@@ -134,6 +178,7 @@
     "submit": "Recevoir mon échantillon gratuit",
     "sending": "Envoi…",
     "fineprint": "Sans carte. Sans engagement. Votre demande arrive directement dans notre boîte — nous vous envoyons l'aperçu live par e-mail sous 48 heures.",
+    "privacy_label": "Confidentialité",
     "success_title": "Demande reçue 🎉",
     "success_body": "Votre demande vient d'arriver dans notre boîte. Nous lançons la refonte de votre page d'accueil et vous envoyons votre lien d'aperçu privé sous 48 heures.",
     "error_body": "Quelque chose a planté. Écrivez-nous à <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> et nous traitons ça à la main."

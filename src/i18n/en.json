@@ -7,6 +7,7 @@
     "how": "How it works",
     "results": "Results",
     "samples": "Samples",
+    "pricing": "Pricing",
     "faq": "FAQ",
     "sections": "Sections",
     "cta": "Free sample"
@@ -15,11 +16,11 @@
     "badge": "Free sample. No card. 48-hour turnaround.",
     "title_1": "More customers from your website.",
     "title_highlight": "Rebuilt in 48 hours.",
-    "title_2": "Free sample first.",
-    "subtitle": "We rebuild your homepage on the stack that scored this page 100/100 on Lighthouse — designed to convert. Free sample, live preview in 48 hours, pay only if you love it.",
+    "title_2": "Proof, not promises.",
+    "subtitle": "We rebuild your homepage on the stack that scored this page 100/100 on Lighthouse — engineered to convert visitors into customers.",
     "bullets": [
-      "Free sample, no credit card",
-      "Delivered in 2 days",
+      "Real before/after demo — measured, not claimed",
+      "Live preview link in your inbox",
       "Pay only if you love it"
     ]
   },
@@ -64,9 +65,9 @@
   },
   "steps": [
     { "n": "01", "title": "Request your free sample", "body": "Drop your website URL and email. Your request lands straight in our inbox — nothing else to do." },
-    { "n": "02", "title": "We rebuild it (on us)", "body": "Our team rebuilds your homepage with a fresh design, modern stack, and full performance pass. No payment required." },
+    { "n": "02", "title": "We rebuild it (on us)", "body": "I rebuild your homepage with a fresh design, modern stack, and full performance pass. No payment required." },
     { "n": "03", "title": "Review the live preview", "body": "Within 48 hours you get a private link. Love it? Continue. Don't? Walk away — no charge, no hard feelings." },
-    { "n": "04", "title": "Lock in the full build", "body": "We send a detailed quote covering the full rebuild plus a flat monthly maintenance plan. Sign, and we ship." }
+    { "n": "04", "title": "Lock in the full build", "body": "You already know the price — €490 fixed, maintenance optional. Say go, and I build the rest." }
   ],
   "proof": {
     "title": "Numbers you can check.",
@@ -84,10 +85,10 @@
       "columns": ["BetterSite", "Agency", "DIY"],
       "rows": [
         { "label": "First visible result", "cells": ["Live preview in 48 h", "Weeks of meetings", "Weeks of evenings"] },
-        { "label": "Upfront cost", "cells": ["€0 — free sample", "Typical quote €8k–25k", "Tools, themes, your time"] },
+        { "label": "Upfront cost", "cells": ["€0 sample · €490 fixed rebuild", "Typical quote €8k–25k", "Tools, themes, your time"] },
         { "label": "Performance", "cells": ["100/100 — audited on this page", "Varies by vendor", "Rarely measured"] },
         { "label": "If it flops", "cells": ["Walk away, pay nothing", "Contract & change fees", "Sunk weekends"] },
-        { "label": "After launch", "cells": ["Flat monthly plan", "Retainer invoices", "You patch it yourself"] }
+        { "label": "After launch", "cells": ["Optional €29/mo plan", "Retainer invoices", "You patch it yourself"] }
       ]
     }
   },
@@ -111,19 +112,62 @@
       { "q": "Is the sample really free? What's the catch?", "a": "Genuinely free. No card, no contract. We rebuild your homepage and show you. If you don't continue, you owe nothing — we just keep the work as a portfolio piece." },
       { "q": "How can you do this in 48 hours when agencies take months?", "a": "Most agencies bill discovery meetings, slide decks, and revisions. We use modern tooling to clone your structure, redesign the surface, and ship. Less theater, more output." },
       { "q": "Will I lose my SEO rankings?", "a": "No. We preserve your URL structure, content, and metadata — and improve technical SEO on top. Most clients gain rankings within 30 days." },
-      { "q": "What does maintenance actually cover?", "a": "Hosting, security patches, uptime monitoring, content updates (within reason), and minor design tweaks. Flat monthly fee, cancel anytime. Detailed in the contract." },
+      { "q": "What does maintenance actually cover?", "a": "Hosting, security patches, uptime monitoring, content updates (within reason), and minor design tweaks. Optional: €29/month flat, cancel anytime — or €0 if you prefer to run it yourself." },
       { "q": "What if I want changes after seeing the sample?", "a": "That is the point of the sample. We discuss revisions in the contract phase, lock scope, and build the rest. No surprise invoices." },
       { "q": "Do you only do homepages?", "a": "The free sample is your homepage — fastest way to show what we can do. The full rebuild covers your entire site." },
       { "q": "What technologies do you use?", "a": "Modern static-site stacks (Astro, Next.js) deployed on edge infrastructure. Translation: very fast, very cheap, very secure." }
     ]
+  },
+  "pricing": {
+    "title": "One price. No quote theater.",
+    "lead": "You know the cost before we start — and the sample is still free.",
+    "price_label": "Full rebuild",
+    "price": "€490",
+    "price_amount": "490",
+    "price_note": "fixed, one-time",
+    "includes": [
+      "Every page rebuilt on the audited BetterSite stack — not just the homepage",
+      "Content, URLs and SEO metadata preserved",
+      "Performance, accessibility and schema pass included",
+      "You saw the live preview first — no leap of faith"
+    ],
+    "maintenance": "Maintenance is optional: €29/month covers hosting, security patches and small updates — cancel anytime. Or €0: you take the keys, the code is yours.",
+    "cta": "Start with the free sample"
+  },
+  "founder": {
+    "title": "Who's rebuilding your site",
+    "name": "Luong Nguyen",
+    "role": "Founder, BetterSite",
+    "story": "I run BetterSite alone. After years of watching small businesses pay agency prices for slow, fragile sites, I built a pipeline that rebuilds them in 48 hours. Your request lands in my inbox — and I personally review every rebuild before it ships.",
+    "photo_alt": "Portrait of Luong Nguyen, founder of BetterSite",
+    "github": "github.com/luongnv89"
   },
   "final": {
     "title": "See your website, rebuilt — before you pay a cent.",
     "lead": "Two days from now, you could be looking at a faster, prettier, cheaper version of your site. Or you could still be losing visitors to competitors. Your call.",
     "fineprint": "Free sample. No card required. Walk away anytime. The only way to lose is to do nothing."
   },
+  "privacy": {
+    "meta_title": "BetterSite — Privacy",
+    "meta_description": "What BetterSite collects when you request a free sample, and how it is used.",
+    "title": "Privacy",
+    "lead": "Short version: we ask only for what the sample needs, and one email deletes it all.",
+    "sections": [
+      { "h": "What we collect", "body": "The sample form asks for your current website URL and your email address. That is all — no account, no tracking pixels, no analytics on this site." },
+      { "h": "What it is used for", "body": "Your URL is what we rebuild; your email is where the live preview lands within 48 hours. If you do not continue, we keep nothing but the rebuild itself as a portfolio piece." },
+      { "h": "Third parties", "body": "The form submits through Web3Forms, which delivers your request to our inbox. The site is hosted on GitHub Pages. A bs_lang cookie remembers your language choice; nothing else is stored." },
+      { "h": "Your rights", "body": "Email hello@bettersite.dev any time to see, correct or delete what we hold about you. No account to close, no data broker in the loop." }
+    ],
+    "updated": "Last updated: October 2026",
+    "back": "Back to the homepage"
+  },
+  "jsonld": {
+    "offer_sample_desc": "Free homepage sample — no card required, live preview within 48 hours",
+    "offer_rebuild_desc": "Full website rebuild at a fixed €490"
+  },
   "footer": {
     "tagline": "Built better.",
+    "privacy": "Privacy",
     "github": "GitHub"
   },
   "form": {
@@ -134,6 +178,7 @@
     "submit": "Request My Free Sample",
     "sending": "Sending…",
     "fineprint": "No card. No commitment. Your request goes straight to our inbox — we email your live preview within 48 hours.",
+    "privacy_label": "Privacy",
     "success_title": "Request received 🎉",
     "success_body": "Your request just landed in our inbox. We start your homepage rebuild now and email your private preview link within 48 hours.",
     "error_body": "Something went wrong. Email us at <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> and we'll handle it manually."

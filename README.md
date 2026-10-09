@@ -47,6 +47,10 @@ npm run check:nav     # verify the below-768px section nav (#23): a `md:hidden`
 npm run check:mirrors # verify agent discovery (#25/#26): built pages link the
                       # markdown mirrors + llms.txt, mirrors exist in dist and
                       # match a fresh i18n render — run after `npm run build`
+npm run check:trust   # verify the P2 trust batch (#17/#20/#21/#22/#24):
+                      # deduped hero promise, enriched localized JSON-LD,
+                      # published price + Pricing nav link, founder block,
+                      # privacy links + pages — run after `npm run build`
 ```
 
 ### Agent endpoints
@@ -84,5 +88,5 @@ Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site
 1. Visitor submits website URL + email
 2. Web3Forms posts the request to our inbox — no confirmation email is sent to the visitor
 3. We rebuild their homepage and email them a private preview link within 48h
-4. If they continue, we send a detailed contract (rebuild + monthly maintenance)
+4. If they continue, they sign the published offer — €490 fixed rebuild, optional €29/month maintenance
 5. We deliver. Done.

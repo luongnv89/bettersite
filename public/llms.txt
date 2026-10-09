@@ -2,12 +2,14 @@
 
 > We rebuild your existing website on the stack that scored this page 100/100 on Lighthouse. Free homepage sample, live preview in 48 hours — pay only if you love it.
 
-We rebuild your homepage on the stack that scored this page 100/100 on Lighthouse — designed to convert. Free sample, live preview in 48 hours, pay only if you love it.
+We rebuild your homepage on the stack that scored this page 100/100 on Lighthouse — engineered to convert visitors into customers.
 
 ## Pages
 
 - [BetterSite (EN)](https://luongnv.com/bettersite/) — BetterSite — Your Website, Rebuilt Better. In 48 Hours.
 - [BetterSite (FR)](https://luongnv.com/bettersite/fr/) — BetterSite — Votre site web, refait en mieux. En 48 heures.
+- [Privacy (EN)](https://luongnv.com/bettersite/privacy/) — BetterSite — Privacy
+- [Confidentialité (FR)](https://luongnv.com/bettersite/fr/privacy/) — BetterSite — Confidentialité
 
 ## Machine-readable
 

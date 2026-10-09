@@ -11,6 +11,7 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = getDict(locale);
+const privacyHref = withBase(locale === 'fr' ? 'fr/privacy/' : 'privacy/');
 ---
 <Layout
   locale={locale}
@@ -28,6 +29,7 @@ const t = getDict(locale);
         <a href="#proof" class="hover:text-white">{t.nav.results}</a>
         <a href="#samples" class="hover:text-white">{t.nav.samples}</a>
         <a href="#faq" class="hover:text-white">{t.nav.faq}</a>
+        <a href="#pricing" class="hover:text-white">{t.nav.pricing}</a>
       </nav>
       <div class="flex items-center gap-4">
         <LangSwitcher current={locale} />
@@ -46,6 +48,7 @@ const t = getDict(locale);
         <a href="#proof" class="h-full inline-flex items-center whitespace-nowrap hover:text-white">{t.nav.results}</a>
         <a href="#samples" class="h-full inline-flex items-center whitespace-nowrap hover:text-white">{t.nav.samples}</a>
         <a href="#faq" class="h-full inline-flex items-center whitespace-nowrap hover:text-white">{t.nav.faq}</a>
+        <a href="#pricing" class="h-full inline-flex items-center whitespace-nowrap hover:text-white">{t.nav.pricing}</a>
       </div>
     </nav>
   </header>
@@ -300,11 +303,58 @@ const t = getDict(locale);
     </div>
   </section>
 
-  <section class="border-t border-white/5 bg-gradient-to-b from-slate-950 to-slate-900">
+  <section id="pricing" class="border-t border-white/5 bg-gradient-to-b from-slate-950 to-slate-900 scroll-mt-32 md:scroll-mt-24">
+    <div class="max-w-4xl mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">{t.pricing.title}</h2>
+      <p class="mt-6 text-lg text-slate-300">{t.pricing.lead}</p>
+      <div class="mt-10 rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6 md:p-8">
+        <div class="flex flex-wrap items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold">{t.pricing.price_label}</h3>
+          <p class="flex items-baseline gap-2">
+            <span class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">{t.pricing.price}</span>
+            <span class="text-sm text-slate-400">{t.pricing.price_note}</span>
+          </p>
+        </div>
+        <ul class="mt-6 space-y-3 text-slate-300">
+          {t.pricing.includes.map((item) => (
+            <li class="flex gap-3"><span class="text-emerald-400">✓</span> {item}</li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm leading-relaxed text-slate-400 border-t border-white/5 pt-5">{t.pricing.maintenance}</p>
+        <a href="#request" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-sm font-semibold px-5 py-2.5 transition">
+          {t.pricing.cta} <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-gradient-to-b from-slate-900 to-slate-950">
     <div class="max-w-4xl mx-auto px-6 py-20 md:py-28 text-center">
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight">{t.final.title}</h2>
       <p class="mt-6 text-lg text-slate-300 max-w-2xl mx-auto">{t.final.lead}</p>
       <p class="mt-4 text-sm text-slate-400">{t.final.fineprint}</p>
+      {/* Founder block (#22): a named human stands behind the 48 h promise,
+          right where the visitor is asked to trust the form. */}
+      <p class="mt-12 text-sm font-semibold uppercase tracking-wider text-slate-500">{t.founder.title}</p>
+      <div class="mt-4 max-w-xl mx-auto rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-6 text-left flex items-start gap-4">
+        <img
+          src={withBase('founder.jpg')}
+          alt={t.founder.photo_alt}
+          width="64"
+          height="64"
+          loading="lazy"
+          decoding="async"
+          class="w-16 h-16 rounded-full ring-1 ring-white/10 shrink-0"
+        />
+        <div>
+          <p class="font-semibold text-white">
+            {t.founder.name}
+            <span class="font-normal text-slate-400"> · {t.founder.role}</span>
+          </p>
+          <p class="mt-2 text-sm text-slate-400 leading-relaxed">{t.founder.story}</p>
+          <a href="https://github.com/luongnv89" class="mt-2 inline-block text-xs font-medium text-emerald-300 hover:underline">{t.founder.github}</a>
+        </div>
+      </div>
       <div class="mt-10">
         <RequestSampleForm variant="final" id="form-final" locale={locale} />
       </div>
@@ -319,6 +369,7 @@ const t = getDict(locale);
       </div>
       <div class="flex items-center gap-6">
         <LangSwitcher current={locale} />
+        <a href={privacyHref} class="hover:text-white">{t.footer.privacy}</a>
         <a href="mailto:hello@bettersite.dev" class="hover:text-white">hello@bettersite.dev</a>
         <a href="https://github.com/luongnv89/bettersite" class="hover:text-white">{t.footer.github}</a>
       </div>

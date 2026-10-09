@@ -4,12 +4,15 @@ import type { Locale } from '../i18n';
 
 interface Props {
   current: Locale;
+  // Page path under the site base ('' landing, 'privacy/' …) so the switcher
+  // lands on the same page in the other locale, not back on the homepage.
+  path?: string;
 }
-const { current } = Astro.props;
+const { current, path = '' } = Astro.props;
 
 const items: { code: Locale; label: string; href: string }[] = [
-  { code: 'en', label: 'EN', href: withBase('') },
-  { code: 'fr', label: 'FR', href: withBase('fr/') },
+  { code: 'en', label: 'EN', href: withBase(path) },
+  { code: 'fr', label: 'FR', href: withBase(`fr/${path}`) },
 ];
 ---
 <div class="flex items-center gap-1 text-xs font-semibold text-slate-400" role="group" aria-label="Language">
