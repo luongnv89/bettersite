@@ -1,0 +1,483 @@
+{
+  "base": "http://localhost:4899/bettersite/",
+  "generatedAt": "2026-10-09T01:00:43.290Z",
+  "viewports": [
+    {
+      "locale": "en",
+      "width": 320,
+      "normal": {
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 320,
+        "scrollWidth": 574,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=574",
+          "div.flex.items-center.gap-1.text-xs.font-semibold.text-slate-400 right=380",
+          "a.px-1.5.py-1.rounded.transition.hover:text-white right=380",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=574",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=640",
+          "div. right=410",
+          "span.inline-flex.items-center.gap-2.rounded-full.bg-emerald-400/10.ring-1.ring-emerald-400/30.text-emerald-300.text-xs.font-medium.px-3.py-1.mb-6 right=410"
+        ],
+        "note": "documentElement zoom=2 (effective 160 CSS px)"
+      }
+    },
+    {
+      "locale": "en",
+      "width": 375,
+      "normal": {
+        "clientWidth": 375,
+        "scrollWidth": 375,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 375,
+        "scrollWidth": 574,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=574",
+          "div.flex.items-center.gap-1.text-xs.font-semibold.text-slate-400 right=380",
+          "a.px-1.5.py-1.rounded.transition.hover:text-white right=380",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=574",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=695",
+          "div. right=410",
+          "span.inline-flex.items-center.gap-2.rounded-full.bg-emerald-400/10.ring-1.ring-emerald-400/30.text-emerald-300.text-xs.font-medium.px-3.py-1.mb-6 right=410"
+        ],
+        "note": "documentElement zoom=2 (effective 187.5 CSS px)"
+      }
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "normal": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 390,
+        "scrollWidth": 574,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=574",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=574",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=710",
+          "div. right=410",
+          "span.inline-flex.items-center.gap-2.rounded-full.bg-emerald-400/10.ring-1.ring-emerald-400/30.text-emerald-300.text-xs.font-medium.px-3.py-1.mb-6 right=410",
+          "h1.text-4xl.md:text-6xl.font-bold.tracking-tight.leading-[1.05] right=410",
+          "p.mt-6.text-lg.md:text-xl.text-slate-300.max-w-xl right=410"
+        ],
+        "note": "documentElement zoom=2 (effective 195 CSS px)"
+      }
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "normal": {
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 768,
+        "scrollWidth": 958,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=958",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=958",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=1088",
+          "div.flex.items-center.gap-6 right=820",
+          "a.hover:text-white right=820"
+        ],
+        "note": "documentElement zoom=2 (effective 384 CSS px)"
+      }
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "normal": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "hscroll": false,
+        "offenders": [],
+        "note": "documentElement zoom=2 (effective 720 CSS px)"
+      }
+    },
+    {
+      "locale": "fr",
+      "width": 320,
+      "normal": {
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 320,
+        "scrollWidth": 626,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=626",
+          "div.flex.items-center.gap-1.text-xs.font-semibold.text-slate-400 right=380",
+          "a.px-1.5.py-1.rounded.transition.text-emerald-400 right=380",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=626",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=640",
+          "div. right=452",
+          "span.inline-flex.items-center.gap-2.rounded-full.bg-emerald-400/10.ring-1.ring-emerald-400/30.text-emerald-300.text-xs.font-medium.px-3.py-1.mb-6 right=452"
+        ],
+        "note": "documentElement zoom=2 (effective 160 CSS px)"
+      }
+    },
+    {
+      "locale": "fr",
+      "width": 375,
+      "normal": {
+        "clientWidth": 375,
+        "scrollWidth": 375,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 375,
+        "scrollWidth": 626,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=626",
+          "div.flex.items-center.gap-1.text-xs.font-semibold.text-slate-400 right=380",
+          "a.px-1.5.py-1.rounded.transition.text-emerald-400 right=380",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=626",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=695",
+          "div. right=452",
+          "span.inline-flex.items-center.gap-2.rounded-full.bg-emerald-400/10.ring-1.ring-emerald-400/30.text-emerald-300.text-xs.font-medium.px-3.py-1.mb-6 right=452"
+        ],
+        "note": "documentElement zoom=2 (effective 187.5 CSS px)"
+      }
+    },
+    {
+      "locale": "fr",
+      "width": 390,
+      "normal": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 390,
+        "scrollWidth": 626,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=626",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=626",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=710",
+          "div. right=452",
+          "span.inline-flex.items-center.gap-2.rounded-full.bg-emerald-400/10.ring-1.ring-emerald-400/30.text-emerald-300.text-xs.font-medium.px-3.py-1.mb-6 right=452",
+          "h1.text-4xl.md:text-6xl.font-bold.tracking-tight.leading-[1.05] right=452",
+          "p.mt-6.text-lg.md:text-xl.text-slate-300.max-w-xl right=452"
+        ],
+        "note": "documentElement zoom=2 (effective 195 CSS px)"
+      }
+    },
+    {
+      "locale": "fr",
+      "width": 768,
+      "normal": {
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 768,
+        "scrollWidth": 1084,
+        "hscroll": true,
+        "offenders": [
+          "div.flex.items-center.gap-4 right=1084",
+          "div.flex.items-center.gap-1.text-xs.font-semibold.text-slate-400 right=839",
+          "span.text-slate-600 right=777",
+          "a.px-1.5.py-1.rounded.transition.text-emerald-400 right=839",
+          "a.rounded-lg.bg-emerald-400.hover:bg-emerald-300.text-slate-950.text-sm.font-semibold.px-4.py-2.transition right=1084",
+          "div.absolute.-top-40.-left-40.w-[40rem].h-[40rem].rounded-full.bg-emerald-500/20.blur-3xl right=960",
+          "div.absolute.top-40.-right-40.w-[40rem].h-[40rem].rounded-full.bg-cyan-500/10.blur-3xl right=1088",
+          "div.flex.items-center.gap-6 right=820"
+        ],
+        "note": "documentElement zoom=2 (effective 384 CSS px)"
+      }
+    },
+    {
+      "locale": "fr",
+      "width": 1440,
+      "normal": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "hscroll": false,
+        "offenders": []
+      },
+      "zoom200": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "hscroll": false,
+        "offenders": [],
+        "note": "documentElement zoom=2 (effective 720 CSS px)"
+      }
+    }
+  ],
+  "contrast": [
+    {
+      "locale": "en",
+      "id": "placeholder.website",
+      "text": "https://yoursite.com",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 16,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "placeholder.email",
+      "text": "you@company.com",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 16,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "placeholder.final.website",
+      "text": "https://yoursite.com",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 16,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "fineprint.form",
+      "text": "We'll email you a confirmation link. No card. No commitment.",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 12,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "fineprint.final",
+      "text": "Free sample. No card required. Walk away anytime. The only w",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "footer",
+      "text": "© 2026 BetterSite. Built better.",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "footer.email-link",
+      "text": "hello@bettersite.dev",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "nav.links",
+      "text": "How it works",
+      "foreground": "oklch(0.869 0.022 252.894)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 13.56,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "en",
+      "id": "langswitcher.label",
+      "text": "EN |FR",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 12,
+      "fontWeight": 600,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "placeholder.website",
+      "text": "https://votresite.com",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 16,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "placeholder.email",
+      "text": "vous@entreprise.com",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 16,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "placeholder.final.website",
+      "text": "https://votresite.com",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 16,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "fineprint.form",
+      "text": "Nous vous enverrons un lien de confirmation par e-mail. Sans",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 12,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "fineprint.final",
+      "text": "Échantillon gratuit. Sans carte. Vous partez quand vous voul",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "footer",
+      "text": "© 2026 BetterSite. Construit en mieux.",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "footer.email-link",
+      "text": "hello@bettersite.dev",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "nav.links",
+      "text": "Comment ça marche",
+      "foreground": "oklch(0.869 0.022 252.894)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "largeText": false,
+      "ratio": 13.56,
+      "required": 4.5,
+      "verdict": "pass"
+    },
+    {
+      "locale": "fr",
+      "id": "langswitcher.label",
+      "text": "EN |FR",
+      "foreground": "oklch(0.704 0.04 256.788)",
+      "effectiveBackground": "rgb(2,6,24)",
+      "fontSizePx": 12,
+      "fontWeight": 600,
+      "largeText": false,
+      "ratio": 7.66,
+      "required": 4.5,
+      "verdict": "pass"
+    }
+  ],
+  "errors": []
+}

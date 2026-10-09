@@ -19,6 +19,9 @@ cp .env.example .env  # add your Web3Forms key
 npm run dev           # http://localhost:4321
 npm run build         # outputs to ./dist — fails without PUBLIC_WEB3FORMS_KEY
 npm run preview
+npm run measure       # viewport + WCAG contrast audit; needs `npm i`, a built
+                      # dist/ served under /bettersite/, and playwright-core.
+                      # See docs/audits/2026-10-09/report.md for full recipe.
 ```
 
 ## Deploy
