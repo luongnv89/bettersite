@@ -20,7 +20,7 @@ const {
   path = '',
 } = Astro.props;
 
-const site = Astro.site ?? 'https://luongnv89.github.io/bettersite/';
+const site = Astro.site ?? 'https://bettersite.luongnv.com/';
 const canonical = new URL(Astro.url.pathname, site);
 const enHref = new URL(withBase(path), site).toString();
 const frHref = new URL(withBase(`fr/${path}`), site).toString();
@@ -35,7 +35,7 @@ const mdEn = new URL(withBase('index.md'), site).toString();
 const mdFr = new URL(withBase('fr/index.md'), site).toString();
 const llmsTxt = new URL(withBase('llms.txt'), site).toString();
 // Issue #37: BetterSite-scoped auth.md + RFC 9728 Protected Resource Metadata,
-// shipped as static files under /bettersite/ (the origin-wide equivalents live
+// shipped as static files at the site root (the origin-wide equivalents live
 // on luongnv.com — see docs/origin/README.md). rel="help" is the registered
 // link relation for documentation; rel="describedby" exposes the PRM JSON.
 const authMd = new URL(withBase('auth.md'), site).toString();

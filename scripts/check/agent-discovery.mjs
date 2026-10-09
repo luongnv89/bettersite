@@ -31,8 +31,8 @@ const PAGES = {
   'privacy-fr': join(DIST, 'fr', 'privacy', 'index.html'),
 };
 const MIRRORS = { en: 'index.md', fr: 'fr/index.md' };
-const BASE_URL = 'https://luongnv.com/bettersite';
-const EMAIL = 'hello@bettersite.dev';
+const BASE_URL = 'https://bettersite.luongnv.com';
+const EMAIL = 'bettersite@luongnv.com';
 
 let failures = 0;
 let checks = 0;

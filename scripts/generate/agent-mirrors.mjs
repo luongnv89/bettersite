@@ -20,8 +20,8 @@
 //                                                     # mirrors drifted from
 //                                                     # the i18n dictionaries
 //
-// Output is committed: Layout.astro links to /bettersite/{,fr/}index.md,
-// /bettersite/llms.txt and /bettersite/auth.md as absolute URLs on every page.
+// Output is committed: Layout.astro links to /{,fr/}index.md,
+// /llms.txt and /auth.md as absolute URLs on every page.
 // docs/origin/llms-txt-entry.md is the BetterSite block for the ORIGIN
 // luongnv.com/llms.txt (issue #33) — the owner pastes it there; it lives in
 // this repo so it is rendered from the same dictionaries.
@@ -36,8 +36,8 @@ const DOCS_DIR = join(ROOT, 'docs', 'origin');
 
 // Mirror of astro.config.mjs — site + base. Kept as plain constants because
 // this script runs outside Astro/Vite; update both places if they change.
-const SITE = 'https://luongnv.com';
-const BASE = '/bettersite';
+const SITE = 'https://bettersite.luongnv.com';
+const BASE = '';
 const pageUrl = (path) => `${SITE}${BASE}/${path}`;
 
 const dicts = {};
@@ -135,7 +135,7 @@ function mirrorMarkdown(t, locale) {
     '---',
     '',
     `- ${t.footer.github}: https://github.com/luongnv89/bettersite`,
-    '- Email: hello@bettersite.dev',
+    '- Email: bettersite@luongnv.com',
     `- ${t.footer.privacy}: ${pageUrl(locale === 'fr' ? 'fr/privacy/' : 'privacy/')}`,
     `- Canonical HTML: ${pageUrl(locale === 'fr' ? 'fr/' : '')}`,
     `- This file: ${selfMd}`,
@@ -180,7 +180,7 @@ function llmsTxt() {
     '',
     '## Contact',
     '',
-    '- Email: hello@bettersite.dev',
+    '- Email: bettersite@luongnv.com',
     `- [GitHub repository](https://github.com/luongnv89/bettersite) — source of this site`,
     '',
   ].join('\n');

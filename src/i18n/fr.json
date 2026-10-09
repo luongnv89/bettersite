@@ -155,7 +155,7 @@
       { "h": "Ce que nous collectons", "body": "Le formulaire d'échantillon demande l'URL de votre site actuel et votre adresse e-mail. C'est tout — pas de compte, pas de pixels de suivi, pas d'analytics sur ce site." },
       { "h": "À quoi ça sert", "body": "Votre URL, c'est ce que nous refaisons ; votre e-mail, c'est où l'aperçu live arrive sous 48 heures. Si vous ne continuez pas, nous ne gardons que la refonte elle-même comme pièce de portfolio." },
       { "h": "Tiers", "body": "Le formulaire passe par Web3Forms, qui livre votre demande dans notre boîte. Le site est hébergé sur GitHub Pages. Un cookie bs_lang mémorise votre choix de langue ; rien d'autre n'est stocké." },
-      { "h": "Vos droits", "body": "Écrivez à hello@bettersite.dev à tout moment pour voir, corriger ou supprimer ce que nous détenons sur vous. Pas de compte à fermer, aucun data broker dans la boucle." }
+      { "h": "Vos droits", "body": "Écrivez à bettersite@luongnv.com à tout moment pour voir, corriger ou supprimer ce que nous détenons sur vous. Pas de compte à fermer, aucun data broker dans la boucle." }
     ],
     "updated": "Dernière mise à jour : octobre 2026",
     "back": "Retour à l'accueil"
@@ -185,7 +185,7 @@
     "share_cta": "Envoyez-leur le lien",
     "share_subject": "Échantillon gratuit — page d'accueil refaite en 48 heures",
     "share_body": "Je viens de demander une refonte gratuite de ma page d'accueil à BetterSite — ils refont votre site et envoient un aperçu live privé sous 48 heures, sans carte. Ça vaut le coup d'œil :",
-    "error_body": "Quelque chose a planté. Écrivez-nous à <a class=\"underline\" href=\"mailto:hello@bettersite.dev\">hello@bettersite.dev</a> et nous traitons ça à la main.",
+    "error_body": "Quelque chose a planté. Écrivez-nous à <a class=\"underline\" href=\"mailto:bettersite@luongnv.com\">bettersite@luongnv.com</a> et nous traitons ça à la main.",
     "tool_description": "Demander un échantillon gratuit BetterSite : remplit les champs URL du site et e-mail pour que le visiteur reçoive un lien d'aperçu live privé sous 48 heures.",
     "website_tool_param": "L'URL du site actuel à refaire, ex. votresite.com",
     "email_tool_param": "Adresse e-mail qui recevra le lien d'aperçu privé"

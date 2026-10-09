@@ -6,10 +6,9 @@
 // Usage:
 //   npm i -D playwright-core        # one-time, dev-only
 //   npm run build                   # requires PUBLIC_WEB3FORMS_KEY (any value)
-//   mkdir -p /tmp/bs-serve && ln -sfn "$PWD/dist" /tmp/bs-serve/bettersite
-//   (cd /tmp/bs-serve && python3 -m http.server 4899)
+//   (cd dist && python3 -m http.server 4899)   # site is served at the root
 //   node scripts/measure/viewports-and-contrast.mjs \
-//     --base-url http://localhost:4899/bettersite/ \
+//     --base-url http://localhost:4899/ \
 //     --out docs/audits/2026-10-09
 //
 // Checks, per locale (en = "/", fr = "/fr/"):
@@ -32,7 +31,7 @@ import { join } from 'node:path';
 const args = Object.fromEntries(
   process.argv.slice(2).map((a, i, arr) => (a.startsWith('--') ? [a.slice(2), arr[i + 1]] : null)).filter(Boolean),
 );
-const BASE = (args['base-url'] ?? 'http://localhost:4899/bettersite/').replace(/\/?$/, '/');
+const BASE = (args['base-url'] ?? 'http://localhost:4899/').replace(/\/?$/, '/');
 const OUT = args.out ?? 'docs/audits/latest';
 const WIDTHS = [320, 375, 390, 768, 1440];
 const LOCALES = { en: BASE, fr: `${BASE}fr/` };
