@@ -25,5 +25,5 @@ We rebuild your homepage on the stack that scored this page 100/100 on Lighthous
 
 ## Contact
 
-- Email: hello@bettersite.dev
+- Email: bettersite@luongnv.com
 - [GitHub repository](https://github.com/luongnv89/bettersite) — source of this site

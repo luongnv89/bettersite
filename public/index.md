@@ -151,7 +151,7 @@ I run BetterSite alone. After years of watching small businesses pay agency pric
 ---
 
 - GitHub: https://github.com/luongnv89/bettersite
-- Email: hello@bettersite.dev
+- Email: bettersite@luongnv.com
 - Privacy: https://luongnv.com/bettersite/privacy/
 - Canonical HTML: https://luongnv.com/bettersite/
 - This file: https://luongnv.com/bettersite/index.md

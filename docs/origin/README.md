@@ -11,7 +11,7 @@ served by the site; `public/` is what deploys.
 
 ## #32 — Cloudflare email obfuscation for the contact address
 
-**Decision (recorded): expose `hello@bettersite.dev` to no-JS readers and
+**Decision (recorded): expose `bettersite@luongnv.com` to no-JS readers and
 agents.** The address is deliberately public — it already appears in plain
 text in `public/llms.txt`, the generated markdown mirrors, the i18n
 dictionaries, and this public repo. Obfuscating it only blocks the audiences
@@ -30,7 +30,7 @@ edge, so the served page keeps a plain `mailto:` link:
   in "Your rights"
 
 `scripts/check/agent-discovery.mjs` fails the build-side check if any
-`hello@bettersite.dev` occurrence in `dist/` is not wrapped.
+`bettersite@luongnv.com` occurrence in `dist/` is not wrapped.
 
 **Owner action (optional belt):** if the markers ever prove insufficient,
 disable *Email Address Obfuscation* zone-wide in Cloudflare → Scrape Shield,
@@ -39,8 +39,8 @@ or scope a Configuration Rule disabling it for `/bettersite/*`.
 **Verify after deploy:**
 
 ```sh
-curl -s https://luongnv.com/bettersite/ | grep -o 'mailto:hello@bettersite.dev'
-# expected: mailto:hello@bettersite.dev (×3 — footer + two error blocks), no data-cfemail
+curl -s https://luongnv.com/bettersite/ | grep -o 'mailto:bettersite@luongnv.com'
+# expected: mailto:bettersite@luongnv.com (×3 — footer + two error blocks), no data-cfemail
 ```
 
 ## #33 — BetterSite entry in the origin `llms.txt`

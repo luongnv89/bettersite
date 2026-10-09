@@ -53,4 +53,4 @@ or API keys to `https://luongnv.com/bettersite/` — they are ignored and only
 leak into logs. Any `WWW-Authenticate` challenge an agent receives under this
 path is an anomaly, not a contract.
 
-Contact: `hello@bettersite.dev`.
+Contact: `bettersite@luongnv.com`.

@@ -151,7 +151,7 @@ Je fais tourner BetterSite seul. Après des années à voir des petites entrepri
 ---
 
 - GitHub: https://github.com/luongnv89/bettersite
-- Email: hello@bettersite.dev
+- Email: bettersite@luongnv.com
 - Confidentialité: https://luongnv.com/bettersite/fr/privacy/
 - Canonical HTML: https://luongnv.com/bettersite/fr/
 - This file: https://luongnv.com/bettersite/fr/index.md

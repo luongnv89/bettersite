@@ -135,7 +135,7 @@ function mirrorMarkdown(t, locale) {
     '---',
     '',
     `- ${t.footer.github}: https://github.com/luongnv89/bettersite`,
-    '- Email: hello@bettersite.dev',
+    '- Email: bettersite@luongnv.com',
     `- ${t.footer.privacy}: ${pageUrl(locale === 'fr' ? 'fr/privacy/' : 'privacy/')}`,
     `- Canonical HTML: ${pageUrl(locale === 'fr' ? 'fr/' : '')}`,
     `- This file: ${selfMd}`,
@@ -180,7 +180,7 @@ function llmsTxt() {
     '',
     '## Contact',
     '',
-    '- Email: hello@bettersite.dev',
+    '- Email: bettersite@luongnv.com',
     `- [GitHub repository](https://github.com/luongnv89/bettersite) — source of this site`,
     '',
   ].join('\n');
