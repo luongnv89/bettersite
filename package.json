@@ -10,7 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "measure": "node scripts/measure/viewports-and-contrast.mjs"
+    "measure": "node scripts/measure/viewports-and-contrast.mjs",
+    "generate:og": "node scripts/generate/og-images.mjs",
+    "check:og": "node scripts/check/og-meta.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
