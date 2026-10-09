@@ -18,6 +18,7 @@
     "check:landing": "node scripts/check/landing.mjs",
     "check:locale": "node scripts/check/locale-redirect.mjs",
     "check:nojs": "node scripts/check/nojs-form.mjs",
+    "check:nav": "node scripts/check/mobile-nav.mjs",
     "check:mirrors": "node scripts/check/agent-discovery.mjs"
   },
   "dependencies": {
