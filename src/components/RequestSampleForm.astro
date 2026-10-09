@@ -1,5 +1,6 @@
 ---
 import { getDict, type Locale } from '../i18n';
+import { withBase } from '../lib/url';
 
 interface Props {
   variant?: 'hero' | 'final';
@@ -14,15 +15,24 @@ if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
     'PUBLIC_WEB3FORMS_KEY is unset or empty. Set it in the repo secrets (CI deploy) or in .env (local dev) — refusing to build a sample-request form with a dead Web3Forms access_key.'
   );
 }
+// No-JS fallback: native POST to Web3Forms, then back to this page's
+// confirmation block (`#{id}-sent`, revealed by :target — no JS needed).
+const redirectTo = new URL(
+  `${withBase(locale === 'fr' ? 'fr/' : '')}#${id}-sent`,
+  Astro.site ?? 'https://luongnv89.github.io/bettersite/'
+).toString();
 ---
 <form
   id={id}
+  method="POST"
+  action="https://api.web3forms.com/submit"
   class="w-full max-w-xl mx-auto bg-slate-900/60 backdrop-blur ring-1 ring-white/10 rounded-2xl p-6 md:p-8 shadow-2xl"
   data-variant={variant}
   data-submit-label={t.submit}
   data-sending-label={t.sending}
 >
   <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="redirect" value={redirectTo} />
   <input type="hidden" name="subject" value="New BetterSite free-sample request" />
   <input type="hidden" name="from_name" value="BetterSite Landing" />
   <input type="hidden" name="locale" value={locale} />
@@ -62,7 +72,7 @@ if (accessKey === '' || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
     <p class="text-xs text-slate-400 text-center">{t.fineprint}</p>
   </div>
 
-  <div class="hidden mt-6 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 p-4 text-sm text-emerald-200" data-success role="status">
+  <div id={`${id}-sent`} class="hidden target:block mt-6 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 p-4 text-sm text-emerald-200" data-success role="status">
     <strong class="block text-emerald-100 mb-1">{t.success_title}</strong>
     {t.success_body}
   </div>
