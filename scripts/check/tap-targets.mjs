@@ -44,22 +44,29 @@ const check = (scope, ok, msg) => {
 };
 
 // Tailwind spacing scale is 4 px per unit: py-3.5 → 14 px each side.
-// Returns the tap-target height in px the class list produces, or 0 when
-// no height-affecting utility is found.
+// Returns the tap-target height in px the class list produces — the max
+// across every height-affecting strategy found (padding, min-h, h) so a
+// mixed restyle like `py-1 min-h-11` is measured at its real 44 px —
+// or 0 when no height-affecting utility is found.
 const tapHeightPx = (classes) => {
+  const candidates = [0];
   const py = /(?:^|\s)py-(\d+(?:\.\d+)?)/.exec(classes);
-  if (py) return TEXT_XS_LINE_PX + parseFloat(py[1]) * 4 * 2;
+  const p = /(?:^|\s)p-(\d+(?:\.\d+)?)/.exec(classes);
+  const pad = Math.max(py ? parseFloat(py[1]) : 0, p ? parseFloat(p[1]) : 0);
+  if (pad) candidates.push(TEXT_XS_LINE_PX + pad * 4 * 2);
   const minH = /(?:^|\s)min-h-(\d+(?:\.\d+)?)/.exec(classes);
-  if (minH) return Math.max(TEXT_XS_LINE_PX, parseFloat(minH[1]) * 4);
+  if (minH) candidates.push(Math.max(TEXT_XS_LINE_PX + (pad ? pad * 4 * 2 : 0), parseFloat(minH[1]) * 4));
   const h = /(?:^|\s)h-(\d+(?:\.\d+)?)/.exec(classes);
-  if (h) return parseFloat(h[1]) * 4;
-  return 0;
+  if (h) candidates.push(parseFloat(h[1]) * 4);
+  return Math.max(...candidates);
 };
 
 const tapWidthPx = (classes) => {
   const px = /(?:^|\s)px-(\d+(?:\.\d+)?)/.exec(classes);
+  const p = /(?:^|\s)p-(\d+(?:\.\d+)?)/.exec(classes);
+  const pad = Math.max(px ? parseFloat(px[1]) : 0, p ? parseFloat(p[1]) : 0);
   // ~8 px per EN/FR glyph at text-xs semibold, plus horizontal padding.
-  return px ? 18 + parseFloat(px[1]) * 4 * 2 : 0;
+  return pad ? 18 + pad * 4 * 2 : 0;
 };
 
 for (const [scope, file] of Object.entries(PAGES)) {
